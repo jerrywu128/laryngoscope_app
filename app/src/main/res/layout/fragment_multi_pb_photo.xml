@@ -1,0 +1,46 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1">
+    <TextView
+        android:id="@+id/no_content_txv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/no_content"
+        android:textColor="@color/secondary_text"
+        android:textSize="@dimen/first_title_size"
+        android:visibility="gone"/>
+
+    <com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView
+        android:id="@+id/multi_pb_photo_grid_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:horizontalSpacing="1dip"
+        android:numColumns="4"
+        android:verticalSpacing="1dip"
+        >
+
+    </com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView>
+
+    <FrameLayout
+        android:id="@+id/multi_pb_photo_list_layout"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        >
+
+        <ListView
+            android:id="@+id/multi_pb_photo_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:divider="@color/divider"
+            android:dividerHeight="0.5dp"
+            android:visibility="visible"
+            ></ListView>
+
+        <include layout="@layout/item_local_photo_wall_list_header"/>
+    </FrameLayout>
+
+</RelativeLayout>

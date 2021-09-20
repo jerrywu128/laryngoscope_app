@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.icatch.sbcapp.View.Activity.TestActivity"
+    >
+
+    <EditText
+        android:layout_margin="20dp"
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="add"
+        android:text="192.168.1.1"
+        />
+
+
+    <Button
+        android:layout_margin="20dp"
+        android:id="@+id/test01"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="test"
+        android:layout_below="@+id/editText"
+
+        />
+    <TextView
+        android:layout_margin="20dp"
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="test"
+        android:layout_below="@+id/test01"
+        />
+
+    <FrameLayout
+        android:padding="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
+
+</RelativeLayout>

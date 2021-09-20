@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "132775965425",
+    "project_id": "sbcliveapp-119e9"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:132775965425:android:82d7bc62e0df6fd0",
+        "android_client_info": {
+          "package_name": "com.icatch.sbcapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "132775965425-6rpc8tandgtt6eift8su29dbvnorndu3.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "132775965425-g179dol6p6od770658nate91ebhknfge.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.icatch.sbcapp",
+            "certificate_hash": "dfb0aacf8c5e067074b543f77a68ef1d27fa3261"
+          }
+        },
+        {
+          "client_id": "132775965425-8762pislnvu3odaa7e44fnsbd0edo87l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.icatch.sbcapp",
+            "certificate_hash": "4e5cac049d523c2790b69c38f00fb06e5c375123"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyzbViXxKHQAohjk3_Te1d-CbGGA2TWCk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

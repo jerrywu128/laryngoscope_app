@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ProgressWheel="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    >
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <com.icatch.sbcapp.ExtendComponent.MPreview
+                android:id="@+id/video_pb_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/video_pb_top_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:background="@color/half_transparent_grey"
+            android:orientation="horizontal">
+            <ImageButton
+                android:id="@+id/video_pb_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_transparent2gray"
+                android:gravity="center"
+                android:padding="15dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_arrow_back_white_24dp" />
+
+            <TextView
+                android:id="@+id/video_pb_video_name"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_toRightOf="@+id/video_pb_back"
+                android:text="20151245233_1245.mp4"
+                android:textColor="@color/graywhite"
+                android:layout_centerVertical="true"
+                android:textSize="16sp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                />
+
+            <ImageButton
+                android:id="@+id/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_toLeftOf="@+id/download"
+                android:layout_centerVertical="true"
+                android:padding="15dp"
+                android:src="@drawable/ic_delete_white_24dp"
+                android:background="@drawable/selector_transparent2gray"/>
+
+            <ImageButton
+                android:id="@+id/download"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:padding="15dp"
+                android:src="@drawable/ic_file_download_white_24dp"
+                android:background="@drawable/selector_transparent2gray"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/video_pb_bottom_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/half_transparent_grey"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/video_pb_time_lapsed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_alignParentLeft="true"
+                android:text="00:00"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/greyish_white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/video_pb_time_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/video_pb_time_lapsed"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center"
+                android:text="00:00"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/greyish_white"
+                android:textSize="16sp" />
+
+            <SeekBar
+                android:id="@+id/video_pb_seekBar"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:maxHeight="2dp"
+                android:layout_toLeftOf="@+id/video_pb_time_duration"
+                android:progressDrawable="@drawable/po_seekbar_02"
+                android:layout_toRightOf="@+id/video_pb_time_lapsed"
+                android:layout_alignBottom="@+id/video_pb_time_lapsed"
+                android:thumb="@drawable/seekbar_thumb" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/video_pb_time_lapsed"
+                android:layout_centerHorizontal="true">
+
+                <ImageButton
+                    android:id="@+id/video_pb_play_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/full_transparent"
+                    android:src="@drawable/ic_play_arrow_white_36dp" />
+                <ImageButton
+                    android:id="@+id/video_pb_stop_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/full_transparent"
+                    android:layout_toRightOf="@+id/video_pb_play_btn"
+                    android:layout_alignBottom="@+id/video_pb_play_btn"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_stop_white_36dp"
+                    android:visibility="gone"
+                    />
+            </RelativeLayout>
+
+            <!--<ImageButton-->
+                <!--android:id="@+id/video_pb_play_btn"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/video_pb_time_lapsed"-->
+                <!--android:background="@color/full_transparent"-->
+                <!--android:layout_centerHorizontal="true"-->
+                <!--android:padding="10dp"-->
+                <!--android:src="@drawable/ic_play_arrow_white_36dp" />-->
+            <!--<ImageButton-->
+                <!--android:id="@+id/video_pb_stop_btn"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@color/full_transparent"-->
+                <!--android:layout_toRightOf="@+id/video_pb_play_btn"-->
+                <!--android:layout_alignBottom="@+id/video_pb_play_btn"-->
+                <!--android:padding="10dp"-->
+                <!--android:src="@drawable/ic_stop_white_36dp"-->
+                <!--/>-->
+
+            <!-- -->
+
+            <!--<TextView-->
+            <!--android:id="@+id/video_pb_time_duration"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_above="@+id/video_pb_seekBar"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:text="00:00"-->
+            <!--android:textColor="@color/greyish_white"-->
+            <!--android:textSize="16sp" />-->
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_toRightOf="@+id/video_pb_play_btn"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_marginLeft="10dp">-->
+
+            <!-- -->
+            <!--</RelativeLayout>-->
+
+
+        </RelativeLayout>
+
+        <!--<ImageView-->
+            <!--android:id="@+id/video_pb_play_circle_btn"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:src="@drawable/videooverlay" />-->
+
+        <com.icatch.sbcapp.ExtendComponent.ProgressWheel
+            android:id="@+id/video_pb_spinner"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            ProgressWheel:barColor="#0097D6"
+            ProgressWheel:barLengthP="100dp"
+            ProgressWheel:barWidth="5dp"
+            ProgressWheel:contourColor="#330097D6"
+            ProgressWheel:rimColor="#330097D6"
+            ProgressWheel:rimWidth="10dp"
+            ProgressWheel:text="0%"
+            ProgressWheel:textColor="@android:color/white"
+            ProgressWheel:textSize="14sp" />
+
+        <!--<TextView-->
+        <!--android:id="@+id/local_pb_loadpercent"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:textSize="@dimen/text_size_22"-->
+        <!--android:visibility="gone"/>-->
+    </FrameLayout>
+
+</RelativeLayout>

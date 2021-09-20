@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.icatch.sbcapp.View.Activity.LocalVideoWallActivity">
+
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/local_video_wall_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:scrollbars="vertical">-->
+
+    <!--</android.support.v7.widget.RecyclerView>-->
+    <com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView
+        android:id="@+id/local_video_wall_grid_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:numColumns="4"
+        android:horizontalSpacing="1dip"
+        android:verticalSpacing="1dip"
+        >
+
+    </com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView>
+    <FrameLayout
+        android:id="@+id/local_video_wall_list_layout"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        >
+
+        <ListView
+            android:id="@+id/local_video_wall_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:visibility="visible"
+            android:dividerHeight="0.5dp"
+            android:divider="@color/divider"
+            ></ListView>
+        <include layout="@layout/item_local_photo_wall_list_header" />
+    </FrameLayout>
+
+
+</RelativeLayout>
