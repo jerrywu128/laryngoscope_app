@@ -1,5 +1,6 @@
 package com.icatch.sbcapp.Presenter;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
@@ -7,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
@@ -105,6 +107,8 @@ import java.util.TimerTask;
 import static com.icatch.sbcapp.Mode.PreviewMode.APP_STATE_TIMELAPSE_VIDEO_PREVIEW;
 import static com.icatch.wificam.core.jni.extractor.NativeValueExtractor.extractNativeBoolValue;
 
+import androidx.core.app.ActivityCompat;
+
 /**
  * Created by zhang yanhu C001012 on 2015/12/4 14:22.
  */
@@ -187,10 +191,10 @@ public class PreviewPresenter extends BasePresenter {
         previewView.setProgressSave(0,currentCamera.getUSB_PIMA_DCP_IQ_BRIGHTNESS().getCurrentValue());
         previewView.setProgressSave(1,currentCamera.getUSB_PIMA_DCP_IQ_SATURATION().getCurrentValue());
         previewView.setProgressSave(2,currentCamera.getUSB_PIMA_DCP_IQ_HUE().getCurrentValue());
-        int a = currentCamera.getUSB_PIMA_DCP_IQ_BLC().getCurrentValue();
-        boolean b = (a==0)?false:true;
+        int blc_value = currentCamera.getUSB_PIMA_DCP_IQ_BLC().getCurrentValue();
+        boolean ini_blc_value = (blc_value==0)?false:true;
 
-        previewView.setToggleStatus(b);
+        previewView.setToggleStatus(ini_blc_value);
         if (cameraProperties.hasFuction(0xD7F0)) {
             cameraProperties.setCaptureDelayMode(1);
         }
@@ -241,6 +245,7 @@ public class PreviewPresenter extends BasePresenter {
             previewView.setDecodeTimeLayoutVisibility(View.GONE);
             previewView.setOnDecodeTimeListener(null);
         }
+
     }
 
     public void changeCameraMode(final int previewMode, final ICatchPreviewMode ichVideoPreviewMode) {
@@ -323,7 +328,7 @@ public class PreviewPresenter extends BasePresenter {
             previewView.setPvModeBtnBackgroundResource(R.drawable.ic_outline_photo_camera_24);
         }else if(curMode == PreviewMode.APP_STATE_STILL_PREVIEW){
             curMode = previewMode;
-            previewView.setCaptureBtnBackgroundResource(R.drawable.video_start);
+            previewView.setCaptureBtnBackgroundResource(R.drawable.video_recording_btn_on);
             previewView.setPvModeBtnBackgroundResource(R.drawable.ic_outline_videocam_24);
         }
     }
@@ -482,6 +487,7 @@ public class PreviewPresenter extends BasePresenter {
             }
             curMode = PreviewMode.APP_STATE_STILL_CAPTURE;
             startPhotoCapture();
+            previewView.startPhotolocalCapture();
         } else if (curMode == PreviewMode.APP_STATE_TIMELAPSE_STILL_PREVIEW) {
 
             if (cameraProperties.isSDCardExist() == false) {

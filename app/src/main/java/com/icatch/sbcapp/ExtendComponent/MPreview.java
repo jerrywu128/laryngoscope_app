@@ -1,12 +1,23 @@
 package com.icatch.sbcapp.ExtendComponent;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.media.MediaMetadataRetriever;
+import android.media.projection.MediaProjectionManager;
+import android.os.Build;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
+import android.view.Surface;
+import android.view.SurfaceControl;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 
+import androidx.annotation.RequiresApi;
+
 import com.icatch.sbcapp.AppInfo.AppInfo;
+import com.icatch.sbcapp.GlobalApp.GlobalInfo;
 import com.icatch.sbcapp.Listener.OnDecodeTimeListener;
 import com.icatch.sbcapp.Listener.VideoFramePtsChangedListener;
 import com.icatch.sbcapp.Log.AppLog;
@@ -23,6 +34,7 @@ import com.icatch.wificam.customer.type.ICatchVideoFormat;
 /**
  * Created by zhang yanhu C001012 on 2015/12/3 14:15.
  */
+
 public class MPreview extends SurfaceView implements SurfaceHolder.Callback {
     private static final String TAG = "MPreview";
     private PreviewStream previewStream = PreviewStream.getInstance();
@@ -40,6 +52,7 @@ public class MPreview extends SurfaceView implements SurfaceHolder.Callback {
     private int frmH = 0;
     private VideoFramePtsChangedListener videoPbUpdateBarLitener = null;
     private ICatchVideoFormat videoFormat;
+    private Bitmap bitmap = null;
     OnDecodeTimeListener onDecodeTimeListener;
 
     public MPreview(Context context, AttributeSet attrs) {
@@ -224,8 +237,10 @@ public class MPreview extends SurfaceView implements SurfaceHolder.Callback {
         AppLog.d(TAG, "end setSurfaceViewArea");
     }
 
+
     public void addVideoFramePtsChangedListener(VideoFramePtsChangedListener videoPbUpdateBarLitener) {
         this.videoPbUpdateBarLitener = videoPbUpdateBarLitener;
     }
+
 }
 

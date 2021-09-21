@@ -1,11 +1,16 @@
 package com.icatch.sbcapp.View.Activity;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaRecorder;
+import android.media.projection.MediaProjection;
+import android.media.projection.MediaProjectionManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 //import android.support.v7.app.ActionBar;
@@ -30,6 +35,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -38,6 +44,7 @@ import com.icatch.sbcapp.Adapter.SettingListAdapter;
 import com.icatch.sbcapp.ExtendComponent.MPreview;
 import com.icatch.sbcapp.ExtendComponent.MyToast;
 import com.icatch.sbcapp.ExtendComponent.ZoomView;
+import com.icatch.sbcapp.Function.MediaCaptureService;
 import com.icatch.sbcapp.Listener.OnDecodeTimeListener;
 import com.icatch.sbcapp.Log.AppLog;
 import com.icatch.sbcapp.Mode.PreviewLaunchMode;
@@ -48,6 +55,7 @@ import com.icatch.sbcapp.R;
 import com.icatch.sbcapp.SdkApi.CameraProperties;
 import com.icatch.sbcapp.SystemInfo.SystemInfo;
 import com.icatch.sbcapp.View.Interface.PreviewView;
+import com.icatch.sbcapp.Function.mediaScreenCapture;
 
 public class PreviewActivity extends BaseActivity implements View.OnClickListener, PreviewView {
 
@@ -108,6 +116,10 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
     private int[] progress_save;
     private ToggleButton blc_toggle;
     private boolean BLCtoggle_status;
+    private MediaProjectionManager mMediaProjectionManager;
+    private static final int REQUEST_CODE = 100;
+    private static MediaProjection mMediaProjection;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AppLog.d(TAG, "1122 onCreate");
@@ -116,6 +128,10 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mMediaProjectionManager = (MediaProjectionManager) getSystemService(
+                    Context.MEDIA_PROJECTION_SERVICE);
+        }
         actionBar = getSupportActionBar();
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayShowTitleEnabled(true);
@@ -361,7 +377,17 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
         mediaRecorder = new MediaRecorder();
 
 
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 9999);
 
+        }
 
     }
 
@@ -429,6 +455,10 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
         //IC-758 Begin ADD by b.jiang 20161227
         presenter.resetState();
         //IC-758 End ADD by b.jiang 20161227
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            Intent service = new Intent(this, MediaCaptureService.class);
+            stopService(service);
+        }
     }
 /*
     @Override
@@ -595,6 +625,38 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
                 break;
         }
     }
+    @Override
+    public void startPhotolocalCapture(){
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            startActivityForResult(mMediaProjectionManager.createScreenCaptureIntent(),REQUEST_CODE);
+        }
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d(TAG, "on result : requestCode = " + requestCode + " resultCode = " + resultCode);
+        if (RESULT_OK == resultCode && REQUEST_CODE == requestCode) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+               Intent service = new Intent(this, MediaCaptureService.class);
+               service.putExtra("code", resultCode);
+               service.putExtra("data", data);
+               startForegroundService(service);
+            }
+            else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                mMediaProjection = mMediaProjectionManager.getMediaProjection(resultCode, data);
+
+                if (mMediaProjection != null) {
+
+                    Log.d(TAG, "Start capturing...");
+                    new mediaScreenCapture(this, mMediaProjection, "").startProjection();
+                }
+            }
+        }
+    }
+
 
     @Override
     public void setToggleStatus(boolean checked){

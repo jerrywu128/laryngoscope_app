@@ -203,6 +203,8 @@ public class MjpgDecoderThread {
             AppLog.i(TAG, "stopMPreview video thread");
         }
 
+
+
         public void requestExitAndWait() {
             // 把这个线程标记为完成，并合并到主程序线程
             done = true;
@@ -212,6 +214,8 @@ public class MjpgDecoderThread {
             }
         }
     }
+
+
 
     public void redrawBitmap() {
         AppLog.i(TAG, "redrawBitmap");

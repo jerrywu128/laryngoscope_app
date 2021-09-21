@@ -90,6 +90,8 @@ public interface PreviewView {
 
     void setCaptureRadioBtnVisibility(int visibility);
 
+    void startPhotolocalCapture();
+
     void setProgressSave(int IQ,int value);
 
     void setToggleStatus(boolean checked);

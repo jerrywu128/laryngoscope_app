@@ -11,7 +11,7 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="650dp">
+        android:layout_height="fill_parent">
 
         <com.icatch.sbcapp.ExtendComponent.MPreview
             android:id="@+id/m_preview"
@@ -260,7 +260,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="10dp"
             android:src="@drawable/ic_baseline_photo_filter_24" />
 
         <ImageView
@@ -269,7 +269,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="95dp"
+            android:layout_marginLeft="85dp"
             android:src="@drawable/ic_baseline_folder_open_24" />
 
         <ImageView
