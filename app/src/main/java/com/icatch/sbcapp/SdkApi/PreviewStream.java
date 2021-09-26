@@ -554,8 +554,8 @@ public class PreviewStream {
             e.printStackTrace();
         }
 //        test.saveImage11(frameBuffer,frameBuffer.getFrameSize());
-        Bitmap bitmap = BitmapFactory.decodeByteArray(mPixel, 0, mPixel.length);
-        DatabaseHelper.updateCameraPhoto(GlobalInfo.curSlotId, bitmap);
+       //t Bitmap bitmap = BitmapFactory.decodeByteArray(mPixel, 0, mPixel.length);
+       //t DatabaseHelper.updateCameraPhoto(GlobalInfo.curSlotId, bitmap);
         AppLog.d(TAG, "End isStreamSupportPublish=" + ret);
         return ret;
     }

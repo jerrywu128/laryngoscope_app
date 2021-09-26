@@ -1,23 +1,19 @@
 package com.icatch.sbcapp.Function;
 
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.ImageFormat;
-import android.graphics.PixelFormat;
 import android.hardware.display.DisplayManager;
 import android.hardware.display.VirtualDisplay;
 import android.media.Image;
 import android.media.ImageReader;
+import android.media.MediaScannerConnection;
 import android.media.projection.MediaProjection;
 import android.media.projection.MediaProjectionManager;
-import android.nfc.Tag;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
-import android.os.IBinder;
 import android.os.Looper;
-import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -26,7 +22,8 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
-import com.icatch.sbcapp.Tools.ImageUtils;
+import com.icatch.sbcapp.Tools.FileOpertion.FileOper;
+import com.icatch.sbcapp.Tools.StorageUtil;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -35,7 +32,6 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Objects;
 
 public class mediaScreenCapture  {
     private static final String TAG = "mediaScreenCapture";
@@ -49,11 +45,11 @@ public class mediaScreenCapture  {
     private ImageReader mImageReader;
     private VirtualDisplay mVirtualDisplay;
     private Handler mHandler;
-    private String STORE_DIR;
+    private String path;
     private Context mContext;
     private MediaProjectionManager mMediaProjectionManager;
 
-    public mediaScreenCapture(Context context, MediaProjection mediaProjection, String savePath) {
+    public mediaScreenCapture(Context context, MediaProjection mediaProjection) {
         mMediaProjection = mediaProjection;
         mContext = context;
 
@@ -69,23 +65,16 @@ public class mediaScreenCapture  {
         }.start();
 
 
-        if (TextUtils.isEmpty(savePath)) {
-            File externalFilesDir = mContext.getExternalFilesDir("/");
-            Log.d(TAG, "externalFilesDir:" + externalFilesDir.getAbsolutePath());
-            if (externalFilesDir != null) {
-                STORE_DIR = externalFilesDir.getAbsolutePath() + "/testapp";
-            } else {
-                Toast.makeText(mContext, "No save path assigned!", Toast.LENGTH_SHORT);
-            }
-        } else {
-            STORE_DIR = savePath;
-        }
+
+        path = StorageUtil.getDownloadPath(context);
+
+        FileOper.createDirectory(path);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public mediaScreenCapture startProjection() {
-        if (mMediaProjection != null) {
-            File storeDir = new File(STORE_DIR);
+        /*if (mMediaProjection != null) {
+            File storeDir = new File(path);
             if (!storeDir.exists()) {
                 boolean success = storeDir.mkdirs();
                 if (!success) {
@@ -100,7 +89,7 @@ public class mediaScreenCapture  {
 
         } else {
             Log.d(TAG, "get mediaprojection failed");
-        }
+        }*/
 
         try {
             Thread.sleep(500);
@@ -147,7 +136,7 @@ public class mediaScreenCapture  {
                         if (image != null) {
 
                             int width = image.getWidth();
-                            int height = image.getHeight();
+                            int height = image.getHeight()-((int)(image.getHeight()*0.2));
                             final Image.Plane[] planes = image.getPlanes();
                             final ByteBuffer buffer = planes[0].getBuffer();
                             int pixelStride = planes[0].getPixelStride();
@@ -159,13 +148,15 @@ public class mediaScreenCapture  {
 
                             Date currentDate = new Date();
                             SimpleDateFormat date = new SimpleDateFormat("yyyyMMddhhmmss");
-                            String fileName = STORE_DIR  + date.format(
+                            String fileName = path + date.format(
                                     currentDate) + ".jpg";
                             fos = new FileOutputStream(fileName);
                             mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
                             Log.d(TAG, "End now!!!!!!  Screenshot saved in " + fileName);
                             Toast.makeText(mContext, "Screenshot saved in " + fileName,
                                     Toast.LENGTH_LONG);
+                            MediaScannerConnection
+                                    .scanFile(mContext, new String[] { fileName }, null, null); //更新相冊
                             stopProjection();
                         }
                     } catch (FileNotFoundException e) {

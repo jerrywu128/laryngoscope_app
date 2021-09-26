@@ -45,10 +45,10 @@ public class MultiPbPresenter extends BasePresenter {
     private static final String TAG = "MultiPbPresenter";
     private MultiPbView multiPbView;
     private Activity activity;
-    private FragmentManager fragmentManager;
+   //t private FragmentManager fragmentManager;
     private int offset = 0;// 动画图片偏移量
-    MultiPbPhotoFragment multiPbPhotoFragment;
-    MultiPbVideoFragment multiPbVideoFragment;
+   //t MultiPbPhotoFragment multiPbPhotoFragment;
+   //t MultiPbVideoFragment multiPbVideoFragment;
     OperationMode curOperationMode = OperationMode.MODE_BROWSE;
     ViewPagerAdapter adapter;
     private Executor executor;
@@ -58,7 +58,7 @@ public class MultiPbPresenter extends BasePresenter {
     public MultiPbPresenter(Activity activity) {
         super(activity);
         this.activity = activity;
-        this.fragmentManager = ((FragmentActivity) activity).getSupportFragmentManager();
+        //t this.fragmentManager = ((FragmentActivity) activity).getSupportFragmentManager();
         this.executor = Executors.newSingleThreadExecutor();
         initLruCache();
     }
@@ -109,7 +109,7 @@ public class MultiPbPresenter extends BasePresenter {
     }
 
 
-    private void initViewpager() {
+    private void initViewpager() {/*t
         if (multiPbPhotoFragment == null) {
             multiPbPhotoFragment = new MultiPbPhotoFragment();
         }
@@ -168,10 +168,10 @@ public class MultiPbPresenter extends BasePresenter {
         });
         FragmentManager manager = ((FragmentActivity) activity).getSupportFragmentManager();
         adapter = new ViewPagerAdapter(manager);
-        adapter.addFragment(multiPbPhotoFragment, activity.getResources().getString(R.string.title_photo));
-        adapter.addFragment(multiPbVideoFragment, activity.getResources().getString(R.string.title_video));
+        //t adapter.addFragment(multiPbPhotoFragment, activity.getResources().getString(R.string.title_photo));
+        //tadapter.addFragment(multiPbVideoFragment, activity.getResources().getString(R.string.title_video));
         multiPbView.setViewPageAdapter(adapter);
-        multiPbView.setViewPageCurrentItem(GlobalInfo.currentViewpagerPosition);
+        multiPbView.setViewPageCurrentItem(GlobalInfo.currentViewpagerPosition);*/
     }
 
     public void updateViewpagerStatus(int arg0) {
@@ -189,8 +189,8 @@ public class MultiPbPresenter extends BasePresenter {
                 GlobalInfo.photoWallPreviewType = PhotoWallPreviewType.PREVIEW_TYPE_LIST;
                 multiPbView.setMenuPhotoWallTypeIcon(R.drawable.ic_view_list_white_24dp);
             }
-            multiPbPhotoFragment.changePreviewType();
-            multiPbVideoFragment.changePreviewType();
+            //t multiPbPhotoFragment.changePreviewType();
+            //t  multiPbVideoFragment.changePreviewType();
             AppLog.d(TAG, " changePreviewType AppInfo.photoWallPreviewType");
         }
     }
@@ -201,9 +201,9 @@ public class MultiPbPresenter extends BasePresenter {
         } else if (curOperationMode == OperationMode.MODE_EDIT) {
             curOperationMode = OperationMode.MODE_BROWSE;
             if (GlobalInfo.currentViewpagerPosition == 0) {
-                multiPbPhotoFragment.quitEditMode();
+                //t   multiPbPhotoFragment.quitEditMode();
             } else if (GlobalInfo.currentViewpagerPosition == 1) {
-                multiPbVideoFragment.quitEditMode();
+                //t    multiPbVideoFragment.quitEditMode();
             }
         }
 
@@ -220,9 +220,9 @@ public class MultiPbPresenter extends BasePresenter {
             curSelectAll = true;
         }
         if (GlobalInfo.currentViewpagerPosition == 0) {
-            multiPbPhotoFragment.selectOrCancelAll(curSelectAll);
+            //t multiPbPhotoFragment.selectOrCancelAll(curSelectAll);
         } else if (GlobalInfo.currentViewpagerPosition == 1) {
-            multiPbVideoFragment.select(curSelectAll);
+            //t multiPbVideoFragment.select(curSelectAll);
         }
     }
 
@@ -231,10 +231,10 @@ public class MultiPbPresenter extends BasePresenter {
         FileType fileType = null;
         AppLog.d(TAG, "delete AppInfo.currentViewpagerPosition=" + GlobalInfo.currentViewpagerPosition);
         if (GlobalInfo.currentViewpagerPosition == 0) {
-            list = multiPbPhotoFragment.getSelectedList();
+            //t list = multiPbPhotoFragment.getSelectedList();
             fileType = FileType.FILE_PHOTO;
         } else if (GlobalInfo.currentViewpagerPosition == 1) {
-            list = multiPbVideoFragment.getSelectedList();
+            //t list = multiPbVideoFragment.getSelectedList();
             fileType = FileType.FILE_VIDEO;
         }
         if (list == null || list.size() <= 0) {
@@ -274,9 +274,9 @@ public class MultiPbPresenter extends BasePresenter {
         long fileSizeTotal = 0;
         AppLog.d(TAG, "delete currentViewpagerPosition=" + GlobalInfo.currentViewpagerPosition);
         if (GlobalInfo.currentViewpagerPosition == 0) {
-            list = multiPbPhotoFragment.getSelectedList();
+            //t  list = multiPbPhotoFragment.getSelectedList();
         } else if (GlobalInfo.currentViewpagerPosition == 1) {
-            list = multiPbVideoFragment.getSelectedList();
+            //t list = multiPbVideoFragment.getSelectedList();
         }
         if (list == null || list.size() <= 0) {
             AppLog.d(TAG, "asytaskList size=" + list.size());
@@ -343,13 +343,13 @@ public class MultiPbPresenter extends BasePresenter {
 
                     if (fileType == FileType.FILE_PHOTO) {
                         GlobalInfo.getInstance().photoInfoList.removeAll(deleteSucceedList);
-                        multiPbPhotoFragment.refreshPhotoWall();
-                        multiPbPhotoFragment.quitEditMode();
+                        //t   multiPbPhotoFragment.refreshPhotoWall();
+                        //t  multiPbPhotoFragment.quitEditMode();
 
                     } else if (fileType == FileType.FILE_VIDEO) {
                         GlobalInfo.getInstance().videoInfoList.removeAll(deleteSucceedList);
-                        multiPbVideoFragment.refreshPhotoWall();
-                        multiPbVideoFragment.quitEditMode();
+                        //t   multiPbVideoFragment.refreshPhotoWall();
+                        //t   multiPbVideoFragment.quitEditMode();
                     }
                     if (deleteFailedList.isEmpty() == false) {
 //                        showDeleteFailedDialog();
@@ -360,16 +360,16 @@ public class MultiPbPresenter extends BasePresenter {
     }
 
     public void clealAsytaskList() {
-        multiPbPhotoFragment.clealAsytaskList();
-        multiPbVideoFragment.clealAsytaskList();
+        //t  multiPbPhotoFragment.clealAsytaskList();
+        //t  multiPbVideoFragment.clealAsytaskList();
     }
 
     private void quitEditMode() {
         curOperationMode = OperationMode.MODE_BROWSE;
         if (GlobalInfo.currentViewpagerPosition == 0) {
-            multiPbPhotoFragment.quitEditMode();
+            //t multiPbPhotoFragment.quitEditMode();
         } else if (GlobalInfo.currentViewpagerPosition == 1) {
-            multiPbVideoFragment.quitEditMode();
+           //t multiPbVideoFragment.quitEditMode();
         }
     }
 }

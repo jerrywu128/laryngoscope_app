@@ -278,7 +278,8 @@ public class PreviewPresenter extends BasePresenter {
                     previewHandler.post(new Runnable() {
                         @Override
                         public void run() {
-                            curMode = previewMode;
+                            curMode = PreviewMode.APP_STATE_VIDEO_PREVIEW;
+                            System.out.println("chmode is"+curMode);
                             previewView.startMPreview(currentCamera);
                             String info = "Current cache time=" + curCacheTime + "  enableSoftwareDecoder=" + GlobalInfo.enableSoftwareDecoder;
                             previewView.setDecodeInfo(info);
@@ -413,6 +414,7 @@ public class PreviewPresenter extends BasePresenter {
     }
 
     public void startOrStopCapture() {
+        System.out.println("mode is"+curMode);
         AppLog.d(TAG, "begin startOrStopCapture curMode=" + curMode);
         /*
         if (isYouTubeLiving) {
@@ -425,7 +427,13 @@ public class PreviewPresenter extends BasePresenter {
 
         this.mPreview = mPreview;
         if (curMode == PreviewMode.APP_STATE_VIDEO_PREVIEW) {
+            curMode = PreviewMode.APP_STATE_VIDEO_CAPTURE;
+            startVideoCaptureButtomChangeTimer();
+            if (videoCaptureStartBeep != null) {
+                videoCaptureStartBeep.start();
+            }
             /*
+
             if (cameraProperties.isSDCardExist() == false) {
                 AppDialog.showDialogWarn(activity, R.string.dialog_card_not_exist);
                 return;
@@ -453,7 +461,13 @@ public class PreviewPresenter extends BasePresenter {
 
 
             }*/
-        } else if (curMode == PreviewMode.APP_STATE_VIDEO_CAPTURE) {/*
+        } else if (curMode == PreviewMode.APP_STATE_VIDEO_CAPTURE) {
+            curMode = PreviewMode.APP_STATE_VIDEO_PREVIEW;
+            stopVideoCaptureButtomChangeTimer();
+            if (videoCaptureStartBeep != null) {
+                videoCaptureStartBeep.start();
+            }
+            /*
             if (videoCaptureStartBeep != null) {
                 videoCaptureStartBeep.start();
             }
@@ -485,9 +499,11 @@ public class PreviewPresenter extends BasePresenter {
                 AppDialog.showDialogWarn(activity, R.string.text_get_data_exception);
                 return;
             }
+
             curMode = PreviewMode.APP_STATE_STILL_CAPTURE;
             startPhotoCapture();
             previewView.startPhotolocalCapture();
+
         } else if (curMode == PreviewMode.APP_STATE_TIMELAPSE_STILL_PREVIEW) {
 
             if (cameraProperties.isSDCardExist() == false) {
@@ -759,10 +775,11 @@ public class PreviewPresenter extends BasePresenter {
 //                    ICatchPreviewMode.ICH_VIDEO_PREVIEW_MODE) == Tristate.FALSE) {
 //                return;
 //            }
+            System.out.println("initmode is"+curMode);
             changeCameraMode(PreviewMode.APP_STATE_VIDEO_CAPTURE, ICatchPreviewMode.ICH_VIDEO_PREVIEW_MODE);
             //JIRA ICOM-3537 End Modify by b.jiang 20160726
             //start recording buttom,need a period timer
-            curMode = PreviewMode.APP_STATE_VIDEO_CAPTURE;
+            //curMode = PreviewMode.APP_STATE_VIDEO_CAPTURE;
             //startVideoCaptureButtomChangeTimer();
             //start recording time timer
             startRecordingLapseTimeTimer(cameraProperties.getVideoRecordingTime());
@@ -929,26 +946,6 @@ public class PreviewPresenter extends BasePresenter {
                     changeCameraMode(PreviewMode.APP_STATE_STILL_PREVIEW);
                 }
             }
-        } else if (previewMode == PreviewMode.APP_STATE_TIMELAPSE_MODE) {
-            if (curMode == PreviewMode.APP_STATE_STILL_CAPTURE || curMode == PreviewMode.APP_STATE_VIDEO_CAPTURE) {
-                if (curMode == PreviewMode.APP_STATE_STILL_CAPTURE) {
-                    MyToast.show(activity, R.string.stream_error_capturing);
-                } else if (curMode == PreviewMode.APP_STATE_VIDEO_CAPTURE) {
-                    MyToast.show(activity, R.string.stream_error_recording);
-                }
-                return;
-            } else if (curMode == PreviewMode.APP_STATE_STILL_PREVIEW || curMode == PreviewMode.APP_STATE_VIDEO_PREVIEW) {
-                previewView.stopMPreview(currentCamera);
-                stopMediaStream();
-                GlobalInfo.getInstance().getCurrentCamera().resetTimeLapseVideoSize();
-                if (currentCamera.timeLapsePreviewMode == TimeLapseMode.TIME_LAPSE_MODE_VIDEO) {
-                    previewStream.changePreviewMode(cameraPreviewStreamClint, ICatchPreviewMode.ICH_TIMELAPSE_VIDEO_PREVIEW_MODE);
-                    changeCameraMode(APP_STATE_TIMELAPSE_VIDEO_PREVIEW, ICatchPreviewMode.ICH_TIMELAPSE_VIDEO_PREVIEW_MODE);
-                } else if (currentCamera.timeLapsePreviewMode == TimeLapseMode.TIME_LAPSE_MODE_STILL) {
-                    previewStream.changePreviewMode(cameraPreviewStreamClint, ICatchPreviewMode.ICH_TIMELAPSE_STILL_PREVIEW_MODE);
-                    changeCameraMode(PreviewMode.APP_STATE_TIMELAPSE_STILL_PREVIEW, ICatchPreviewMode.ICH_TIMELAPSE_STILL_PREVIEW_MODE);
-                }
-            }
         }
     }
 
@@ -1103,7 +1100,7 @@ public class PreviewPresenter extends BasePresenter {
     public void showPvModePopupWindow() {
         AppLog.d(TAG, "showPvModePopupWindow curMode=" + curMode);
 
-        /*
+
         if (curMode == PreviewMode.APP_STATE_STILL_CAPTURE ||
                 curMode == PreviewMode.APP_STATE_TIMELAPSE_VIDEO_CAPTURE ||
                 curMode == PreviewMode.APP_STATE_TIMELAPSE_STILL_CAPTURE ||
@@ -1116,7 +1113,7 @@ public class PreviewPresenter extends BasePresenter {
             }
             //IC-754 End modify 20161212 BY b.jiang
             return;
-        }*/
+        }
         previewView.showPopupWindow(curMode);
         if (cameraProperties.cameraModeSupport(ICatchMode.ICH_MODE_VIDEO)) {
             previewView.setVideoRadioBtnVisibility(View.VISIBLE);
@@ -1517,7 +1514,7 @@ public class PreviewPresenter extends BasePresenter {
     @Override
     public void redirectToAnotherActivity(final Context context, final Class<?> cls) {
         AppLog.i(TAG, "pbBtn is clicked curMode=" + curMode);
-
+        System.out.println("anomode is"+curMode);
         if (allowClickButtoms == false) {
             AppLog.i(TAG, "do not allow to response button clicking");
             return;
@@ -1529,9 +1526,8 @@ public class PreviewPresenter extends BasePresenter {
             return;
         }
         AppLog.i(TAG, "curMode =" + curMode);
-        /*curMode == PreviewMode.APP_STATE_STILL_PREVIEW || curMode == PreviewMode.APP_STATE_VIDEO_PREVIEW || curMode == APP_STATE_TIMELAPSE_VIDEO_PREVIEW
-                || curMode == PreviewMode.APP_STATE_TIMELAPSE_STILL_PREVIEW*/
-        if (true) {
+
+        if (curMode == PreviewMode.APP_STATE_STILL_PREVIEW || curMode == PreviewMode.APP_STATE_VIDEO_PREVIEW) {
             if (supportStreaming) {
                 if (stopMediaStream() == false) {
                     AppLog.i("[Error] -- Main: ", "failed to stopMediaStream");
@@ -1539,10 +1535,11 @@ public class PreviewPresenter extends BasePresenter {
                     return;
                 }
             }
-           // stopPreview();
-           // delEvent();
+            stopPreview();
+            delEvent();
             allowClickButtoms = true;
             needShowSBCHint = true;
+
             //BSP-1209
             MyProgressDialog.showProgressDialog(activity, R.string.action_processing);
             previewHandler.postDelayed(new Runnable() {
@@ -1854,7 +1851,15 @@ public class PreviewPresenter extends BasePresenter {
         builder.create().show();
     }
     public void startIQlayout(RelativeLayout pb_IQ,RelativeLayout buttom_bar){
-
+        if (curMode == PreviewMode.APP_STATE_STILL_CAPTURE ||
+                curMode == PreviewMode.APP_STATE_VIDEO_CAPTURE) {
+            if (curMode == PreviewMode.APP_STATE_STILL_CAPTURE) {
+                MyToast.show(activity, R.string.stream_error_capturing);
+            } else if (curMode == PreviewMode.APP_STATE_VIDEO_CAPTURE) {
+                MyToast.show(activity, R.string.stream_error_recording);
+            }
+            return;
+        }
             pb_IQ.setVisibility(View.VISIBLE);
             buttom_bar.setVisibility((View.GONE));
 

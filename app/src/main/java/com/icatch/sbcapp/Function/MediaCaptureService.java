@@ -63,7 +63,7 @@ public class MediaCaptureService extends Service {
             mMediaProjectionManager =   (MediaProjectionManager) getSystemService(Context.MEDIA_PROJECTION_SERVICE);
 
             mMediaProjection = mMediaProjectionManager.getMediaProjection(mResultCode, Objects.requireNonNull(mResultData));
-            new mediaScreenCapture(this, mMediaProjection, "").startProjection();
+            new mediaScreenCapture(this, mMediaProjection).startProjection();
         }
 
         Log.e(TAG, "mMediaProjection created: " + mMediaProjection);

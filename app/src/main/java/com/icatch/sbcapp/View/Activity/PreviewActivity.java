@@ -1,6 +1,7 @@
 package com.icatch.sbcapp.View.Activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -112,14 +113,17 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
     private Button WB_AUTO,WB_DAYLIGHT,WB_CLOUDY,WB_TUNGSTEN,WB_FLOURESCENT_H;
     private TextView quality_name,seekbar_value;
     private SeekBar seekBar;
-    private MediaRecorder mediaRecorder;
     private int[] progress_save;
     private ToggleButton blc_toggle;
     private boolean BLCtoggle_status;
     private MediaProjectionManager mMediaProjectionManager;
     private static final int REQUEST_CODE = 100;
     private static MediaProjection mMediaProjection;
-
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AppLog.d(TAG, "1122 onCreate");
@@ -271,6 +275,9 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
 
         }
 
+        verifyStoragePermissions(this);
+
+
         cameraSwitchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -374,7 +381,6 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
             }
         });
 
-        mediaRecorder = new MediaRecorder();
 
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -496,6 +502,20 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
         return super.onOptionsItemSelected(item);
     }
 
+    public static void verifyStoragePermissions(Activity activity){
+        // Check if we have write permission
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
+        }
+    }
+
     public static class Utils {
         // 两次点击按钮之间的点击间隔不能少于3000毫秒
         private static final int MIN_CLICK_DELAY_TIME = 3000;
@@ -537,6 +557,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
                 AppLog.i(TAG, "click the multi_pb");
                 if(Utils.isFastClick()) { //防止重複點擊造成崩潰
                     presenter.redirectToAnotherActivity(PreviewActivity.this, MultiPbActivity.class);
+                    //MyToast.show(this, "功能開發中");
                 }
                 break;
             case R.id.doCapture:
@@ -625,11 +646,13 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
                 break;
         }
     }
+
     @Override
     public void startPhotolocalCapture(){
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             startActivityForResult(mMediaProjectionManager.createScreenCaptureIntent(),REQUEST_CODE);
+
         }
     }
 
@@ -637,9 +660,11 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        //會執行initPreview
         Log.d(TAG, "on result : requestCode = " + requestCode + " resultCode = " + resultCode);
         if (RESULT_OK == resultCode && REQUEST_CODE == requestCode) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+               Log.d(TAG, "Start capturing...");
                Intent service = new Intent(this, MediaCaptureService.class);
                service.putExtra("code", resultCode);
                service.putExtra("data", data);
@@ -651,9 +676,11 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
                 if (mMediaProjection != null) {
 
                     Log.d(TAG, "Start capturing...");
-                    new mediaScreenCapture(this, mMediaProjection, "").startProjection();
+                    new mediaScreenCapture(this, mMediaProjection).startProjection();
                 }
             }
+        } else{
+            MyToast.show(this, "取消拍攝");
         }
     }
 
@@ -773,6 +800,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
     @Override
     public void setWbStatusIcon(int drawableId) {
         wbStatus.setBackgroundResource(drawableId);
+        wbStatus.setVisibility(View.GONE);
     }
 
     @Override

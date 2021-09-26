@@ -241,9 +241,6 @@ public class H264DecoderThread {
                                 }).start();
                                 isSaveBitmapToDb = true;
                         }
-
-
-
                         if (previewLaunchMode == PreviewLaunchMode.VIDEO_PB_MODE && videoPbUpdateBarLitener != null) {
                             videoPbUpdateBarLitener.onFramePtsChanged(frameBuffer.getPresentationTime());
                         }

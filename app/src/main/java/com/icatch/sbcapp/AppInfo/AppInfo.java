@@ -4,7 +4,10 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.util.Log;
 
+import com.icatch.sbcapp.GlobalApp.GlobalInfo;
 import com.icatch.sbcapp.Log.AppLog;
+import com.icatch.sbcapp.R;
+import com.icatch.sbcapp.View.Activity.PreviewActivity;
 
 import java.util.List;
 
@@ -19,8 +22,8 @@ public class AppInfo {
 
     public static final String PROPERTY_CFG_DIRECTORY_PATH = "/SportCamResoure/";
     public static final String APP_VERSION = "R1.4.19";
-    public static final String DOWNLOAD_PATH = "/DCIM/喉鏡app/";
-    public static final String AUTO_DOWNLOAD_PATH = "/DCIM/喉鏡app/";
+    public static final String DOWNLOAD_PATH = "/DCIM/Camera/";
+    public static final String AUTO_DOWNLOAD_PATH = "/DCIM/Camera/";
     public static final String UPDATEFW_FILENAME = "/SportCamResoure/sphost.BRN";
     public static final String FILE_GOOGLE_TOKEN = "file_googleToken.dat";
     public static final String EULA_VERSION = "1.1"; // AgreeLicenseAgreementVersion
