@@ -432,6 +432,7 @@ public class PreviewPresenter extends BasePresenter {
             if (videoCaptureStartBeep != null) {
                 videoCaptureStartBeep.start();
             }
+            previewView.startRecordlocalCapture();
             /*
 
             if (cameraProperties.isSDCardExist() == false) {
@@ -467,6 +468,7 @@ public class PreviewPresenter extends BasePresenter {
             if (videoCaptureStartBeep != null) {
                 videoCaptureStartBeep.start();
             }
+            previewView.stopRecordlocalCapture();
             /*
             if (videoCaptureStartBeep != null) {
                 videoCaptureStartBeep.start();
@@ -504,7 +506,7 @@ public class PreviewPresenter extends BasePresenter {
             startPhotoCapture();
             previewView.startPhotolocalCapture();
 
-        } else if (curMode == PreviewMode.APP_STATE_TIMELAPSE_STILL_PREVIEW) {
+        }/* else if (curMode == PreviewMode.APP_STATE_TIMELAPSE_STILL_PREVIEW) {
 
             if (cameraProperties.isSDCardExist() == false) {
                 AppDialog.showDialogWarn(activity, R.string.dialog_card_not_exist);
@@ -583,7 +585,7 @@ public class PreviewPresenter extends BasePresenter {
             stopVideoCaptureButtomChangeTimer();
             stopRecordingLapseTimeTimer();
             curMode = APP_STATE_TIMELAPSE_VIDEO_PREVIEW;
-        }
+        }*/
         AppLog.d(TAG, "end processing for responsing captureBtn clicking");
     }
 

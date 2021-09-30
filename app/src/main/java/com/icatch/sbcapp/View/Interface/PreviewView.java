@@ -3,6 +3,7 @@ package com.icatch.sbcapp.View.Interface;
 import android.graphics.Bitmap;
 
 import com.icatch.sbcapp.Adapter.SettingListAdapter;
+import com.icatch.sbcapp.Function.mediaScreenRecord;
 import com.icatch.sbcapp.Listener.OnDecodeTimeListener;
 import com.icatch.sbcapp.MyCamera.MyCamera;
 
@@ -91,6 +92,10 @@ public interface PreviewView {
     void setCaptureRadioBtnVisibility(int visibility);
 
     void startPhotolocalCapture();
+
+    void startRecordlocalCapture();
+
+    void stopRecordlocalCapture();
 
     void setProgressSave(int IQ,int value);
 

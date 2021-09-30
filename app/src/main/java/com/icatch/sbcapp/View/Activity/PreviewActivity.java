@@ -8,7 +8,6 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.media.MediaRecorder;
 import android.media.projection.MediaProjection;
 import android.media.projection.MediaProjectionManager;
 import android.os.Build;
@@ -16,11 +15,9 @@ import android.os.Bundle;
 import android.os.Handler;
 //import android.support.v7.app.ActionBar;
 //import android.support.v7.widget.Toolbar;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -36,7 +33,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -46,6 +42,8 @@ import com.icatch.sbcapp.ExtendComponent.MPreview;
 import com.icatch.sbcapp.ExtendComponent.MyToast;
 import com.icatch.sbcapp.ExtendComponent.ZoomView;
 import com.icatch.sbcapp.Function.MediaCaptureService;
+import com.icatch.sbcapp.Function.MediaRecordService;
+import com.icatch.sbcapp.Function.mediaScreenRecord;
 import com.icatch.sbcapp.Listener.OnDecodeTimeListener;
 import com.icatch.sbcapp.Log.AppLog;
 import com.icatch.sbcapp.Mode.PreviewLaunchMode;
@@ -117,13 +115,16 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
     private ToggleButton blc_toggle;
     private boolean BLCtoggle_status;
     private MediaProjectionManager mMediaProjectionManager;
-    private static final int REQUEST_CODE = 100;
+    private static final int PHOTO_REQUEST_CODE = 100;
+    private static final int VIDEO_REQUEST_CODE = 101;
     private static MediaProjection mMediaProjection;
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
+    private mediaScreenRecord mMediaScreenRecord =null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AppLog.d(TAG, "1122 onCreate");
@@ -206,7 +207,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
         WB_AUTO =(Button)findViewById(R.id.WB_AUTO);
         WB_DAYLIGHT=(Button)findViewById(R.id.WB_DAYLIGHT);
         WB_CLOUDY=(Button)findViewById(R.id.WB_CLOUDY);
-        WB_TUNGSTEN=(Button)findViewById(R.id.WB_TUNGSTEN);
+        WB_TUNGSTEN=(Button)findViewById(R.id.WB_INCADESCENT);
         WB_FLOURESCENT_H=(Button)findViewById(R.id.WB_FLOURESCENT_H);
 
         WB_AUTO.setOnClickListener(this);
@@ -462,8 +463,10 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
         presenter.resetState();
         //IC-758 End ADD by b.jiang 20161227
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            Intent service = new Intent(this, MediaCaptureService.class);
-            stopService(service);
+            Intent caservice = new Intent(this, MediaCaptureService.class);
+            stopService(caservice);
+            Intent reservice = new Intent(this, MediaRecordService.class);
+            stopService(reservice);
         }
     }
 /*
@@ -616,31 +619,31 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
                 blc_toggle.setChecked(BLCtoggle_status);
                 presenter.openBLC_IQ(pb_IQ,BLC_change_IQ);
                 break;
-            /**WB_IQ*/
+            /**WB_Change*/
             case R.id.WB_AUTO:
                 CameraProperties.getInstance().setWhiteBalance(1);
                 setWbStatusIcon(R.drawable.awb_auto);
-                MyToast.show(this, "自動");
+                MyToast.show(this, R.string.wb_auto);
                 break;
             case R.id.WB_DAYLIGHT:
                 CameraProperties.getInstance().setWhiteBalance(2);
                 setWbStatusIcon(R.drawable.awb_daylight);
-                MyToast.show(this, "陽光");
+                MyToast.show(this, R.string.wb_daylight);
                 break;
             case R.id.WB_CLOUDY:
                 CameraProperties.getInstance().setWhiteBalance(3);
                 setWbStatusIcon(R.drawable.awb_cloudy);
-                MyToast.show(this, "多雲");
+                MyToast.show(this, R.string.wb_cloudy);
                 break;
-            case R.id.WB_TUNGSTEN:
+            case R.id.WB_INCADESCENT:
                 CameraProperties.getInstance().setWhiteBalance(5);
                 setWbStatusIcon(R.drawable.awb_incadescent);
-                MyToast.show(this, "白熾燈");
+                MyToast.show(this, R.string.wb_incandescent);
                 break;
             case R.id.WB_FLOURESCENT_H:
                 CameraProperties.getInstance().setWhiteBalance(4);
                 setWbStatusIcon(R.drawable.awb_fluoresecent);
-                MyToast.show(this, "螢光燈");
+                MyToast.show(this, R.string.wb_fluorescent);
                 break;
             default:
                 break;
@@ -651,8 +654,28 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
     public void startPhotolocalCapture(){
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            startActivityForResult(mMediaProjectionManager.createScreenCaptureIntent(),REQUEST_CODE);
+            startActivityForResult(mMediaProjectionManager.createScreenCaptureIntent(), PHOTO_REQUEST_CODE);
 
+        }
+    }
+
+    @Override
+    public void startRecordlocalCapture(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            startActivityForResult(mMediaProjectionManager.createScreenCaptureIntent(), VIDEO_REQUEST_CODE);
+
+        }
+    }
+
+    @Override
+    public void stopRecordlocalCapture(){
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if(mMediaScreenRecord!=null){
+                mMediaScreenRecord.stopRecorder();
+            }else{
+                MyToast.show(this, "null");
+            }
         }
     }
 
@@ -662,25 +685,45 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
         super.onActivityResult(requestCode, resultCode, data);
         //會執行initPreview
         Log.d(TAG, "on result : requestCode = " + requestCode + " resultCode = " + resultCode);
-        if (RESULT_OK == resultCode && REQUEST_CODE == requestCode) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-               Log.d(TAG, "Start capturing...");
-               Intent service = new Intent(this, MediaCaptureService.class);
-               service.putExtra("code", resultCode);
-               service.putExtra("data", data);
-               startForegroundService(service);
-            }
-            else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                mMediaProjection = mMediaProjectionManager.getMediaProjection(resultCode, data);
-
-                if (mMediaProjection != null) {
-
+        if (RESULT_OK == resultCode) {
+            if(PHOTO_REQUEST_CODE == requestCode){
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                     Log.d(TAG, "Start capturing...");
-                    new mediaScreenCapture(this, mMediaProjection).startProjection();
+                    Intent service = new Intent(this, MediaCaptureService.class);
+                    service.putExtra("code", resultCode);
+                    service.putExtra("data", data);
+                    startForegroundService(service);// 启动前台服务
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    mMediaProjection = mMediaProjectionManager.getMediaProjection(resultCode, data);
+
+                    if (mMediaProjection != null) {
+
+                        Log.d(TAG, "Start capturing...");
+                        new mediaScreenCapture(this, mMediaProjection).startProjection();
+                    }
+                }
+            }else if(VIDEO_REQUEST_CODE == requestCode){
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    Log.d(TAG, "Start recording...");
+                    Intent intent = new Intent(this, MediaRecordService.class);
+                    intent.putExtra("code",resultCode);
+                    intent.putExtra("data",data);
+                    startForegroundService(intent); // 启动前台服务
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    mMediaProjection = mMediaProjectionManager.getMediaProjection(resultCode, data);
+
+                    Log.d(TAG, "Start recording...");
+                    if (mMediaProjection != null) {
+
+                        Log.d(TAG, "Start capturing...");
+                        mMediaScreenRecord =  new mediaScreenRecord(this, mMediaProjection).startProjection();
+                    }
                 }
             }
+
         } else{
             MyToast.show(this, "取消拍攝");
+
         }
     }
 

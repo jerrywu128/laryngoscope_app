@@ -151,7 +151,9 @@
         <service android:name=".Function.MediaCaptureService"
             android:foregroundServiceType="mediaProjection">
         </service>
-
+        <service android:name=".Function.MediaRecordService"
+            android:foregroundServiceType="mediaProjection">
+        </service>
     </application>
 
 </manifest>

@@ -16,13 +16,15 @@ import android.util.Log;
 
 import com.icatch.sbcapp.R;
 import com.icatch.sbcapp.View.Activity.PreviewActivity;
+import com.icatch.sbcapp.View.Interface.PreviewView;
 
 import java.util.Objects;
 
-public class MediaCaptureService extends Service {
-    private static final String TAG = "mediaCaptureService";
+public class MediaRecordService extends Service {
+    private static final String TAG = "mediaRecordService";
     private static MediaProjection mMediaProjection;
     private MediaProjectionManager mMediaProjectionManager;
+
     private void createNotificationChannel() {
 
         Notification.Builder builder = new Notification.Builder(this.getApplicationContext()); //获取一个Notification构造器
@@ -31,7 +33,7 @@ public class MediaCaptureService extends Service {
         builder.setContentIntent(PendingIntent.getActivity(this, 0, nfIntent, 0)) // 设置PendingIntent
                 .setLargeIcon(BitmapFactory.decodeResource(this.getResources(), R.drawable.logo_icatchtek_alpha_test)) // 设置下拉列表中的图标(大图标)
                 //.setContentTitle("SMI InstantView") // 设置下拉列表里的标题
-                .setContentText("is running......") // 设置上下文内容
+                .setContentText("錄製屏幕中...") // 设置上下文内容
                 .setWhen(System.currentTimeMillis()); // 设置该通知发生的时间
 
         /*以下是对Android 8.0的适配*/
@@ -62,8 +64,11 @@ public class MediaCaptureService extends Service {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mMediaProjectionManager =   (MediaProjectionManager) getSystemService(Context.MEDIA_PROJECTION_SERVICE);
             mMediaProjection = mMediaProjectionManager.getMediaProjection(mResultCode, Objects.requireNonNull(mResultData));
-            new mediaScreenCapture(this, mMediaProjection).startProjection();
+            //mediaScreenRecord mMediaScreenRecord = new mediaScreenRecord(this, mMediaProjection).startProjection();
+
         }
+
+
 
         Log.e(TAG, "mMediaProjection created: " + mMediaProjection);
 
@@ -88,4 +93,5 @@ public class MediaCaptureService extends Service {
     public IBinder onBind(Intent intent) {
         return null;
     }
+
 }
