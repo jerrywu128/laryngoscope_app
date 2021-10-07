@@ -8,6 +8,7 @@
     tools:showIn="@layout/activity_local_photo_wall"
     tools:context="com.icatch.sbcapp.View.Activity.LocalPhotoWallActivity">
 
+
     <FrameLayout
         android:id="@+id/local_photo_wall_list_layout"
         android:layout_width="match_parent"
@@ -23,19 +24,10 @@
             android:divider="@color/divider"
             >
 
-            <com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView
-                android:id="@+id/local_photo_wall_grid_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clipToPadding="false"
-                android:horizontalSpacing="1dip"
-                android:numColumns="4"
-                android:verticalSpacing="1dip">
 
-            </com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView>
+
         </ListView>
         <include layout="@layout/item_local_photo_wall_list_header" />
     </FrameLayout>
-
 
 </RelativeLayout>

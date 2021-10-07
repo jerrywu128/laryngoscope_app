@@ -279,7 +279,6 @@ public class PreviewPresenter extends BasePresenter {
                         @Override
                         public void run() {
                             curMode = PreviewMode.APP_STATE_VIDEO_PREVIEW;
-                            System.out.println("chmode is"+curMode);
                             previewView.startMPreview(currentCamera);
                             String info = "Current cache time=" + curCacheTime + "  enableSoftwareDecoder=" + GlobalInfo.enableSoftwareDecoder;
                             previewView.setDecodeInfo(info);
@@ -299,7 +298,7 @@ public class PreviewPresenter extends BasePresenter {
                     previewHandler.post(new Runnable() {
                         @Override
                         public void run() {
-                            curMode = previewMode;
+                            curMode =  PreviewMode.APP_STATE_VIDEO_PREVIEW;
                             createUIByMode(curMode);
                             previewView.setmPreviewVisibility(View.GONE);
                             previewView.setSupportPreviewTxvVisibility(View.VISIBLE);
@@ -312,7 +311,7 @@ public class PreviewPresenter extends BasePresenter {
                         @Override
                         public void run() {
                             MyToast.show(activity, R.string.stream_set_error);
-                            curMode = previewMode;
+                            curMode =  PreviewMode.APP_STATE_VIDEO_PREVIEW;
                             createUIByMode(curMode);
                             supportStreaming = false;
                             MyProgressDialog.closeProgressDialog();
@@ -414,13 +413,8 @@ public class PreviewPresenter extends BasePresenter {
     }
 
     public void startOrStopCapture() {
-        System.out.println("mode is"+curMode);
+
         AppLog.d(TAG, "begin startOrStopCapture curMode=" + curMode);
-        /*
-        if (isYouTubeLiving) {
-            MyToast.show(activity, R.string.stop_live_hint);
-            return;
-        }*/
         if (TimeTools.isFastClick()) {
             return;
         }
@@ -777,7 +771,6 @@ public class PreviewPresenter extends BasePresenter {
 //                    ICatchPreviewMode.ICH_VIDEO_PREVIEW_MODE) == Tristate.FALSE) {
 //                return;
 //            }
-            System.out.println("initmode is"+curMode);
             changeCameraMode(PreviewMode.APP_STATE_VIDEO_CAPTURE, ICatchPreviewMode.ICH_VIDEO_PREVIEW_MODE);
             //JIRA ICOM-3537 End Modify by b.jiang 20160726
             //start recording buttom,need a period timer
@@ -1509,14 +1502,13 @@ public class PreviewPresenter extends BasePresenter {
             AppDialog.showDialogWarn(activity, R.string.text_preview_hint_info);*/
         } else {
             super.finishActivity();
-            System.exit(0);
+            //System.exit(0);
         }
     }
 
     @Override
     public void redirectToAnotherActivity(final Context context, final Class<?> cls) {
         AppLog.i(TAG, "pbBtn is clicked curMode=" + curMode);
-        System.out.println("anomode is"+curMode);
         if (allowClickButtoms == false) {
             AppLog.i(TAG, "do not allow to response button clicking");
             return;

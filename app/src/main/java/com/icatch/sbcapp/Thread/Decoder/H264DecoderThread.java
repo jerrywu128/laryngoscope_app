@@ -1,6 +1,5 @@
 package com.icatch.sbcapp.Thread.Decoder;
 
-import android.graphics.Canvas;
 import android.graphics.PixelFormat;
 import android.media.AudioFormat;
 import android.media.AudioManager;
@@ -20,7 +19,6 @@ import com.icatch.sbcapp.Mode.PreviewLaunchMode;
 import com.icatch.sbcapp.MyCamera.MyCamera;
 import com.icatch.sbcapp.SdkApi.PreviewStream;
 import com.icatch.sbcapp.SdkApi.VideoPlayback;
-import com.icatch.sbcapp.Tools.ScaleTool;
 import com.icatch.wificam.customer.ICatchWificamPreview;
 import com.icatch.wificam.customer.ICatchWificamVideoPlayback;
 import com.icatch.wificam.customer.exception.IchAudioStreamClosedException;

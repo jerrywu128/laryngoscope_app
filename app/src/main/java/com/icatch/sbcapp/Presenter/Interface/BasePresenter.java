@@ -44,6 +44,7 @@ public abstract  class BasePresenter {
 
 
     public void redirectToAnotherActivity(Context context,Class<?> cls){
+
         Intent intent = new Intent();
         AppLog.i(tag, "intent:start redirectToAnotherActivity class =" + cls.getName());
         intent.setClass(context, cls);

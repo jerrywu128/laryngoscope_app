@@ -35,8 +35,7 @@ public class LocalPhotoWallPresenter extends BasePresenter {
     private String TAG = "LocalPhotoWallPresenter";
     private LocalPhotoWallView localPhotoWallView;
     private LocalPhotoWallListAdapter localPhotoWallListAdapter;
-    private LocalPhotoWallGridAdapter localLocalPhotoWallGridAdapter;
-    private PhotoWallPreviewType layoutType = PhotoWallPreviewType.PREVIEW_TYPE_GRID;
+    private PhotoWallPreviewType layoutType = PhotoWallPreviewType.PREVIEW_TYPE_LIST;
     private Activity activity;
     //    String[] fileList;
     private List<LocalPbItemInfo> photoList;
@@ -102,21 +101,12 @@ public class LocalPhotoWallPresenter extends BasePresenter {
         }
         GlobalInfo.getInstance().localPhotoList = photoList;
         localPhotoWallView.setListViewSelection(mFirstVisibleItem);
-        localPhotoWallView.setGridViewSelection(mFirstVisibleItem);
         int curWidth = 0;
         isFirstEnterThisActivity = true;
         if (layoutType == PhotoWallPreviewType.PREVIEW_TYPE_LIST) {
-            localPhotoWallView.setGridViewVisibility(View.GONE);
             localPhotoWallView.setListViewVisibility(View.VISIBLE);
             localPhotoWallListAdapter = new LocalPhotoWallListAdapter(activity, photoList, FileType.FILE_PHOTO);
             localPhotoWallView.setListViewAdapter(localPhotoWallListAdapter);
-        } else {
-            width = SystemInfo.getMetrics().widthPixels;
-            localPhotoWallView.setGridViewVisibility(View.VISIBLE);
-            localPhotoWallView.setListViewVisibility(View.GONE);
-            AppLog.i(TAG, "width=" + curWidth);
-            localLocalPhotoWallGridAdapter = (new LocalPhotoWallGridAdapter(activity, photoList, width, FileType.FILE_PHOTO));
-            localPhotoWallView.setGridViewAdapter(localLocalPhotoWallGridAdapter);
         }
     }
 

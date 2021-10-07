@@ -1,5 +1,9 @@
 package com.icatch.sbcapp.View.Activity;
 
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import static android.os.Build.VERSION.SDK_INT;
+
 import android.Manifest;
 
 import androidx.appcompat.graphics.drawable.DrawerArrowDrawable;
@@ -13,6 +17,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,6 +27,7 @@ import android.os.Bundle;
 //import android.support.v4.app.FragmentManager;
 //import android.support.v7.app.ActionBar;
 //import android.support.v7.widget.Toolbar;
+import android.os.Environment;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -85,6 +91,7 @@ public class LaunchActivity extends BaseActivity implements View.OnClickListener
     private CodeScannerView scannerView;
     private CodeScanner mCodeScanner;
     private String result_data;
+    public static final int PERMISSION_REQUEST_CODE =100;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -155,7 +162,7 @@ public class LaunchActivity extends BaseActivity implements View.OnClickListener
                     public void run() {
 
                         if(result.getText().contains("WIFI:")&&result.getText().contains("P:")&&result.getText().contains("S:")) {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                            if (SDK_INT >= Build.VERSION_CODES.Q) {
                                 if(!presenter.isWifienabled()) {
                                     Intent panelIntent = new
                                             Intent(Settings.Panel.ACTION_WIFI);
@@ -206,8 +213,22 @@ public class LaunchActivity extends BaseActivity implements View.OnClickListener
         });
 
         qrScannerText.setText(R.string.scan_text);
+
+        if(!checkPermission()) {
+            requestPermission();
+        }
+
     }
 
+    private boolean checkPermission() {
+        if (SDK_INT >= Build.VERSION_CODES.R) {
+            return Environment.isExternalStorageManager();
+        } else {
+            int result = ContextCompat.checkSelfPermission(LaunchActivity.this, READ_EXTERNAL_STORAGE);
+            int result1 = ContextCompat.checkSelfPermission(LaunchActivity.this, WRITE_EXTERNAL_STORAGE);
+            return result == PackageManager.PERMISSION_GRANTED && result1 == PackageManager.PERMISSION_GRANTED;
+        }
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -227,6 +248,16 @@ public class LaunchActivity extends BaseActivity implements View.OnClickListener
                 presenter.setWifiwithQrcode(LaunchActivity.this, result_data);
             }
         }
+
+        if (requestCode == 2296) {
+            if (SDK_INT >= Build.VERSION_CODES.R) {
+                if (Environment.isExternalStorageManager()) {
+                    // perform action when allow permission success
+                } else {
+                    Toast.makeText(this, "Allow permission for storage access!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
     }
 
 
@@ -244,7 +275,7 @@ public class LaunchActivity extends BaseActivity implements View.OnClickListener
 
         //t presenter.registerReceiver();
         //t presenter.loadListview();
-        if (Build.VERSION.SDK_INT < 23 || PermissionTools.CheckSelfPermission(this)) {
+        if (SDK_INT < 23 || PermissionTools.CheckSelfPermission(this)) {
                presenter.loadLocalThumbnails();
         }
         GlobalInfo.getInstance().setCurrentApp(LaunchActivity.this);
@@ -481,7 +512,20 @@ public class LaunchActivity extends BaseActivity implements View.OnClickListener
                 }
 
                 break;
+            case PERMISSION_REQUEST_CODE:
+                if (grantResults.length > 0) {
+                    boolean READ_EXTERNAL_STORAGE = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                    boolean WRITE_EXTERNAL_STORAGE = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+
+                    if (READ_EXTERNAL_STORAGE && WRITE_EXTERNAL_STORAGE) {
+                        // perform action when allow permission success
+                    } else {
+                        Toast.makeText(this, "Allow permission for storage access!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                break;
             default:
+                break;
         }
     }
 
@@ -536,6 +580,23 @@ public class LaunchActivity extends BaseActivity implements View.OnClickListener
     }
 
 
+    private void requestPermission() {
+        if (SDK_INT >= Build.VERSION_CODES.R) {
+            try {
+                Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                intent.addCategory("android.intent.category.DEFAULT");
+                intent.setData(Uri.parse(String.format("package:%s",getApplicationContext().getPackageName())));
+                startActivityForResult(intent, 2296);
+            } catch (Exception e) {
+                Intent intent = new Intent();
+                intent.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                startActivityForResult(intent, 2296);
+            }
+        } else {
+            //below android 11
+            ActivityCompat.requestPermissions(LaunchActivity.this, new String[]{WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+        }
+    }
 
 
 }

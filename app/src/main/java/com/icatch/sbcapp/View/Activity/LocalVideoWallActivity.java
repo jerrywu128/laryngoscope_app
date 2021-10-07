@@ -29,11 +29,11 @@ import com.icatch.sbcapp.View.Interface.LocalVideoWallView;
 public class LocalVideoWallActivity extends BaseActivity implements LocalVideoWallView {
     private String TAG = "LocalVideoWallActivity";
     private LocalVideoWallPresenter presenter;
-    StickyGridHeadersGridView gridView;
+    //StickyGridHeadersGridView gridView;
     ListView listView;
     TextView headerView;
     FrameLayout listLayout;
-    private MenuItem menuVideoWallType;
+    //private MenuItem menuVideoWallType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +44,7 @@ public class LocalVideoWallActivity extends BaseActivity implements LocalVideoWa
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         GlobalInfo.getInstance().setCurrentApp(LocalVideoWallActivity.this);
-        gridView = (StickyGridHeadersGridView) findViewById(R.id.local_video_wall_grid_view);
+       // gridView = (StickyGridHeadersGridView) findViewById(R.id.local_video_wall_grid_view);
         listView = (ListView) findViewById(R.id.local_video_wall_list_view);
         headerView = (TextView) findViewById(R.id.photo_wall_header);
         listLayout = (FrameLayout) findViewById(R.id.local_video_wall_list_layout);
@@ -60,12 +60,12 @@ public class LocalVideoWallActivity extends BaseActivity implements LocalVideoWa
             }
         });
 
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /*gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 presenter.redirectToAnotherActivity(LocalVideoWallActivity.this, LocalVideoPbActivity.class, position);
             }
-        });
+        });*/
     }
 
     @Override
@@ -118,10 +118,7 @@ public class LocalVideoWallActivity extends BaseActivity implements LocalVideoWa
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.menu_video_wall_type) {
-            menuVideoWallType = item;
-            presenter.changePreviewType();
-        }else if (id == android.R.id.home) {
+         if (id == android.R.id.home) {
             presenter.clearResource();
             presenter.removeActivity();
             presenter.destroyCamera();
@@ -138,7 +135,7 @@ public class LocalVideoWallActivity extends BaseActivity implements LocalVideoWa
 
     @Override
     public void setGridViewVisibility(int visibility) {
-        gridView.setVisibility(visibility);
+       // gridView.setVisibility(visibility);
     }
 
     @Override
@@ -148,7 +145,7 @@ public class LocalVideoWallActivity extends BaseActivity implements LocalVideoWa
 
     @Override
     public void setGridViewAdapter(LocalVideoWallGridAdapter localVideoWallGridAdapter) {
-        gridView.setAdapter(localVideoWallGridAdapter);
+       // gridView.setAdapter(localVideoWallGridAdapter);
     }
 
     @Override
@@ -158,7 +155,7 @@ public class LocalVideoWallActivity extends BaseActivity implements LocalVideoWa
 
     @Override
     public void setGridViewOnScrollListener(AbsListView.OnScrollListener onScrollListener) {
-        gridView.setOnScrollListener(onScrollListener);
+       // gridView.setOnScrollListener(onScrollListener);
     }
 
     @Override
@@ -173,19 +170,20 @@ public class LocalVideoWallActivity extends BaseActivity implements LocalVideoWa
 
     @Override
     public View gridViewFindViewWithTag(String tag) {
-        return gridView.findViewWithTag(tag);
+       // return gridView.findViewWithTag(tag);
+        return null;
     }
 
     @Override
     public void setMenuPreviewTypeIcon(int iconRes) {
-        menuVideoWallType.setIcon(iconRes);
+      //  menuVideoWallType.setIcon(iconRes);
     }
 
     @Override
     public int getGridViewNumColumns() {
-        int num = gridView.getNumColumns();
-        AppLog.d(TAG,"getGridViewNumColumns num=" + num);
-        return num;
+       /* int num = gridView.getNumColumns();
+        AppLog.d(TAG,"getGridViewNumColumns num=" + num);*/
+        return 0;
     }
 
     @Override

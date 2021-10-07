@@ -14,6 +14,8 @@ import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
 
+import androidx.annotation.RequiresApi;
+
 import com.icatch.sbcapp.R;
 import com.icatch.sbcapp.View.Activity.PreviewActivity;
 import com.icatch.sbcapp.View.Interface.PreviewView;
@@ -24,7 +26,7 @@ public class MediaRecordService extends Service {
     private static final String TAG = "mediaRecordService";
     private static MediaProjection mMediaProjection;
     private MediaProjectionManager mMediaProjectionManager;
-
+    private mediaScreenRecord mMediaScreenRecord;
     private void createNotificationChannel() {
 
         Notification.Builder builder = new Notification.Builder(this.getApplicationContext()); //获取一个Notification构造器
@@ -64,7 +66,7 @@ public class MediaRecordService extends Service {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mMediaProjectionManager =   (MediaProjectionManager) getSystemService(Context.MEDIA_PROJECTION_SERVICE);
             mMediaProjection = mMediaProjectionManager.getMediaProjection(mResultCode, Objects.requireNonNull(mResultData));
-            //mediaScreenRecord mMediaScreenRecord = new mediaScreenRecord(this, mMediaProjection).startProjection();
+            mMediaScreenRecord = new mediaScreenRecord(this, mMediaProjection).startProjection();
 
         }
 
@@ -82,9 +84,13 @@ public class MediaRecordService extends Service {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if(mMediaScreenRecord!=null) {
+            mMediaScreenRecord.stopRecorder();
+        }
         stopForeground(true);
         Log.d(TAG, "onDestroy");
     }

@@ -44,7 +44,7 @@ public class MPreview extends SurfaceView implements SurfaceHolder.Callback {
     private MyCamera mCamera;
     private MjpgDecoderThread mjpgDecoderThread;
     private H264DecoderThread h264DecoderThread;
-//    private H264DecoderThreadAsyn h264DecoderThread;
+    //    private H264DecoderThreadAsyn h264DecoderThread;
     private boolean needStart = false;
     private int previewLaunchMode;
     private int previewCodec;
@@ -243,4 +243,3 @@ public class MPreview extends SurfaceView implements SurfaceHolder.Callback {
     }
 
 }
-

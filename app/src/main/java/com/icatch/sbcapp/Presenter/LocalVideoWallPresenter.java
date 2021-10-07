@@ -53,8 +53,8 @@ public class LocalVideoWallPresenter extends BasePresenter {
     private String TAG = "LocalVideoWallPresenter";
     private LocalVideoWallView localVideoWallView;
     private LocalVideoWallListAdapter localVideoWallListAdapter;
-    private LocalVideoWallGridAdapter localVideoWallGridAdapter;
-    private PhotoWallPreviewType layoutType = PhotoWallPreviewType.PREVIEW_TYPE_GRID;
+    //private LocalVideoWallGridAdapter localVideoWallGridAdapter;
+    private PhotoWallPreviewType layoutType = PhotoWallPreviewType.PREVIEW_TYPE_LIST;
     private Activity activity;
     List<File> fileList;
     private List<LocalPbItemInfo> mGirdList;
@@ -141,27 +141,10 @@ public class LocalVideoWallPresenter extends BasePresenter {
         GlobalInfo.getInstance().localVideoList = mGirdList;
         int curWidth = 0;
         if (layoutType == PhotoWallPreviewType.PREVIEW_TYPE_LIST) {
-            localVideoWallView.setGridViewVisibility(View.GONE);
             localVideoWallView.setListViewVisibility(View.VISIBLE);
             localVideoWallListAdapter = new LocalVideoWallListAdapter(activity, mGirdList, mLruCache);
             localVideoWallView.setListViewAdapter(localVideoWallListAdapter);
             localVideoWallView.setListViewOnScrollListener(listViewOnScrollListener);
-        } else {
-            width = SystemInfo.getMetrics().widthPixels;
-            localVideoWallView.setGridViewVisibility(View.VISIBLE);
-            localVideoWallView.setListViewVisibility(View.GONE);
-            AppLog.i(TAG, "width=" + curWidth);
-            localVideoWallGridAdapter = (new LocalVideoWallGridAdapter(activity, mGirdList, width, mLruCache, new OnAddAsytaskListener() {
-                @Override
-                public void addAsytask(int position) {
-                    AppLog.d(TAG, "addAsytask position" + position);
-                    String imageUrl = mGirdList.get(position).getFilePath();
-                    Asytask task = new Asytask(imageUrl);
-                    asytaskList.offer(task);
-                }
-            }));
-            localVideoWallView.setGridViewAdapter(localVideoWallGridAdapter);
-            localVideoWallView.setGridViewOnScrollListener(gridViewOnScrollListener);
         }
     }
 

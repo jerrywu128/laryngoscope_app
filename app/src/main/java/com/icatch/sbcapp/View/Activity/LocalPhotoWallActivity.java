@@ -16,7 +16,7 @@ import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
 
 import com.icatch.sbcapp.GlobalApp.GlobalInfo;
-import com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView;
+//import com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView;
 import com.icatch.sbcapp.Adapter.LocalPhotoWallGridAdapter;
 import com.icatch.sbcapp.Adapter.LocalPhotoWallListAdapter;
 import com.icatch.sbcapp.Presenter.LocalPhotoWallPresenter;
@@ -25,11 +25,11 @@ import com.icatch.sbcapp.View.Interface.LocalPhotoWallView;
 
 public class LocalPhotoWallActivity extends BaseActivity implements LocalPhotoWallView {
     String TAG = "LocalPhotoWallActivity";
-    StickyGridHeadersGridView localPhotoGridView;
+    //StickyGridHeadersGridView localPhotoGridView;
     ListView localPhotoListView;
     TextView localPhotoHeaderView;
     FrameLayout localPhotoWallListLayout;
-    MenuItem menuPhotoWallType;
+    //tMenuItem menuPhotoWallType;
     private LocalPhotoWallPresenter presenter;
 
     @Override
@@ -40,7 +40,7 @@ public class LocalPhotoWallActivity extends BaseActivity implements LocalPhotoWa
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         GlobalInfo.getInstance().setCurrentApp(LocalPhotoWallActivity.this);
-        localPhotoGridView = (StickyGridHeadersGridView) findViewById(R.id.local_photo_wall_grid_view);
+        //localPhotoGridView = (StickyGridHeadersGridView) findViewById(R.id.local_photo_wall_grid_view);
         localPhotoListView = (ListView) findViewById(R.id.local_photo_wall_list_view);
         localPhotoHeaderView = (TextView) findViewById(R.id.photo_wall_header);
         localPhotoWallListLayout = (FrameLayout) findViewById(R.id.local_photo_wall_list_layout);
@@ -53,13 +53,13 @@ public class LocalPhotoWallActivity extends BaseActivity implements LocalPhotoWa
             }
         });
 
-        localPhotoGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       /* localPhotoGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //                MyToast.show(LocalPhotoWallActivity.this,position+"");
                 presenter.redirectToAnotherActivity(LocalPhotoWallActivity.this, LocalPhotoPbActivity.class, position);
             }
-        });
+        });t*/
 
 //        localPhotoListView.setOnScrollListener(new AbsListView.OnScrollListener() {
 //            @Override
@@ -116,10 +116,10 @@ public class LocalPhotoWallActivity extends BaseActivity implements LocalPhotoWa
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.menu_photo_wall_type) {
-            menuPhotoWallType = item;
-            presenter.changePreviewType();
-        }  else if (id == android.R.id.home) {
+        /*if (id == R.id.menu_photo_wall_type) {
+           // menuPhotoWallType = item;
+           // presenter.changePreviewType();
+        }  else*/ if (id == android.R.id.home) {
             finish();
             return true;
         }
@@ -133,7 +133,7 @@ public class LocalPhotoWallActivity extends BaseActivity implements LocalPhotoWa
 
     @Override
     public void setGridViewVisibility(int visibility) {
-        localPhotoGridView.setVisibility(visibility);
+      //  localPhotoGridView.setVisibility(visibility);
     }
 
     @Override
@@ -143,7 +143,7 @@ public class LocalPhotoWallActivity extends BaseActivity implements LocalPhotoWa
 
     @Override
     public void setGridViewAdapter(LocalPhotoWallGridAdapter localLocalPhotoWallGridAdapter) {
-        localPhotoGridView.setAdapter(localLocalPhotoWallGridAdapter);
+       // localPhotoGridView.setAdapter(localLocalPhotoWallGridAdapter);
     }
 
     @Override
@@ -153,7 +153,7 @@ public class LocalPhotoWallActivity extends BaseActivity implements LocalPhotoWa
 
     @Override
     public void setGridViewSelection(int position) {
-        localPhotoGridView.setSelection(position);
+       // localPhotoGridView.setSelection(position);
     }
 
     @Override
@@ -163,7 +163,7 @@ public class LocalPhotoWallActivity extends BaseActivity implements LocalPhotoWa
 
     @Override
     public void setGridViewOnScrollListener(AbsListView.OnScrollListener onScrollListener) {
-        localPhotoGridView.setOnScrollListener(onScrollListener);
+       // localPhotoGridView.setOnScrollListener(onScrollListener);
     }
 
     @Override
@@ -178,12 +178,13 @@ public class LocalPhotoWallActivity extends BaseActivity implements LocalPhotoWa
 
     @Override
     public View gridViewFindViewWithTag(String tag) {
-        return localPhotoGridView.findViewWithTag(tag);
+       // return localPhotoGridView.findViewWithTag(tag);
+        return null;
     }
 
     @Override
     public void setMenuPhotoWallTypeIcon(int id) {
-        menuPhotoWallType.setIcon(id);
+       // menuPhotoWallType.setIcon(id);
     }
 
     @Override

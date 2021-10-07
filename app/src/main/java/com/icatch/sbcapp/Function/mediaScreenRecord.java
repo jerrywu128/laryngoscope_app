@@ -56,8 +56,6 @@ public class mediaScreenRecord {
     private int videoTrackIndex = -1;
     private Surface surface;
     private VirtualDisplay virtualDisplay;
-    private int width = 720;
-    private int height = 960;
     private int dpi = 1;
     private String fileName;
 
@@ -115,6 +113,7 @@ public class mediaScreenRecord {
                     virtualDisplay = mMediaProjection.createVirtualDisplay(TAG + "-display",
                             mWidth, mHeight, dpi, DisplayManager.VIRTUAL_DISPLAY_FLAG_PUBLIC,
                             surface, null, null);
+
                     recordVirtualDisplay();
 
                 } finally {
@@ -126,17 +125,23 @@ public class mediaScreenRecord {
     }
 
     private void prepareEncoder() throws IOException {
-        MediaFormat format = MediaFormat.createVideoFormat("video/avc", mWidth, (int)(mHeight-(mHeight*0.2)));
+        MediaFormat format = MediaFormat.createVideoFormat("video/avc", mWidth, (int)(mHeight*0.8));
         format.setInteger(MediaFormat.KEY_COLOR_FORMAT,
                 MediaCodecInfo.CodecCapabilities.COLOR_FormatSurface);
         format.setInteger(MediaFormat.KEY_BIT_RATE, 6000000);
         format.setInteger(MediaFormat.KEY_FRAME_RATE, 30);
         format.setInteger(MediaFormat.KEY_I_FRAME_INTERVAL, 10);
 
+
         mMediaCodec = MediaCodec.createEncoderByType("video/avc");
+
         mMediaCodec.configure(format, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE);
+
         surface = mMediaCodec.createInputSurface();
+
         mMediaCodec.start();
+
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

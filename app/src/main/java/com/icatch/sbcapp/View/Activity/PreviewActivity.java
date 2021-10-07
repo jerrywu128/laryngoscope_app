@@ -1,5 +1,9 @@
 package com.icatch.sbcapp.View.Activity;
 
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import static android.os.Build.VERSION.SDK_INT;
+
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
@@ -12,9 +16,11 @@ import android.media.projection.MediaProjection;
 import android.media.projection.MediaProjectionManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 //import android.support.v7.app.ActionBar;
 //import android.support.v7.widget.Toolbar;
+import android.provider.SyncStateContract;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -36,7 +42,9 @@ import android.widget.ToggleButton;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import com.google.android.gms.common.internal.Constants;
 import com.icatch.sbcapp.Adapter.SettingListAdapter;
 import com.icatch.sbcapp.ExtendComponent.MPreview;
 import com.icatch.sbcapp.ExtendComponent.MyToast;
@@ -124,6 +132,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
     private mediaScreenRecord mMediaScreenRecord =null;
+    private Intent service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -396,6 +405,8 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
 
         }
 
+
+
     }
 
 
@@ -559,8 +570,9 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
             case R.id.multi_pb:
                 AppLog.i(TAG, "click the multi_pb");
                 if(Utils.isFastClick()) { //防止重複點擊造成崩潰
-                    presenter.redirectToAnotherActivity(PreviewActivity.this, MultiPbActivity.class);
-                    //MyToast.show(this, "功能開發中");
+                    //presenter.redirectToAnotherActivity(PreviewActivity.this, MultiPbActivity.class);
+                      presenter.redirectToAnotherActivity(PreviewActivity.this,LocalPhotoWallActivity.class);
+                    //presenter.redirectToAnotherActivity(PreviewActivity.this,LocalVideoWallActivity.class);
                 }
                 break;
             case R.id.doCapture:
@@ -669,8 +681,10 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void stopRecordlocalCapture(){
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            stopService(new Intent(this, MediaRecordService.class));
+        }
+        else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             if(mMediaScreenRecord!=null){
                 mMediaScreenRecord.stopRecorder();
             }else{
@@ -689,7 +703,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
             if(PHOTO_REQUEST_CODE == requestCode){
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                     Log.d(TAG, "Start capturing...");
-                    Intent service = new Intent(this, MediaCaptureService.class);
+                    service = new Intent(this, MediaCaptureService.class);
                     service.putExtra("code", resultCode);
                     service.putExtra("data", data);
                     startForegroundService(service);// 启动前台服务
@@ -715,7 +729,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
                     Log.d(TAG, "Start recording...");
                     if (mMediaProjection != null) {
 
-                        Log.d(TAG, "Start capturing...");
+
                         mMediaScreenRecord =  new mediaScreenRecord(this, mMediaProjection).startProjection();
                     }
                 }
