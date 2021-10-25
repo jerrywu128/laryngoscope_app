@@ -92,6 +92,11 @@ public class LaunchActivity extends BaseActivity implements View.OnClickListener
     private CodeScanner mCodeScanner;
     private String result_data;
     public static final int PERMISSION_REQUEST_CODE =100;
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -145,6 +150,9 @@ public class LaunchActivity extends BaseActivity implements View.OnClickListener
         });*/
         LruCacheTool.getInstance().initLruCache();
         presenter.submitAppInfo();
+        if(presenter.checkMobiledata()){
+            AppDialog.showDialogWarn(this, R.string.dialog_mobiledata);
+        }
 
        /* if (Build.VERSION.SDK_INT < 23 || PermissionTools.CheckSelfPermission(this)) {
             ConfigureInfo.getInstance().initCfgInfo(this.getApplicationContext());
@@ -217,9 +225,27 @@ public class LaunchActivity extends BaseActivity implements View.OnClickListener
         if(!checkPermission()) {
             requestPermission();
         }
+        verifyStoragePermissions(this);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, 10 );
+
+        }
 
     }
+    public static void verifyStoragePermissions(Activity activity){
+        // Check if we have write permission
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
+        }
+    }
     private boolean checkPermission() {
         if (SDK_INT >= Build.VERSION_CODES.R) {
             return Environment.isExternalStorageManager();

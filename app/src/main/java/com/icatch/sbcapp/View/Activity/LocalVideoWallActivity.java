@@ -97,9 +97,9 @@ public class LocalVideoWallActivity extends BaseActivity implements LocalVideoWa
                 break;
             case KeyEvent.KEYCODE_BACK:
 //                presenter.destroyCamera();
-                presenter.clearResource();
-                presenter.removeActivity();
-                presenter.destroyCamera();
+                 presenter.clearResource();
+                 presenter.removeActivity();
+                 presenter.destroyCamera();
                 finish();
                 break;
             default:

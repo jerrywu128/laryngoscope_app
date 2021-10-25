@@ -23,6 +23,8 @@ public class MediaCaptureService extends Service {
     private static final String TAG = "mediaCaptureService";
     private static MediaProjection mMediaProjection;
     private MediaProjectionManager mMediaProjectionManager;
+    private static Intent staticIntentData;
+    private static int staticResultCode;
     private void createNotificationChannel() {
 
         Notification.Builder builder = new Notification.Builder(this.getApplicationContext()); //获取一个Notification构造器
@@ -60,8 +62,14 @@ public class MediaCaptureService extends Service {
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mMediaProjectionManager =   (MediaProjectionManager) getSystemService(Context.MEDIA_PROJECTION_SERVICE);
-            mMediaProjection = mMediaProjectionManager.getMediaProjection(mResultCode, Objects.requireNonNull(mResultData));
+            if(staticResultCode == 0 && staticIntentData == null) {
+                mMediaProjectionManager = (MediaProjectionManager) getSystemService(Context.MEDIA_PROJECTION_SERVICE);
+                mMediaProjection = mMediaProjectionManager.getMediaProjection(mResultCode, Objects.requireNonNull(mResultData));
+                staticIntentData = Objects.requireNonNull(mResultData);
+                staticResultCode = mResultCode;
+            }else{
+                mMediaProjection = mMediaProjectionManager.getMediaProjection(staticResultCode, staticIntentData);
+            }
             new mediaScreenCapture(this, mMediaProjection).startProjection();
         }
 

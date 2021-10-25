@@ -231,13 +231,13 @@ public class H264DecoderThread {
                         }
 
                         if (!isSaveBitmapToDb) {
-                                new Thread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        previewStream.savePvThumbnail(previewStreamControl,frameWidth,frameHeight);
-                                    }
-                                }).start();
-                                isSaveBitmapToDb = true;
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    previewStream.savePvThumbnail(previewStreamControl,frameWidth,frameHeight);
+                                }
+                            }).start();
+                            isSaveBitmapToDb = true;
                         }
                         if (previewLaunchMode == PreviewLaunchMode.VIDEO_PB_MODE && videoPbUpdateBarLitener != null) {
                             videoPbUpdateBarLitener.onFramePtsChanged(frameBuffer.getPresentationTime());
@@ -314,7 +314,7 @@ public class H264DecoderThread {
 //            format.setInteger(MediaFormat.KEY_I_FRAME_INTERVAL, 1);
         }
 
-		/* create & config android.media.MediaCodec */
+        /* create & config android.media.MediaCodec */
         String ret = videoFormat.getMineType();
         Log.i(TAG, "h264 videoFormat.getMineType()=" + ret);
         decoder = null;

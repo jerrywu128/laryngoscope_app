@@ -28,6 +28,8 @@ import com.icatch.sbcapp.Presenter.Interface.BasePresenter;
 import com.icatch.sbcapp.R;
 import com.icatch.sbcapp.SdkApi.FileOperation;
 import com.icatch.sbcapp.SystemInfo.SystemInfo;
+import com.icatch.sbcapp.View.Fragment.LocalPhotoFragment;
+import com.icatch.sbcapp.View.Fragment.LocalVideoFragment;
 import com.icatch.sbcapp.View.Fragment.MultiPbPhotoFragment;
 import com.icatch.sbcapp.View.Fragment.MultiPbVideoFragment;
 import com.icatch.sbcapp.View.Interface.MultiPbView;
@@ -45,10 +47,12 @@ public class MultiPbPresenter extends BasePresenter {
     private static final String TAG = "MultiPbPresenter";
     private MultiPbView multiPbView;
     private Activity activity;
-   //t private FragmentManager fragmentManager;
+    private FragmentManager fragmentManager;
     private int offset = 0;// 动画图片偏移量
-   //t MultiPbPhotoFragment multiPbPhotoFragment;
-   //t MultiPbVideoFragment multiPbVideoFragment;
+    MultiPbPhotoFragment multiPbPhotoFragment;
+    MultiPbVideoFragment multiPbVideoFragment;
+    LocalPhotoFragment localPhotoFragment;
+    LocalVideoFragment localVideoFragment;
     OperationMode curOperationMode = OperationMode.MODE_BROWSE;
     ViewPagerAdapter adapter;
     private Executor executor;
@@ -58,7 +62,7 @@ public class MultiPbPresenter extends BasePresenter {
     public MultiPbPresenter(Activity activity) {
         super(activity);
         this.activity = activity;
-        //t this.fragmentManager = ((FragmentActivity) activity).getSupportFragmentManager();
+        this.fragmentManager = ((FragmentActivity) activity).getSupportFragmentManager();
         this.executor = Executors.newSingleThreadExecutor();
         initLruCache();
     }
@@ -109,35 +113,8 @@ public class MultiPbPresenter extends BasePresenter {
     }
 
 
-    private void initViewpager() {/*t
-        if (multiPbPhotoFragment == null) {
-            multiPbPhotoFragment = new MultiPbPhotoFragment();
-        }
-        multiPbPhotoFragment.setOperationListener(new OnStatusChangedListener() {
-            @Override
-            public void onEnterEditMode(OperationMode operationMode) {
-                curOperationMode = operationMode;
-                if (curOperationMode == OperationMode.MODE_BROWSE) {
-                    multiPbView.setViewPagerScanScroll(true);
-                    multiPbView.setTabLayoutClickable(true);
-                    multiPbView.setEditLayoutVisibiliy(View.GONE);
-                    multiPbView.setSelectBtnIcon(R.drawable.ic_select_all_white_24dp);
-                    curSelectAll = false;
-                    AppLog.d(TAG, "multiPbPhotoFragment quit EditMode");
-                } else {
-                    multiPbView.setViewPagerScanScroll(false);
-                    multiPbView.setTabLayoutClickable(false);
-                    multiPbView.setEditLayoutVisibiliy(View.VISIBLE);
-                }
-            }
+    private void initViewpager() {
 
-            @Override
-            public void onSelectedItemsCountChanged(int SelectedNum) {
-                String temp = "Selected(" + SelectedNum + ")";
-                multiPbView.setSelectNumText(temp);
-            }
-
-        });
         if (multiPbVideoFragment == null) {
             multiPbVideoFragment = new MultiPbVideoFragment();
         }
@@ -165,13 +142,78 @@ public class MultiPbPresenter extends BasePresenter {
                 multiPbView.setSelectNumText(temp);
             }
 
+
         });
+
+        if (localPhotoFragment == null) {
+            localPhotoFragment = new LocalPhotoFragment();
+        }
+        localPhotoFragment.setOperationListener(new OnStatusChangedListener() {
+            @Override
+            public void onEnterEditMode(OperationMode operationMode) {
+                curOperationMode = operationMode;
+                if (curOperationMode == OperationMode.MODE_BROWSE) {
+                    multiPbView.setViewPagerScanScroll(true);
+                    multiPbView.setTabLayoutClickable(true);
+                    multiPbView.setEditLayoutVisibiliy(View.GONE);
+                    multiPbView.setSelectBtnIcon(R.drawable.ic_select_all_white_24dp);
+                    curSelectAll = false;
+                    AppLog.d(TAG, "multiPbVideoFragment quit EditMode");
+                } else {
+                    multiPbView.setViewPagerScanScroll(false);
+                    multiPbView.setTabLayoutClickable(false);
+                    multiPbView.setEditLayoutVisibiliy(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onSelectedItemsCountChanged(int SelectedNum) {
+                String temp = "Selected(" + SelectedNum + ")";
+                multiPbView.setSelectNumText(temp);
+            }
+
+
+        });
+
+        if (localVideoFragment == null) {
+            localVideoFragment = new LocalVideoFragment();
+        }
+        localVideoFragment.setOperationListener(new OnStatusChangedListener() {
+            @Override
+            public void onEnterEditMode(OperationMode operationMode) {
+                curOperationMode = operationMode;
+                if (curOperationMode == OperationMode.MODE_BROWSE) {
+                    multiPbView.setViewPagerScanScroll(true);
+                    multiPbView.setTabLayoutClickable(true);
+                    multiPbView.setEditLayoutVisibiliy(View.GONE);
+                    multiPbView.setSelectBtnIcon(R.drawable.ic_select_all_white_24dp);
+                    curSelectAll = false;
+                    AppLog.d(TAG, "multiPbVideoFragment quit EditMode");
+                } else {
+                    multiPbView.setViewPagerScanScroll(false);
+                    multiPbView.setTabLayoutClickable(false);
+                    multiPbView.setEditLayoutVisibiliy(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onSelectedItemsCountChanged(int SelectedNum) {
+                String temp = "Selected(" + SelectedNum + ")";
+                multiPbView.setSelectNumText(temp);
+            }
+
+
+        });
+
+
         FragmentManager manager = ((FragmentActivity) activity).getSupportFragmentManager();
         adapter = new ViewPagerAdapter(manager);
-        //t adapter.addFragment(multiPbPhotoFragment, activity.getResources().getString(R.string.title_photo));
-        //tadapter.addFragment(multiPbVideoFragment, activity.getResources().getString(R.string.title_video));
+        adapter.addFragment(localPhotoFragment, activity.getResources().getString(R.string.title_photo));
+        adapter.addFragment(localVideoFragment, activity.getResources().getString(R.string.title_video));
+
         multiPbView.setViewPageAdapter(adapter);
-        multiPbView.setViewPageCurrentItem(GlobalInfo.currentViewpagerPosition);*/
+        multiPbView.setViewPageCurrentItem(GlobalInfo.currentViewpagerPosition);
+
     }
 
     public void updateViewpagerStatus(int arg0) {
@@ -189,8 +231,8 @@ public class MultiPbPresenter extends BasePresenter {
                 GlobalInfo.photoWallPreviewType = PhotoWallPreviewType.PREVIEW_TYPE_LIST;
                 multiPbView.setMenuPhotoWallTypeIcon(R.drawable.ic_view_list_white_24dp);
             }
-            //t multiPbPhotoFragment.changePreviewType();
-            //t  multiPbVideoFragment.changePreviewType();
+            multiPbPhotoFragment.changePreviewType();
+            multiPbVideoFragment.changePreviewType();
             AppLog.d(TAG, " changePreviewType AppInfo.photoWallPreviewType");
         }
     }
@@ -201,9 +243,9 @@ public class MultiPbPresenter extends BasePresenter {
         } else if (curOperationMode == OperationMode.MODE_EDIT) {
             curOperationMode = OperationMode.MODE_BROWSE;
             if (GlobalInfo.currentViewpagerPosition == 0) {
-                //t   multiPbPhotoFragment.quitEditMode();
+                   multiPbPhotoFragment.quitEditMode();
             } else if (GlobalInfo.currentViewpagerPosition == 1) {
-                //t    multiPbVideoFragment.quitEditMode();
+                   multiPbVideoFragment.quitEditMode();
             }
         }
 
@@ -220,9 +262,9 @@ public class MultiPbPresenter extends BasePresenter {
             curSelectAll = true;
         }
         if (GlobalInfo.currentViewpagerPosition == 0) {
-            //t multiPbPhotoFragment.selectOrCancelAll(curSelectAll);
+             multiPbPhotoFragment.selectOrCancelAll(curSelectAll);
         } else if (GlobalInfo.currentViewpagerPosition == 1) {
-            //t multiPbVideoFragment.select(curSelectAll);
+             multiPbVideoFragment.select(curSelectAll);
         }
     }
 
@@ -231,10 +273,10 @@ public class MultiPbPresenter extends BasePresenter {
         FileType fileType = null;
         AppLog.d(TAG, "delete AppInfo.currentViewpagerPosition=" + GlobalInfo.currentViewpagerPosition);
         if (GlobalInfo.currentViewpagerPosition == 0) {
-            //t list = multiPbPhotoFragment.getSelectedList();
+             list = multiPbPhotoFragment.getSelectedList();
             fileType = FileType.FILE_PHOTO;
         } else if (GlobalInfo.currentViewpagerPosition == 1) {
-            //t list = multiPbVideoFragment.getSelectedList();
+             list = multiPbVideoFragment.getSelectedList();
             fileType = FileType.FILE_VIDEO;
         }
         if (list == null || list.size() <= 0) {
@@ -274,9 +316,9 @@ public class MultiPbPresenter extends BasePresenter {
         long fileSizeTotal = 0;
         AppLog.d(TAG, "delete currentViewpagerPosition=" + GlobalInfo.currentViewpagerPosition);
         if (GlobalInfo.currentViewpagerPosition == 0) {
-            //t  list = multiPbPhotoFragment.getSelectedList();
+              list = multiPbPhotoFragment.getSelectedList();
         } else if (GlobalInfo.currentViewpagerPosition == 1) {
-            //t list = multiPbVideoFragment.getSelectedList();
+             list = multiPbVideoFragment.getSelectedList();
         }
         if (list == null || list.size() <= 0) {
             AppLog.d(TAG, "asytaskList size=" + list.size());
@@ -343,13 +385,13 @@ public class MultiPbPresenter extends BasePresenter {
 
                     if (fileType == FileType.FILE_PHOTO) {
                         GlobalInfo.getInstance().photoInfoList.removeAll(deleteSucceedList);
-                        //t   multiPbPhotoFragment.refreshPhotoWall();
-                        //t  multiPbPhotoFragment.quitEditMode();
+                           multiPbPhotoFragment.refreshPhotoWall();
+                          multiPbPhotoFragment.quitEditMode();
 
                     } else if (fileType == FileType.FILE_VIDEO) {
                         GlobalInfo.getInstance().videoInfoList.removeAll(deleteSucceedList);
-                        //t   multiPbVideoFragment.refreshPhotoWall();
-                        //t   multiPbVideoFragment.quitEditMode();
+                           multiPbVideoFragment.refreshPhotoWall();
+                           multiPbVideoFragment.quitEditMode();
                     }
                     if (deleteFailedList.isEmpty() == false) {
 //                        showDeleteFailedDialog();
@@ -360,16 +402,16 @@ public class MultiPbPresenter extends BasePresenter {
     }
 
     public void clealAsytaskList() {
-        //t  multiPbPhotoFragment.clealAsytaskList();
-        //t  multiPbVideoFragment.clealAsytaskList();
+          multiPbPhotoFragment.clealAsytaskList();
+          multiPbVideoFragment.clealAsytaskList();
     }
 
     private void quitEditMode() {
         curOperationMode = OperationMode.MODE_BROWSE;
         if (GlobalInfo.currentViewpagerPosition == 0) {
-            //t multiPbPhotoFragment.quitEditMode();
+             multiPbPhotoFragment.quitEditMode();
         } else if (GlobalInfo.currentViewpagerPosition == 1) {
-           //t multiPbVideoFragment.quitEditMode();
+            multiPbVideoFragment.quitEditMode();
         }
     }
 }

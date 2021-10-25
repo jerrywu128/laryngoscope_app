@@ -88,11 +88,11 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
     private TextView delayCaptureText;
     private RelativeLayout delayCaptureLayout;
     private TextView curPreviewInfoTxv;
-    private ZoomView zoomView;
+   // private ZoomView zoomView;
     private RelativeLayout setupMainMenu;
     private ListView mainMenuList;
     private MenuItem settingMenu;
-    private ActionBar actionBar;
+    //private ActionBar actionBar;
     private TextView noSupportPreviewTxv;
     private PopupWindow pvModePopupWindow;
     private RadioButton captureRadioBtn;
@@ -100,7 +100,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
     private RadioButton timepLapseRadioBtn;
     private ImageView pvModeBtn;
     private View contentView;
-    private Toolbar toolbar;
+    //private Toolbar toolbar;
     private TextView decodeTimeTxv;
     private LinearLayout decodeTimeLayout;
     private Handler handler;
@@ -134,18 +134,17 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
     private mediaScreenRecord mMediaScreenRecord =null;
     private Intent service;
 
+    private static Intent staticIntentData;
+    private static int staticResultCode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AppLog.d(TAG, "1122 onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preview);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+/*      toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mMediaProjectionManager = (MediaProjectionManager) getSystemService(
-                    Context.MEDIA_PROJECTION_SERVICE);
-        }
         actionBar = getSupportActionBar();
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setDisplayShowTitleEnabled(true);
@@ -153,13 +152,15 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
         actionBar.setTitle(null);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(false);
-
+*/
         presenter = new PreviewPresenter(PreviewActivity.this);
         presenter.setView(this);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mMediaProjectionManager = (MediaProjectionManager) getSystemService(
+                    Context.MEDIA_PROJECTION_SERVICE);
+        }
 
-        //youTubeLiveLayout = (LinearLayout) findViewById(R.id.youtube_live_layout);
-       // youtubeLiveBtn = (Button) findViewById(R.id.youtube_live_btn);
-        //googleAccountBtn = (Button) findViewById(R.id.google_account_btn);
+
         cameraSwitchLayout = (LinearLayout) findViewById(R.id.camera_switch_layout);
         cameraSwitchBtn = (Button) findViewById(R.id.camera_switch_btn);
         decodeTimeTxv = (TextView) findViewById(R.id.decodeTimeTxv);
@@ -206,9 +207,9 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
         BLC_BT.setOnClickListener(this);
 
         progress_save = new int[3];
-        progress_save[0]=128;
-        progress_save[1]=128;
-        progress_save[2]=0;
+        progress_save[0]=128;//brightness
+        progress_save[1]=128;//saturation
+        progress_save[2]=0;//hue
         BLCtoggle_status=false;
 
         /**----------------------------*/
@@ -279,13 +280,9 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
         });
 
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
 
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, 10 );
 
-        }
 
-        verifyStoragePermissions(this);
 
 
         cameraSwitchBtn.setOnClickListener(new View.OnClickListener() {
@@ -313,7 +310,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
 
 
 
-        zoomView = (ZoomView) findViewById(R.id.zoom_view);
+     /*test   zoomView = (ZoomView) findViewById(R.id.zoom_view);
         zoomView.setZoomInOnclickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -331,7 +328,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
         zoomView.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-//                presenter.zoomBySeekBar();
+                presenter.zoomBySeekBar();
             }
 
             @Override
@@ -344,7 +341,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
                 presenter.zoomBySeekBar();
             }
         });
-
+*/
         pvModeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -570,8 +567,8 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
             case R.id.multi_pb:
                 AppLog.i(TAG, "click the multi_pb");
                 if(Utils.isFastClick()) { //防止重複點擊造成崩潰
-                    //presenter.redirectToAnotherActivity(PreviewActivity.this, MultiPbActivity.class);
-                      presenter.redirectToAnotherActivity(PreviewActivity.this,LocalPhotoWallActivity.class);
+                    presenter.redirectToAnotherActivity(PreviewActivity.this, MultiPbActivity.class);
+                      //presenter.redirectToAnotherActivity(PreviewActivity.this,LocalPhotoWallActivity.class);
                     //presenter.redirectToAnotherActivity(PreviewActivity.this,LocalVideoWallActivity.class);
                 }
                 break;
@@ -700,6 +697,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
         //會執行initPreview
         Log.d(TAG, "on result : requestCode = " + requestCode + " resultCode = " + resultCode);
         if (RESULT_OK == resultCode) {
+
             if(PHOTO_REQUEST_CODE == requestCode){
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                     Log.d(TAG, "Start capturing...");
@@ -725,11 +723,8 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
                     startForegroundService(intent); // 启动前台服务
                 } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     mMediaProjection = mMediaProjectionManager.getMediaProjection(resultCode, data);
-
                     Log.d(TAG, "Start recording...");
                     if (mMediaProjection != null) {
-
-
                         mMediaScreenRecord =  new mediaScreenRecord(this, mMediaProjection).startProjection();
                     }
                 }
@@ -926,17 +921,18 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void showZoomView() {
-        zoomView.startDisplay();
+       //t zoomView.startDisplay();
     }
 
     @Override
     public void setMaxZoomRate(final int maxZoomRate) {
-        zoomView.setMaxValue(maxZoomRate);
+        //t zoomView.setMaxValue(maxZoomRate);
     }
 
     @Override
     public int getZoomViewProgress() {
-        return zoomView.getProgress();
+        //treturn zoomView.getProgress();
+        return 0;
     }
 
     @Override
@@ -946,7 +942,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void updateZoomViewProgress(int currentZoomRatio) {
-        zoomView.updateZoomBarValue(currentZoomRatio);
+      //  zoomView.updateZoomBarValue(currentZoomRatio);
     }
 
     @Override
@@ -968,7 +964,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void setActionBarTitle(int resId) {
-        actionBar.setTitle(resId);
+       // actionBar.setTitle(resId);
     }
 
     @Override
@@ -978,7 +974,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void setBackBtnVisibility(boolean isVisible) {
-        actionBar.setDisplayHomeAsUpEnabled(isVisible);
+        //actionBar.setDisplayHomeAsUpEnabled(isVisible);
     }
 
     @Override

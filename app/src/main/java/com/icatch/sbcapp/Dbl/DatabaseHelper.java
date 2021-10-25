@@ -3,6 +3,7 @@ package com.icatch.sbcapp.Dbl;
 import android.content.ContentValues;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.provider.Settings;
 
 import com.icatch.sbcapp.Beans.CameraSlot;
 import com.icatch.sbcapp.Beans.CameraTable;
@@ -19,6 +20,7 @@ import java.util.List;
 
 public class DatabaseHelper {
     private static String TAG = "DatabaseHelper";
+
 
     public static ArrayList<CameraSlot> readCamera(Context context) {
 

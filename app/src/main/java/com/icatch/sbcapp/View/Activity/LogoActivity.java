@@ -23,6 +23,6 @@ public class LogoActivity extends AppCompatActivity {
                 LogoActivity.this.startActivity(mainIntent);
                 LogoActivity.this.finish();
             }
-        }, 500);
+        }, 2000);
     }
 }

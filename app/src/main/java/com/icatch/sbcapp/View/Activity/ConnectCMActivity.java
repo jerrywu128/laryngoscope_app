@@ -20,6 +20,7 @@ import androidx.annotation.NonNull;
 
 import com.icatch.sbcapp.ExtendComponent.MyProgressDialog;
 import com.icatch.sbcapp.GlobalApp.ExitApp;
+import com.icatch.sbcapp.GlobalApp.GlobalInfo;
 import com.icatch.sbcapp.Log.AppLog;
 import com.icatch.sbcapp.Presenter.ConnectCMPresenter;
 import com.icatch.sbcapp.Presenter.LaunchPresenter;
@@ -38,7 +39,6 @@ public class ConnectCMActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrcode_connect_wifi);
-        //wifi_status = (TextView) findViewById(R.id.status);
         flag = true;
         Bundle bundle2=this.getIntent().getExtras();
         String wifissid = bundle2.getString("ssid");
@@ -46,8 +46,7 @@ public class ConnectCMActivity extends BaseActivity {
         String wifitp = bundle2.getString("tp");
         presenter = new ConnectCMPresenter(ConnectCMActivity.this);
         this.setWifi_Link(wifissid,wifipw,wifitp);
-        //this.textTask();
-        //MyProgressDialog.showProgressDialog(this);
+        //presenter.launchCamera();
 
 
     }
@@ -63,7 +62,7 @@ public class ConnectCMActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
+        GlobalInfo.getInstance().setCurrentApp(this);
         ExitApp.getInstance().setCurActivity(this);
     }
     @Override

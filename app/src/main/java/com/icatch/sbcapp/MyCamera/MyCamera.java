@@ -75,7 +75,6 @@ public class MyCamera {
     private TimeLapseDuration timeLapseDuration;
     private PropertyTypeInteger timeLapseMode;
 
-    //private PropertyTypeInteger USB_PIMA_DCP_PIV_TRIGGER;
 
     private PropertyTypeInteger USB_PIMA_DCP_IQ_BRIGHTNESS;
     private PropertyTypeInteger USB_PIMA_DCP_IQ_SATURATION;

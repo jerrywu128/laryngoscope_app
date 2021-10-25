@@ -64,7 +64,7 @@ public class LocalPhotoPbActivity extends BaseActivity implements LocalPhotoPbVi
         shareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.share();
+                //presenter.share();
             }
         });
         deleteBtn.setOnClickListener(new View.OnClickListener() {

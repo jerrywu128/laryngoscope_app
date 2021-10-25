@@ -42,7 +42,7 @@ public class ConnectCMPresenter extends BasePresenter {
     private MyCamera currentCamera;
     private final LaunchHandler launchHandler = new LaunchHandler();
 
-    public ConnectCMPresenter(android.app.Activity activity){
+    public ConnectCMPresenter(Activity activity){
         super(activity);
         this.activity = activity;
     }
@@ -50,11 +50,11 @@ public class ConnectCMPresenter extends BasePresenter {
 
     public void launchCamera() {
        // String wifiSsid = MWifiManager.getSsid(activity);
-        final String ip = MWifiManager.getIp(activity);
+
 
         new Thread(new Runnable() {
             public void run() {
-                beginConnectCamera(ip);
+                beginConnectCamera(MWifiManager.getIp(activity));
             }
         }).start();
     }

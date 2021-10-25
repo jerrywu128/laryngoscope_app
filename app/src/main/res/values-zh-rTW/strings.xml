@@ -235,4 +235,5 @@
     <string name="white_balance">白平衡</string>
     <string name="BLC">背光捕捉</string>
     <string name="gain">增益</string>
+    <string name="dialog_mobiledata">請關閉行動數據，以確保連線穩定。</string>
 </resources>

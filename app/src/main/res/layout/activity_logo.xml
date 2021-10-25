@@ -9,6 +9,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:src="@drawable/logo_icatchtek_alpha_test"/>
+        android:src="@drawable/laryngoscope_logo"/>
 
 </RelativeLayout>

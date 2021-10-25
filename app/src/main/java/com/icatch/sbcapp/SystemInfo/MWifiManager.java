@@ -30,12 +30,16 @@ import androidx.core.content.ContextCompat;
 import com.google.zxing.client.result.WifiParsedResult;
 import com.icatch.sbcapp.AppInfo.AppInfo;
 import com.icatch.sbcapp.AppInfo.AppSharedPreferences;
+import com.icatch.sbcapp.GlobalApp.GlobalInfo;
 import com.icatch.sbcapp.Log.AppLog;
 import com.icatch.sbcapp.Presenter.ConnectCMPresenter;
 import com.icatch.sbcapp.R;
 import com.icatch.sbcapp.Tools.HotSpot;
 import com.icatch.sbcapp.View.Activity.LaunchActivity;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
 
 /**
@@ -123,11 +127,6 @@ public class MWifiManager {
             if (value != null) {
                 ip = value;
             }
-        } else if (AppInfo.youtubeLive) {
-            String value = AppSharedPreferences.readIp(context);
-            if (value != null) {
-                ip = value;
-            }
         }
 //        AppLog.d(TAG,"getIp ip=" + ip);
         return ip;
@@ -149,16 +148,20 @@ public class MWifiManager {
         return false;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.Q)
+
     public void connectWifiQ(Context context, String ssid, String password,ConnectCMPresenter connectCm) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
 
         try {
 
             ConnectivityManager.NetworkCallback mNetwork;
-            WifiNetworkSpecifier specifier = new WifiNetworkSpecifier.Builder()
-                    .setSsid(ssid)
-                    .setWpa2Passphrase(password)
-                    .build();
+            WifiNetworkSpecifier specifier = null;
+
+                specifier = new WifiNetworkSpecifier.Builder()
+                        .setSsid(ssid)
+                        .setWpa2Passphrase(password)
+                        .build();
+
             NetworkRequest request =
                     new NetworkRequest.Builder()
                             .addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
@@ -178,21 +181,24 @@ public class MWifiManager {
             ConnectivityManager connectivityManager = (ConnectivityManager)
                     context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
+
             mNetwork = new ConnectivityManager.NetworkCallback() {
                 @Override
                 public void onAvailable(@NonNull Network network) {
                     super.onAvailable(network);
+                    //String netSSID = GlobalInfo.getInstance().getSsid();
                     assert connectivityManager != null;
                     /**將手機網路綁定到指定Wifi*/
+
                     connectivityManager.bindProcessToNetwork(network);
 
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            connectCm.launchCamera();
-                        }
-                        /**android10以上連接至相機*/
-                    }, 7000);
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                connectCm.launchCamera();
+                            }
+                            /**android10以上連接至相機*/
+                        }, 7000);
 
                 }
 
@@ -204,7 +210,9 @@ public class MWifiManager {
                     Intent mainIntent = new Intent(activity, LaunchActivity.class);
                     activity.startActivity(mainIntent);
                 }
+
             };
+
 
             connectivityManager.requestNetwork(request, mNetwork);
         }catch (SecurityException e){
@@ -215,6 +223,8 @@ public class MWifiManager {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
         }
     }
 
@@ -335,6 +345,7 @@ public class MWifiManager {
 
 
     }
+
 
     private  Integer findNetworkInExistingConfig(WifiManager wifiManager, String ssid) {
 

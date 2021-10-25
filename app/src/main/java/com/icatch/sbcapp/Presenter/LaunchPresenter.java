@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.os.Build;
@@ -17,6 +18,7 @@ import android.os.Message;
 //import android.support.v4.app.FragmentManager;
 //import android.support.v4.app.FragmentTransaction;
 import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -58,14 +60,17 @@ import com.icatch.wificam.customer.type.ICatchEventID;
 
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static android.content.ContentValues.TAG;
 import static android.content.Context.MODE_PRIVATE;
 import static android.os.Build.VERSION.SDK_INT;
 
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -76,8 +81,8 @@ import androidx.fragment.app.FragmentTransaction;
 public class LaunchPresenter extends BasePresenter {
 
     private LaunchView launchView;
-    private CameraSlotAdapter cameraSlotAdapter;
-    private ArrayList<CameraSlot> camSlotList;
+    // private CameraSlotAdapter cameraSlotAdapter;
+    //private ArrayList<CameraSlot> camSlotList;
     private final LaunchHandler launchHandler = new LaunchHandler();
     private static final String TAG = "LaunchPresenter";
     private Activity activity;
@@ -123,12 +128,57 @@ public class LaunchPresenter extends BasePresenter {
         }
         sdkEvent.addGlobalEventListener(eventId, forAllSession);
     }
+    public void launchCamera() {
+        // String wifiSsid = MWifiManager.getSsid(activity);
 
 
+        new Thread(new Runnable() {
+            public void run() {
+                beginConnectCamera(MWifiManager.getIp(activity));
+            }
+        }).start();
+    }
+
+    private void beginConnectCamera(String ip) {
+        AppLog.i(TAG, "isWifiConnect() == true");
+
+        currentCamera = new MyCamera();
+
+        if (currentCamera.getSDKsession().prepareSession(ip) == false) {
+            launchHandler.obtainMessage(AppMessage.MESSAGE_CAMERA_CONNECT_FAIL).sendToTarget();
+            return;
+        }
+        if (currentCamera.getSDKsession().checkWifiConnection() == true) {
+            GlobalInfo.getInstance().setCurrentCamera(currentCamera);
+            currentCamera.initCamera();
+            if (CameraProperties.getInstance().hasFuction(PropertyId.CAMERA_DATE)) {
+
+                CameraProperties.getInstance().setCameraDate();
+            }
+            if (CameraProperties.getInstance().hasFuction(PropertyId.CAMERA_DATE_TIMEZONE)) {
+                CameraProperties.getInstance().setCameraDateTimeZone();
+            }
+            currentCamera.setMyMode(CameraNetworkMode.AP);
+
+            DatabaseHelper.updateCameraName(GlobalInfo.curSlotId, MWifiManager.getSsid(activity));
+
+            GlobalInfo.getInstance().setSsid(MWifiManager.getSsid(activity));
+
+            activity.finish();
+            launchHandler.obtainMessage(AppMessage.MESSAGE_CAMERA_CONNECT_SUCCESS).sendToTarget();
+            return;
+        } else {
+
+            AppLog.i(TAG, "..........checkWifiConnection  fail");
+            launchHandler.obtainMessage(AppMessage.MESSAGE_CAMERA_CONNECT_FAIL).sendToTarget();
+            return;
+        }
+
+    }
     public void launchCamera(final int position) {
         String wifiSsid = MWifiManager.getSsid(activity);
         final String ip = MWifiManager.getIp(activity);
-        if (camSlotList.get(position).isWifiReady) {
+        /*if (camSlotList.get(position).isWifiReady) {
             MyProgressDialog.showProgressDialog(activity, activity.getResources().getString(R.string.action_processing));
             new Thread(new Runnable() {
                 public void run() {
@@ -151,13 +201,13 @@ public class LaunchPresenter extends BasePresenter {
                 AppDialog.showDialogWarn(activity, "Camera " + wifiSsid + " has been registered");
                 //Toast.makeText(activity, "Camera " + wifiSsid + " has been registered", Toast.LENGTH_LONG).show();
             }
-        }
+        }*/
     }
 
     public void launchCamera(final int position, FragmentManager fm) {
         cameraSlotPosition = position;
         String wifiSsid = MWifiManager.getSsid(activity);
-        if (camSlotList.get(position).isWifiReady) {
+        /*if (camSlotList.get(position).isWifiReady) {
             MyProgressDialog.showProgressDialog(activity, activity.getResources().getString(R.string.action_processing));
             new Thread(new Runnable() {
                 public void run() {
@@ -184,13 +234,13 @@ public class LaunchPresenter extends BasePresenter {
                 AppDialog.showDialogWarn(activity, "Camera " + wifiSsid + " has been registered");
                 //Toast.makeText(activity, "Camera " + wifiSsid + " has been registered", Toast.LENGTH_LONG).show();
             }
-        }
+        }*/
     }
 
     public void removeCamera(int position) {
         AppLog.i(TAG, "remove camera position = " + position);
-        int id = camSlotList.get(position).id;
-        DatabaseHelper.deleteCamera(id, position);
+        //tint id = camSlotList.get(position).id;
+       //t DatabaseHelper.deleteCamera(id, position);
 //        CameraSlotSQLite.getInstance().deleteByPosition(position);
         loadListview();
     }
@@ -198,19 +248,19 @@ public class LaunchPresenter extends BasePresenter {
     public void loadListview() {
         //need to update isReady status
 //        camSlotList = CameraSlotSQLite.getInstance().getAllCameraSlotFormDb();
-        camSlotList = DatabaseHelper.readCamera(activity);
+        /*camSlotList = DatabaseHelper.readCamera(activity);
         if (cameraSlotAdapter != null) {
             cameraSlotAdapter.notifyDataSetInvalidated();
         }
         cameraSlotAdapter = new CameraSlotAdapter(GlobalInfo.getInstance().getAppContext(),
                 camSlotList, launchHandler, SystemInfo.getMetrics().heightPixels);
-        launchView.setListviewAdapter(cameraSlotAdapter);
+        launchView.setListviewAdapter(cameraSlotAdapter);*/
     }
 
     public void notifyListview() {
-        if (cameraSlotAdapter != null) {
+       /* if (cameraSlotAdapter != null) {
             cameraSlotAdapter.notifyDataSetChanged();
-        }
+        }*/
     }
 
     //meet error in android 6.0
@@ -386,7 +436,7 @@ public class LaunchPresenter extends BasePresenter {
             }
             currentCamera.setMyMode(CameraNetworkMode.AP);
 //            CameraSlotSQLite.getInstance().curSlotPosition = position;
-            GlobalInfo.curSlotId = camSlotList.get(position).id;
+            //tGlobalInfo.curSlotId = camSlotList.get(position).id;
             DatabaseHelper.updateCameraName(GlobalInfo.curSlotId, MWifiManager.getSsid(activity));
 //            CameraSlotSQLite.getInstance().curWifiSsid = MWifiManager.getSsid(activity);
             GlobalInfo.getInstance().setSsid(MWifiManager.getSsid(activity));
@@ -403,11 +453,11 @@ public class LaunchPresenter extends BasePresenter {
     }
 
     private boolean isRegistered(String ssid) {
-        for (CameraSlot camSlot : camSlotList) {
+       /* for (CameraSlot camSlot : camSlotList) {
             if (camSlot.cameraName != null && camSlot.cameraName.equals(ssid)) {
                 return true;
             }
-        }
+        }*/
         return false;
     }
 
@@ -429,18 +479,18 @@ public class LaunchPresenter extends BasePresenter {
         if (ssid == null || ssid.equals("")) {
             return;
         }
-        for (CameraSlot temp : camSlotList) {
+        /*for (CameraSlot temp : camSlotList) {
             if (temp.cameraName != null && temp.cameraName.equals(ssid)) {
                 temp.isWifiReady = isWifiReady;
                 break;
             }
-        }
+        }*/
     }
 
     void resetWifiState() {
-        for (CameraSlot temp : camSlotList) {
+       /* for (CameraSlot temp : camSlotList) {
             temp.isWifiReady = false;
-        }
+        }*/
     }
 
     public void showSettingIpDialog(final Context context) {
@@ -542,6 +592,43 @@ public class LaunchPresenter extends BasePresenter {
         }
         else
             return false;
+    }
+
+
+    public boolean checkMobiledata(){
+        TelephonyManager telMgr = (TelephonyManager) activity.getSystemService(Context.TELEPHONY_SERVICE);
+
+
+
+        boolean mobileDataEnabled = false; // Assume disabled
+        ConnectivityManager cm = (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
+        try {
+            Class cmClass = Class.forName(cm.getClass().getName());
+            Method method = cmClass.getDeclaredMethod("getMobileDataEnabled");
+            method.setAccessible(true); // Make the method callable
+            // get the setting for "mobile data"
+            mobileDataEnabled = (Boolean)method.invoke(cm);
+
+        } catch (Exception e) {
+            // Some problem accessible private API
+            // TODO do whatever error handling you want here
+        }
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {//CHECK SIMCARD
+            int simmain=telMgr.getSimState(0);
+            int simsecond=telMgr.getSimState(1);
+            if(simmain==TelephonyManager.SIM_STATE_ABSENT&&simsecond==TelephonyManager.SIM_STATE_ABSENT){
+                mobileDataEnabled=false;
+            }
+        }
+        else{
+            int simstate=telMgr.getSimState();
+            if(simstate==TelephonyManager.SIM_STATE_ABSENT){
+                mobileDataEnabled=false;
+            }
+        }
+
+        return mobileDataEnabled;
     }
 
 

@@ -222,11 +222,6 @@ public class PreviewPresenter extends BasePresenter {
         IntentFilter wifiSSFilter = new IntentFilter(WifiManager.RSSI_CHANGED_ACTION);
         wifiSSReceiver = new WifiSSReceiver();
         activity.registerReceiver(wifiSSReceiver, wifiSSFilter);
-       /* AppLog.i(TAG, "initStatus start showDialogWarn: Only for iCatch SBC");
-        if (needShowSBCHint) {
-            AppDialog.showDialogWarn(activity, R.string.text_preview_hint_info);
-            needShowSBCHint = false;
-        }*/
         GlobalInfo.getInstance().startConnectCheck();
         if (AppInfo.displayDecodeTime) {
             previewView.setDecodeTimeLayoutVisibility(View.VISIBLE);
@@ -359,7 +354,7 @@ public class PreviewPresenter extends BasePresenter {
             //JIRA IC-591
             int cacheTime = cameraProperties.getPreviewCacheTime();
             if (cacheTime > 0 && cacheTime < 200) {
-                cacheTime = 200;
+                cacheTime = 500;
             }
 //            int cacheTime = 0;
             Boolean setCacheRet = ICatchWificamConfig.getInstance().setPreviewCacheParam(cacheTime, 200);
@@ -1431,7 +1426,7 @@ public class PreviewPresenter extends BasePresenter {
         } else if (curMode == PreviewMode.APP_STATE_TIMELAPSE_STILL_CAPTURE) {
             AppToast.show(activity, R.string.stream_error_capturing, Toast.LENGTH_SHORT);
             return;
-        } else */
+        } else
         if (curMode == PreviewMode.APP_STATE_STILL_PREVIEW ) {
             currentSettingMenuMode = UIDisplaySource.CAPTURE_SETTING_MENU;
         } else if (curMode == PreviewMode.APP_STATE_VIDEO_PREVIEW || curMode == PreviewMode.APP_STATE_VIDEO_CAPTURE) {
@@ -1469,7 +1464,7 @@ public class PreviewPresenter extends BasePresenter {
                 });
             }
         }).start();
-        allowClickButtoms = true;
+        allowClickButtoms = true;*/
     }
 
     @Override

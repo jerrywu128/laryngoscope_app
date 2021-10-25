@@ -1124,9 +1124,10 @@ public class CameraProperties {
 
     public int getMaxZoomRatio() {
         AppLog.i(TAG, "start getMaxZoomRatio");
-        int retValue = 0;
+        int retValue = 0;/*
         try {
             retValue = cameraConfiguration.getMaxZoomRatio();
+
         } catch (IchSocketException e) {
             AppLog.e(TAG, "IchSocketException");
             // TODO Auto-generated catch block
@@ -1143,14 +1144,14 @@ public class CameraProperties {
             AppLog.e(TAG, "IchDevicePropException");
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }
+        }*/
         AppLog.i(TAG, "end getMaxZoomRatio retValue =" + retValue);
         return retValue;
     }
 
     public int getCurrentZoomRatio() {
         AppLog.i(TAG, "start getCurrentZoomRatio");
-        int retValue = 0;
+        int retValue = 0;/*
         try {
             retValue = cameraConfiguration.getCurrentZoomRatio();
         } catch (IchSocketException e) {
@@ -1169,7 +1170,7 @@ public class CameraProperties {
             AppLog.e(TAG, "IchDevicePropException");
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }
+        }*/
         AppLog.i(TAG, "end getCurrentZoomRatio retValue =" + retValue);
         return retValue;
     }

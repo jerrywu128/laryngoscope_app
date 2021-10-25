@@ -292,12 +292,7 @@
             android:src="@drawable/ic_outline_videocam_24" />
     </RelativeLayout>
 
-    <com.icatch.sbcapp.ExtendComponent.ZoomView
-        android:id="@+id/zoom_view"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/buttomBar"
-        android:visibility="gone" />
+
 
     <RelativeLayout
         android:layout_width="wrap_content"

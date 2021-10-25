@@ -8,21 +8,17 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Environment;
 import android.os.Handler;
 import android.util.LruCache;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ImageView;
 
-import com.icatch.sbcapp.Adapter.LocalVideoWallGridAdapter;
 import com.icatch.sbcapp.Adapter.LocalVideoWallListAdapter;
-import com.icatch.sbcapp.AppInfo.AppInfo;
 import com.icatch.sbcapp.BaseItems.LimitQueue;
 import com.icatch.sbcapp.BaseItems.LocalPbItemInfo;
 import com.icatch.sbcapp.BaseItems.PhotoWallPreviewType;
 import com.icatch.sbcapp.GlobalApp.GlobalInfo;
-import com.icatch.sbcapp.Listener.OnAddAsytaskListener;
 import com.icatch.sbcapp.Log.AppLog;
 import com.icatch.sbcapp.MyCamera.MyCamera;
 import com.icatch.sbcapp.Presenter.Interface.BasePresenter;
@@ -32,6 +28,7 @@ import com.icatch.sbcapp.ThumbnailGetting.ThumbnailOperation;
 import com.icatch.sbcapp.Tools.FileOpertion.MFileTools;
 import com.icatch.sbcapp.Tools.LruCacheTool;
 import com.icatch.sbcapp.Tools.StorageUtil;
+import com.icatch.sbcapp.View.Interface.LocalVideoFragmentView;
 import com.icatch.sbcapp.View.Interface.LocalVideoWallView;
 import com.icatch.wificam.customer.ICatchWificamAssist;
 
@@ -42,16 +39,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 
-/**
- * Created by b.jiang on 2015/12/4.
- */
-public class LocalVideoWallPresenter extends BasePresenter {
-
-    private String TAG = "LocalVideoWallPresenter";
-    private LocalVideoWallView localVideoWallView;
+public class LocalVideoFragmentPresenter extends BasePresenter {
+    private String TAG = "LocalVideoFragmentPresenter";
+    private LocalVideoFragmentView localVideoFragmentView;
     private LocalVideoWallListAdapter localVideoWallListAdapter;
     //private LocalVideoWallGridAdapter localVideoWallGridAdapter;
     private PhotoWallPreviewType layoutType = PhotoWallPreviewType.PREVIEW_TYPE_LIST;
@@ -62,32 +53,33 @@ public class LocalVideoWallPresenter extends BasePresenter {
     private Map<String, Integer> sectionMap = new HashMap<String, Integer>();
     private int width;
     private int height;
-    private MyCamera myCamera;
+    //tprivate MyCamera myCamera;
     private int mFirstVisibleItem;
     // GridView中可见的图片的数量
     private int mVisibleItemCount;
     // 记录是否是第一次进入该界面
     private boolean isFirstEnterThisActivity = true;
     private int topVisiblePosition = -1;
-    private LimitQueue<Asytask> asytaskList;
+    private LimitQueue<LocalVideoFragmentPresenter.Asytask> asytaskList;
     private LruCache<String, Bitmap> mLruCache = LruCacheTool.getInstance().getLruCache();
     private static int NUM_COLUMNS = 4;
     private Handler handler = new Handler();
-
-    public LocalVideoWallPresenter(Activity activity) {
+    public LocalVideoFragmentPresenter(Activity activity) {
         super(activity);
         this.activity = activity;
-        asytaskList = new LimitQueue<Asytask>(SystemInfo.getWindowVisibleCountMax(NUM_COLUMNS));
+        asytaskList = new LimitQueue<LocalVideoFragmentPresenter.Asytask>(SystemInfo.getWindowVisibleCountMax(NUM_COLUMNS));
         initCamera();
     }
 
-    public void setView(LocalVideoWallView localVideoWallView) {
-        this.localVideoWallView = localVideoWallView;
+
+
+    public void setView(LocalVideoFragmentView localVideoFragmentView) {
+        this.localVideoFragmentView = localVideoFragmentView;
         initCfg();
     }
 
     public boolean initCamera() {
-        myCamera = new MyCamera();
+      /*  myCamera = new MyCamera();
         if (myCamera.getSDKsession().prepareSession("192.168.1.1", false) == false) {
             AppLog.e(TAG, "prepareSession failed!");
             return false;
@@ -96,12 +88,12 @@ public class LocalVideoWallPresenter extends BasePresenter {
         GlobalInfo.getInstance().setCurrentCamera(myCamera);
         AppLog.i(TAG, "Set CurrentCamera");
 //        myCamera.initCamera();
-        myCamera.initCameraForLocalPB();
+        myCamera.initCameraForLocalPB();*/
         return true;
     }
 
     public void destroyCamera() {
-        myCamera.destroyCamera();
+        //t myCamera.destroyCamera();
     }
 
     private List<LocalPbItemInfo> getVideoList() {
@@ -141,20 +133,20 @@ public class LocalVideoWallPresenter extends BasePresenter {
         GlobalInfo.getInstance().localVideoList = mGirdList;
         int curWidth = 0;
         if (layoutType == PhotoWallPreviewType.PREVIEW_TYPE_LIST) {
-            localVideoWallView.setListViewVisibility(View.VISIBLE);
+            localVideoFragmentView.setListViewVisibility(View.VISIBLE);
             localVideoWallListAdapter = new LocalVideoWallListAdapter(activity, mGirdList, mLruCache);
-            localVideoWallView.setListViewAdapter(localVideoWallListAdapter);
-            localVideoWallView.setListViewOnScrollListener(listViewOnScrollListener);
+            localVideoFragmentView.setListViewAdapter(localVideoWallListAdapter);
+            localVideoFragmentView.setListViewOnScrollListener(listViewOnScrollListener);
         }
     }
 
     public void changePreviewType() {
         if (layoutType == PhotoWallPreviewType.PREVIEW_TYPE_LIST) {
             layoutType = PhotoWallPreviewType.PREVIEW_TYPE_GRID;
-            localVideoWallView.setMenuPreviewTypeIcon(R.drawable.ic_view_grid_white_24dp);
+            localVideoFragmentView.setMenuPreviewTypeIcon(R.drawable.ic_view_grid_white_24dp);
         } else {
             layoutType = PhotoWallPreviewType.PREVIEW_TYPE_LIST;
-            localVideoWallView.setMenuPreviewTypeIcon(R.drawable.ic_view_list_white_24dp);
+            localVideoFragmentView.setMenuPreviewTypeIcon(R.drawable.ic_view_list_white_24dp);
         }
         loadLocalVideoWall();
     }
@@ -201,9 +193,11 @@ public class LocalVideoWallPresenter extends BasePresenter {
             AppLog.i(TAG, "onScroll firstVisibleItem=" + firstVisibleItem);
             if (firstVisibleItem != topVisiblePosition) {
                 topVisiblePosition = firstVisibleItem;
+                if(!mGirdList.isEmpty()){
                 String fileDate = mGirdList.get(firstVisibleItem).getFileDate();
                 AppLog.i(TAG, "fileDate=" + fileDate);
-                localVideoWallView.setListViewHeaderText(fileDate);
+                localVideoFragmentView.setListViewHeaderText(fileDate);
+                }
             }
             mFirstVisibleItem = firstVisibleItem;
             mVisibleItemCount = visibleItemCount;
@@ -245,7 +239,7 @@ public class LocalVideoWallPresenter extends BasePresenter {
         for (int ii = firstVisibleItem; ii < firstVisibleItem + visibleItemCount; ii++) {
             if (ii < mGirdList.size()) {
                 imageUrl = mGirdList.get(ii).getFilePath();
-                Asytask task = new Asytask(imageUrl);
+                LocalVideoFragmentPresenter.Asytask task = new LocalVideoFragmentPresenter.Asytask(imageUrl);
                 asytaskList.offer(task);
                 AppLog.i(TAG, "add task loadBitmaps ii=" + ii);
             }
@@ -295,9 +289,9 @@ public class LocalVideoWallPresenter extends BasePresenter {
             AppLog.d(TAG, "Asytask onPostExecute result size=" + result.getByteCount());
             ImageView imageView;
             if (layoutType == PhotoWallPreviewType.PREVIEW_TYPE_GRID) {
-                imageView = (ImageView) localVideoWallView.gridViewFindViewWithTag(filePath);
+                imageView = (ImageView) localVideoFragmentView.gridViewFindViewWithTag(filePath);
             } else {
-                imageView = (ImageView) localVideoWallView.listViewFindViewWithTag(filePath);
+                imageView = (ImageView) localVideoFragmentView.listViewFindViewWithTag(filePath);
             }
             //imageView = (ImageView) mGridView.getChildAt(ii).findViewById(R.id.local_photo_wall_grid_item);
             AppLog.i(TAG, "loadBitmaps filePath=" + filePath + "result.isRecycled=" + result.isRecycled() + " imageView=" + imageView);
@@ -335,12 +329,10 @@ public class LocalVideoWallPresenter extends BasePresenter {
                 AppLog.d(TAG, "not supportLocalPlay");
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setDataAndType(uri, "video/mp4");
-              //t  context.startActivity(intent);
+                //t  context.startActivity(intent);
                 //t dialog.dismiss();
             }
         });
         builder.create().show();
     }
-
 }
-
