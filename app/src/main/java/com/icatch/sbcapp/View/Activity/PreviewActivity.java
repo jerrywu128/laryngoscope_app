@@ -134,8 +134,8 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
     private mediaScreenRecord mMediaScreenRecord =null;
     private Intent service;
 
-    private static Intent staticIntentData;
-    private static int staticResultCode;
+    private static Intent photostaticIntentData,videostaticIntentData;
+    private static int photostaticResultCode,videostaticResultCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -662,15 +662,31 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
     @Override
     public void startPhotolocalCapture(){
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (SDK_INT >= Build.VERSION_CODES.Q) {
+            if(photostaticIntentData == null) {
+                startActivityForResult(mMediaProjectionManager.createScreenCaptureIntent(), PHOTO_REQUEST_CODE);
+            }else{
+                service.putExtra("code", photostaticResultCode);
+                service.putExtra("data", photostaticIntentData);
+                startForegroundService(service);// 启动前台服务
+            }
+        }else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
             startActivityForResult(mMediaProjectionManager.createScreenCaptureIntent(), PHOTO_REQUEST_CODE);
-
         }
     }
 
     @Override
     public void startRecordlocalCapture(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            if(videostaticIntentData == null) {
+                startActivityForResult(mMediaProjectionManager.createScreenCaptureIntent(), VIDEO_REQUEST_CODE);
+            }else{
+                Intent intent = new Intent(this, MediaRecordService.class);
+                intent.putExtra("code",videostaticResultCode);
+                intent.putExtra("data",videostaticIntentData);
+                startForegroundService(intent); // 启动前台服务
+            }
+        }else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             startActivityForResult(mMediaProjectionManager.createScreenCaptureIntent(), VIDEO_REQUEST_CODE);
 
         }
@@ -700,11 +716,15 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
 
             if(PHOTO_REQUEST_CODE == requestCode){
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    Log.d(TAG, "Start capturing...");
-                    service = new Intent(this, MediaCaptureService.class);
-                    service.putExtra("code", resultCode);
-                    service.putExtra("data", data);
-                    startForegroundService(service);// 启动前台服务
+                    if(photostaticResultCode == 0 && photostaticIntentData == null) {
+                        photostaticIntentData = data;
+                        photostaticResultCode = resultCode;
+                    }
+                        Log.d(TAG, "Start capturing...");
+                        service = new Intent(this, MediaCaptureService.class);
+                        service.putExtra("code", resultCode);
+                        service.putExtra("data", data);
+                        startForegroundService(service);// 启动前台服务
                 } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     mMediaProjection = mMediaProjectionManager.getMediaProjection(resultCode, data);
 
@@ -716,6 +736,10 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
                 }
             }else if(VIDEO_REQUEST_CODE == requestCode){
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    if(videostaticResultCode == 0 && videostaticIntentData == null) {
+                        videostaticIntentData = data;
+                        videostaticResultCode = resultCode;
+                    }
                     Log.d(TAG, "Start recording...");
                     Intent intent = new Intent(this, MediaRecordService.class);
                     intent.putExtra("code",resultCode);
