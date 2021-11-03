@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -114,7 +115,7 @@ import androidx.core.app.ActivityCompat;
  */
 public class PreviewPresenter extends BasePresenter {
     private static final String TAG = "PreviewPresenter";
-    private static native String settest(int var0, int var1);
+
     private MediaPlayer videoCaptureStartBeep;
     private MediaPlayer modeSwitchBeep;
     private MediaPlayer stillCaptureStartBeep;
@@ -150,7 +151,7 @@ public class PreviewPresenter extends BasePresenter {
     private boolean needShowSBCHint = true;
     private MediaRecorder mediaRecorder;;
     private MPreview mPreview;
-
+    private boolean IQ_ischeck_password=false;
     public PreviewPresenter(Activity activity) {
         super(activity);
         this.activity = activity;
@@ -1839,7 +1840,19 @@ public class PreviewPresenter extends BasePresenter {
         builder.setCancelable(false);
         builder.create().show();
     }
+
+
+
     public void startIQlayout(RelativeLayout pb_IQ,RelativeLayout buttom_bar){
+
+        SharedPreferences mySharedPreferences= activity.getSharedPreferences("test",
+                Activity.MODE_PRIVATE);
+
+
+
+        String IQ_pwd =mySharedPreferences.getString("IQ_password", "password");
+
+
         if (curMode == PreviewMode.APP_STATE_STILL_CAPTURE ||
                 curMode == PreviewMode.APP_STATE_VIDEO_CAPTURE) {
             if (curMode == PreviewMode.APP_STATE_STILL_CAPTURE) {
@@ -1849,9 +1862,31 @@ public class PreviewPresenter extends BasePresenter {
             }
             return;
         }
+        if(!IQ_ischeck_password) {
+            LayoutInflater inflater = LayoutInflater.from(activity);
+            final View v = inflater.inflate(R.layout.iq_password_dialog, null);
+
+
+            new AlertDialog.Builder(activity)
+                    .setTitle(R.string.please_input_password)
+                    .setView(v)
+                    .setPositiveButton(R.string.sure, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            EditText editText = (EditText) (v.findViewById(R.id.password_text));
+                            if (IQ_pwd.equals(editText.getText().toString())) {
+                                pb_IQ.setVisibility(View.VISIBLE);
+                                buttom_bar.setVisibility((View.GONE));
+                                IQ_ischeck_password =true;
+                            }
+                        }
+                    })
+                    .show();
+
+        }else{
             pb_IQ.setVisibility(View.VISIBLE);
             buttom_bar.setVisibility((View.GONE));
-
+        }
     }
     public void stopIQlayout(RelativeLayout pb_IQ,RelativeLayout buttom_bar,RelativeLayout quality_bar,RelativeLayout WB_change_IQ){
 

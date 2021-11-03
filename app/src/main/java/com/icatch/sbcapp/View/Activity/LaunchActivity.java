@@ -150,6 +150,7 @@ public class LaunchActivity extends BaseActivity implements View.OnClickListener
         });*/
         LruCacheTool.getInstance().initLruCache();
         presenter.submitAppInfo();
+        presenter.checkFirstInapp();
         if(presenter.checkMobiledata()){
             AppDialog.showDialogWarn(this, R.string.dialog_mobiledata);
         }

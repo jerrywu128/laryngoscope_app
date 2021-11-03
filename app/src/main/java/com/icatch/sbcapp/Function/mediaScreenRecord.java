@@ -91,7 +91,8 @@ public class mediaScreenRecord {
         WindowManager window = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         mDisplay = window.getDefaultDisplay();
         final DisplayMetrics metrics = new DisplayMetrics();
-        // use getMetrics is 2030, use getRealMetrics is 2160, the diff is NavigationBar's height
+        // get phone size
+
         mDisplay.getRealMetrics(metrics);
         mDensity = metrics.densityDpi;
         Log.d(TAG, "metrics.widthPixels is " + metrics.widthPixels);
@@ -125,7 +126,7 @@ public class mediaScreenRecord {
     }
 
     private void prepareEncoder() throws IOException {
-        MediaFormat format = MediaFormat.createVideoFormat("video/avc", mWidth, (int)(mHeight*0.8));
+        MediaFormat format = MediaFormat.createVideoFormat("video/avc", mWidth, mHeight);
         format.setInteger(MediaFormat.KEY_COLOR_FORMAT,
                 MediaCodecInfo.CodecCapabilities.COLOR_FormatSurface);
         format.setInteger(MediaFormat.KEY_BIT_RATE, 6000000);
@@ -179,6 +180,7 @@ public class mediaScreenRecord {
             encodedData = null;
         }
         if (encodedData != null) {
+
             encodedData.position(bufferInfo.offset);
             encodedData.limit(bufferInfo.offset + bufferInfo.size);
             mMediaMuxer.writeSampleData(videoTrackIndex, encodedData, bufferInfo);

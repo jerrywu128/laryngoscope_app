@@ -236,4 +236,6 @@
     <string name="BLC">背光捕捉</string>
     <string name="gain">增益</string>
     <string name="dialog_mobiledata">請關閉行動數據，以確保連線穩定。</string>
+    <string name="please_input_password">請輸入密碼</string>
+    <string name="sure">確定</string>
 </resources>

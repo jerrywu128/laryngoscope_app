@@ -27,7 +27,7 @@ import com.icatch.sbcapp.View.Interface.LocalPhotoPbView;
 import uk.co.senab.photoview.PhotoView;
 
 public class LocalPhotoPbActivity extends BaseActivity implements LocalPhotoPbView {
-    private static final String TAG = LocalPhotoPbActivity.class.getSimpleName();
+    private static final String TAG = "LocalPhotoPbActivity";
     private HackyViewPager viewPager;
     private ImageButton shareBtn;
     private ImageButton deleteBtn;

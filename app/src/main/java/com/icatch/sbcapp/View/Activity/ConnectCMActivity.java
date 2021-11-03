@@ -46,7 +46,6 @@ public class ConnectCMActivity extends BaseActivity {
         String wifitp = bundle2.getString("tp");
         presenter = new ConnectCMPresenter(ConnectCMActivity.this);
         this.setWifi_Link(wifissid,wifipw,wifitp);
-        //presenter.launchCamera();
 
 
     }

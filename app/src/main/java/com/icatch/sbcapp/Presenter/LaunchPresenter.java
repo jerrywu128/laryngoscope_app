@@ -631,5 +631,20 @@ public class LaunchPresenter extends BasePresenter {
         return mobileDataEnabled;
     }
 
+    public void checkFirstInapp(){
+        //判斷是否第一次開啟app，並設定IQ預設密碼
+        Boolean isFirstIn = false;
+        SharedPreferences pref = activity.getSharedPreferences("myActivityName", 0);
+        isFirstIn = pref.getBoolean("isFirstIn", true);
+        if(isFirstIn){
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putString("IQ_password", "password");
+            editor.commit();
+        }
+        //下一次開啟則為否
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putBoolean("isFirstIn", false);
+        editor.commit();
+    }
 
 }
