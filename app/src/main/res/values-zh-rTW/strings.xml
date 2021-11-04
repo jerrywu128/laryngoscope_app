@@ -238,4 +238,11 @@
     <string name="dialog_mobiledata">請關閉行動數據，以確保連線穩定。</string>
     <string name="please_input_password">請輸入密碼</string>
     <string name="sure">確定</string>
+    <string name="iq_password_error">請確認密碼是否輸入錯誤</string>
+    <string name="cancel">取消</string>
+    <string name="change_password">變更密碼</string>
+    <string name="input_old_password">請輸入舊密碼</string>
+    <string name="input_new_password">請輸入新密碼</string>
+    <string name="change_password_sucess">變更密碼成功</string>
+    <string name="new_password_null">新密碼不可為空</string>
 </resources>

@@ -29,7 +29,7 @@ import uk.co.senab.photoview.PhotoView;
 public class LocalPhotoPbActivity extends BaseActivity implements LocalPhotoPbView {
     private static final String TAG = "LocalPhotoPbActivity";
     private HackyViewPager viewPager;
-    private ImageButton shareBtn;
+
     private ImageButton deleteBtn;
     private TextView indexInfoTxv;
     private RelativeLayout topBar;
@@ -44,7 +44,6 @@ public class LocalPhotoPbActivity extends BaseActivity implements LocalPhotoPbVi
 
         viewPager = (HackyViewPager) findViewById(R.id.viewpager);
         indexInfoTxv = (TextView) findViewById(R.id.pb_index_info);
-        shareBtn = (ImageButton) findViewById(R.id.photo_pb_share);
         deleteBtn = (ImageButton) findViewById(R.id.photo_pb_delete);
         topBar = (RelativeLayout) findViewById(R.id.pb_top_layout);
         bottomBar = (LinearLayout) findViewById(R.id.pb_bottom_layout);
@@ -61,12 +60,7 @@ public class LocalPhotoPbActivity extends BaseActivity implements LocalPhotoPbVi
                 presenter.showBar();
             }
         });
-        shareBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //presenter.share();
-            }
-        });
+
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -37,16 +37,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 />
-            <ImageButton
-                android:id="@+id/photo_pb_share"
-                android:padding="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_share_white_24dp"
-                android:background="@drawable/selector_transparent2gray"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                />
+
         </LinearLayout>
 
         <RelativeLayout

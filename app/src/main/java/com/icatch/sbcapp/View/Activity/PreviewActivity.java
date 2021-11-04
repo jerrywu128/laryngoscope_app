@@ -116,7 +116,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
     private RelativeLayout WB_change_IQ;
     private RelativeLayout BLC_change_IQ;
     private Button brightness_BT, HUE_BT,saturation_BT,white_balance_BT,BLC_BT;
-    private Button WB_AUTO,WB_DAYLIGHT,WB_CLOUDY,WB_TUNGSTEN,WB_FLOURESCENT_H;
+    private Button WB_AUTO,WB_DAYLIGHT,WB_CLOUDY,WB_TUNGSTEN,WB_FLOURESCENT_H,CHANGE_IQ_PASSWORD;
     private TextView quality_name,seekbar_value;
     private SeekBar seekBar;
     private int[] progress_save;
@@ -198,13 +198,14 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
         saturation_BT = (Button)findViewById(R.id.saturation_bt);
         white_balance_BT = (Button)findViewById(R.id.white_balance_bt);
         BLC_BT = (Button)findViewById(R.id.BLC_bt);
-
+        CHANGE_IQ_PASSWORD = (Button)findViewById(R.id.change_iq_pwd_bt);
 
         brightness_BT.setOnClickListener(this);
         HUE_BT.setOnClickListener(this);
         saturation_BT.setOnClickListener(this);
         white_balance_BT.setOnClickListener(this);
         BLC_BT.setOnClickListener(this);
+        CHANGE_IQ_PASSWORD.setOnClickListener(this);
 
         progress_save = new int[3];
         progress_save[0]=128;//brightness
@@ -599,6 +600,9 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
                 AppLog.i(TAG, "click the close_WB");
                 WB_change_IQ.setVisibility(View.GONE);
                 pb_IQ.setVisibility(View.VISIBLE);
+                break;
+            case R.id.change_iq_pwd_bt:
+                presenter.change_IQ_password();
                 break;
             /**IQ_BT_OnClick*/
             case R.id.brightness_bt:

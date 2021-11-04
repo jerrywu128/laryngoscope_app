@@ -79,6 +79,7 @@ import com.icatch.sbcapp.Tools.FileOpertion.FileTools;
 import com.icatch.sbcapp.Tools.QRCode;
 import com.icatch.sbcapp.Tools.StorageUtil;
 import com.icatch.sbcapp.Tools.TimeTools;
+import com.icatch.sbcapp.View.Activity.LaunchActivity;
 import com.icatch.sbcapp.View.Activity.LoginGoogleActivity;
 import com.icatch.sbcapp.View.Interface.PreviewView;
 import com.icatch.wificam.core.jni.extractor.NativeValueExtractor;
@@ -479,103 +480,12 @@ public class PreviewPresenter extends BasePresenter {
             }*/
         } else if (curMode == PreviewMode.APP_STATE_STILL_PREVIEW) {
 
-            if (cameraProperties.isSDCardExist() == false) {
-                AppDialog.showDialogWarn(activity, R.string.dialog_card_not_exist);
-                return;
-            }
-            int remainImageNum = cameraProperties.getRemainImageNum();
-            if (remainImageNum == 0) {
-                AppDialog.showDialogWarn(activity, R.string.dialog_sd_card_is_full);
-                return;
-            } else if (remainImageNum < 0) {
-                AppDialog.showDialogWarn(activity, R.string.text_get_data_exception);
-                return;
-            }
 
-            curMode = PreviewMode.APP_STATE_STILL_CAPTURE;
-            startPhotoCapture();
             previewView.startPhotolocalCapture();
+            startPhotoCapture();
 
-        }/* else if (curMode == PreviewMode.APP_STATE_TIMELAPSE_STILL_PREVIEW) {
 
-            if (cameraProperties.isSDCardExist() == false) {
-                AppDialog.showDialogWarn(activity, R.string.dialog_card_not_exist);
-                return;
-            }
-            int remainImageNum = cameraProperties.getRemainImageNum();
-            if (remainImageNum == 0) {
-                AppDialog.showDialogWarn(activity, R.string.dialog_sd_card_is_full);
-                return;
-            } else if (remainImageNum < 0) {
-                AppDialog.showDialogWarn(activity, R.string.text_get_data_exception);
-                return;
-            }
-            if (cameraProperties.getCurrentTimeLapseInterval() == TimeLapseInterval.TIME_LAPSE_INTERVAL_OFF) {
-                AppDialog.showDialogWarn(activity, R.string.timeLapse_not_allow);
-                return;
-            }
-            if (continuousCaptureBeep != null) {
-                continuousCaptureBeep.start();
-            }
-            if (cameraAction.startTimeLapse() == false) {
-                AppLog.e(TAG, "failed to start startTimeLapse");
-                return;
-            }
-            previewView.setCaptureBtnBackgroundResource(R.drawable.still_capture_btn_off);
-            curMode = PreviewMode.APP_STATE_TIMELAPSE_STILL_CAPTURE;
-        } else if (curMode == PreviewMode.APP_STATE_TIMELAPSE_STILL_CAPTURE) {
-            AppLog.d(TAG, "curMode == PreviewMode.APP_STATE_TIMELAPSE_STILL_CAPTURE");
-            if (cameraAction.stopTimeLapse() == false) {
-                AppLog.e(TAG, "failed to stopTimeLapse");
-                return;
-            }
-            stopRecordingLapseTimeTimer();
-            curMode = PreviewMode.APP_STATE_TIMELAPSE_STILL_PREVIEW;
-        } else if (curMode == APP_STATE_TIMELAPSE_VIDEO_PREVIEW) {
-            AppLog.d(TAG, "curMode == PreviewMode.APP_STATE_TIMELAPSE_PREVIEW_VIDEO");
-            if (cameraProperties.isSDCardExist() == false) {
-                AppDialog.showDialogWarn(activity, R.string.dialog_card_not_exist);
-                return;
-            }
-
-            int remainImageNum = cameraProperties.getRemainImageNum();
-            if (remainImageNum == 0) {
-                AppDialog.showDialogWarn(activity, R.string.dialog_sd_card_is_full);
-                return;
-            } else if (remainImageNum < 0) {
-                AppDialog.showDialogWarn(activity, R.string.text_get_data_exception);
-                return;
-            }
-            if (cameraProperties.getCurrentTimeLapseInterval() == TimeLapseInterval.TIME_LAPSE_INTERVAL_OFF) {
-                AppLog.d(TAG, "time lapse is not allowed because of timelapse interval is OFF");
-                AppDialog.showDialogWarn(activity, R.string.timeLapse_not_allow);
-                return;
-            }
-
-            if (videoCaptureStartBeep != null) {
-                videoCaptureStartBeep.start();
-            }
-            if (cameraAction.startTimeLapse() == false) {
-                AppLog.e(TAG, "failed to start startTimeLapse");
-                return;
-            }
-            curMode = PreviewMode.APP_STATE_TIMELAPSE_VIDEO_CAPTURE;
-            startVideoCaptureButtomChangeTimer();
-            startRecordingLapseTimeTimer(0);
-
-        } else if (curMode == PreviewMode.APP_STATE_TIMELAPSE_VIDEO_CAPTURE) {
-            AppLog.d(TAG, "curMode == PreviewMode.APP_STATE_TIMELAPSE_VIDEO_CAPTURE");
-            if (videoCaptureStartBeep != null) {
-                videoCaptureStartBeep.start();
-            }
-            if (cameraAction.stopTimeLapse() == false) {
-                AppLog.e(TAG, "failed to stopTimeLapse");
-                return;
-            }
-            stopVideoCaptureButtomChangeTimer();
-            stopRecordingLapseTimeTimer();
-            curMode = APP_STATE_TIMELAPSE_VIDEO_PREVIEW;
-        }*/
+        }
         AppLog.d(TAG, "end processing for responsing captureBtn clicking");
     }
 
@@ -826,7 +736,7 @@ public class PreviewPresenter extends BasePresenter {
             // normal state, app show preview
         } else if (curMode == PreviewMode.APP_STATE_STILL_PREVIEW) {
             AppLog.i(TAG, "initPreview curMode == ICH_STILL_PREVIEW_MODE");
-            changeCameraMode(curMode, ICatchPreviewMode.ICH_STILL_PREVIEW_MODE);
+            changeCameraMode(curMode, ICatchPreviewMode.ICH_VIDEO_PREVIEW_MODE);
         }
         //do not start preview,
     }
@@ -943,37 +853,25 @@ public class PreviewPresenter extends BasePresenter {
     private void startPhotoCapture() {
         previewView.setCaptureBtnEnability(false);
         previewView.setCaptureBtnBackgroundResource(R.drawable.still_capture_btn_off);
-        /*
-        if (cameraProperties.hasFuction(0xD7F0)) {
-            PhotoCapture.getInstance().addOnStopPreviewListener(new PhotoCapture.OnStopPreviewListener() {
-                @Override
-                public void onStop() {
-                    if (!cameraProperties.hasFuction(0xd704)) {
-                        stopPreview();
-                        if (stopMediaStream() == false) {
-                            return;
-                        }
-                    }
 
-                }
-            });
-            PhotoCapture.getInstance().startCapture();
-        } else {
-            if (stillCaptureStartBeep != null) {
-                stillCaptureStartBeep.start();
-            }
-            if (!cameraProperties.hasFuction(0xd704)) {
-                stopPreview();
-                if (stopMediaStream() == false) {
-                    return;
-                }
-            }
-            CameraAction.getInstance().capturePhoto();
-        }*/
         if (stillCaptureStartBeep != null) {
             stillCaptureStartBeep.start();
          }
-        CameraProperties.getInstance().setPropertyValue(PropertyId.USB_PIMA_DCP_PIV_TRIGGER, 1);
+
+        curMode = PreviewMode.APP_STATE_STILL_CAPTURE;
+        if (cameraProperties.isSDCardExist() == true) {
+            CameraProperties.getInstance().setPropertyValue(PropertyId.USB_PIMA_DCP_PIV_TRIGGER, 1);
+        }
+        /*
+        int remainImageNum = cameraProperties.getRemainImageNum();
+        if (remainImageNum == 0) {
+
+        } else if (remainImageNum < 0) {
+
+        }*/
+
+
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -982,6 +880,8 @@ public class PreviewPresenter extends BasePresenter {
                 previewView.setCaptureBtnEnability(true);
             }
         }, 500);
+
+
 
     }
 
@@ -1843,14 +1743,48 @@ public class PreviewPresenter extends BasePresenter {
 
 
 
-    public void startIQlayout(RelativeLayout pb_IQ,RelativeLayout buttom_bar){
-
+    public void change_IQ_password() {
         SharedPreferences mySharedPreferences= activity.getSharedPreferences("test",
                 Activity.MODE_PRIVATE);
-
-
-
         String IQ_pwd =mySharedPreferences.getString("IQ_password", "password");
+        LayoutInflater inflater = LayoutInflater.from(activity);
+        final View v2 = inflater.inflate(R.layout.iq_change_password, null);
+        new AlertDialog.Builder(activity)
+                .setTitle(R.string.change_password)
+                .setView(v2)
+                .setPositiveButton(R.string.sure, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog2, int which2) {
+                        EditText old_password_text = (EditText) (v2.findViewById(R.id.old_password));
+                        EditText new_password_text = (EditText) (v2.findViewById(R.id.new_password));
+                        if (IQ_pwd.equals(old_password_text.getText().toString())) {
+                            if("".equals(new_password_text.getText().toString())){
+                                Toast.makeText(activity, R.string.new_password_null, Toast.LENGTH_SHORT).show();
+                            }else {
+                                SharedPreferences.Editor editor = mySharedPreferences.edit();
+                                editor.putString("IQ_password", new_password_text.getText().toString());
+                                editor.commit();
+                                IQ_ischeck_password=false;
+                                Toast.makeText(activity, R.string.change_password_sucess, Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(activity, R.string.iq_password_error, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //cancel
+                    }
+                })
+                .show();
+
+    }
+
+    public void startIQlayout(RelativeLayout pb_IQ,RelativeLayout buttom_bar){
+
+
 
 
         if (curMode == PreviewMode.APP_STATE_STILL_CAPTURE ||
@@ -1862,6 +1796,11 @@ public class PreviewPresenter extends BasePresenter {
             }
             return;
         }
+
+        SharedPreferences mySharedPreferences= activity.getSharedPreferences("test",
+                Activity.MODE_PRIVATE);
+        String IQ_pwd =mySharedPreferences.getString("IQ_password", "password");
+
         if(!IQ_ischeck_password) {
             LayoutInflater inflater = LayoutInflater.from(activity);
             final View v = inflater.inflate(R.layout.iq_password_dialog, null);
@@ -1878,18 +1817,31 @@ public class PreviewPresenter extends BasePresenter {
                                 pb_IQ.setVisibility(View.VISIBLE);
                                 buttom_bar.setVisibility((View.GONE));
                                 IQ_ischeck_password =true;
+                            }else{
+                                Toast.makeText(activity, R.string.iq_password_error, Toast.LENGTH_SHORT).show();
                             }
                         }
                     })
+                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //cancel
+                        }
+                    })
+                    .setNeutralButton(R.string.change_password,new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //change password
+                            change_IQ_password();
+                        }
+                    })
                     .show();
-
         }else{
             pb_IQ.setVisibility(View.VISIBLE);
             buttom_bar.setVisibility((View.GONE));
         }
     }
     public void stopIQlayout(RelativeLayout pb_IQ,RelativeLayout buttom_bar,RelativeLayout quality_bar,RelativeLayout WB_change_IQ){
-
         pb_IQ.setVisibility(View.GONE);
         quality_bar.setVisibility(View.GONE);
         WB_change_IQ.setVisibility(View.GONE);
