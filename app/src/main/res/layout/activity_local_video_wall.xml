@@ -13,12 +13,7 @@
         android:layout_height="wrap_content"
         android:theme="@style/FullScreenTheme.AppBarOverlay">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/primary"
-            app:popupTheme="@style/FullScreenTheme.PopupOverlay" />
+
 
     </com.google.android.material.appbar.AppBarLayout>
 

@@ -48,7 +48,7 @@ public class LocalVideoPbPresenter extends BasePresenter{
     private Activity activity;
     private VideoPlayback videoPlayback;
     private CameraAction cameraAction;
-    private MyCamera myCamera;
+    //private MyCamera myCamera;
     private VideoPbMode videoPbMode = VideoPbMode.MODE_VIDEO_IDLE;
     private boolean needUpdateSeekBar = true;
     private String curLocalVideoPath;
@@ -91,7 +91,7 @@ public class LocalVideoPbPresenter extends BasePresenter{
         this.localVideoPbView = localVideoPbView;
         initCfg();
         initView();
-        play();
+       // play();
     }
 
     private void initView(){
@@ -101,7 +101,7 @@ public class LocalVideoPbPresenter extends BasePresenter{
     }
 
     public void initClint() {
-        myCamera = GlobalInfo.getInstance().getCurrentCamera();
+        //tmyCamera = GlobalInfo.getInstance().getCurrentCamera();
         videoPlayback = VideoPlayback.getInstance();
         cameraAction = CameraAction.getInstance();
     }
@@ -207,7 +207,7 @@ public class LocalVideoPbPresenter extends BasePresenter{
         cacheFlag = true;
         waitForCaching = true;
         localVideoPbView.showLoadingCircle(true);
-        localVideoPbView.startMPreview(myCamera, PreviewLaunchMode.VIDEO_PB_MODE);
+        //tlocalVideoPbView.startMPreview(myCamera, PreviewLaunchMode.VIDEO_PB_MODE);
     }
     public void stopVideoPb(){
         if(videoPbMode == VideoPbMode.MODE_VIDEO_IDLE){
@@ -316,21 +316,21 @@ public class LocalVideoPbPresenter extends BasePresenter{
             localVideoPbView.setTopBarVisibility(View.VISIBLE);
         }
     }
-
+/*
     public void share(){
         if(videoPbMode != VideoPbMode.MODE_VIDEO_IDLE){
             AppLog.i(TAG, "begin stop the playing");
             stopVideoPb();
         }
-        /*
-        String photoPath = this.curLocalVideoPath;
-        Uri fileUri = Uri.fromFile(new File(photoPath));
-        Intent shareIntent = new Intent();
-        shareIntent.setAction(Intent.ACTION_SEND);
-        shareIntent.putExtra(Intent.EXTRA_STREAM, fileUri);
-        shareIntent.setType("video/*");
-        activity.startActivity(Intent.createChooser(shareIntent, activity.getResources().getString(R.string.gallery_share_to)));
-        */
+
+       // String photoPath = this.curLocalVideoPath;
+       // Uri fileUri = Uri.fromFile(new File(photoPath));
+       // Intent shareIntent = new Intent();
+       // shareIntent.setAction(Intent.ACTION_SEND);
+        //shareIntent.putExtra(Intent.EXTRA_STREAM, fileUri);
+       // shareIntent.setType("video/*");
+        //activity.startActivity(Intent.createChooser(shareIntent, activity.getResources().getString(R.string.gallery_share_to)));
+
         String photoPath = this.curLocalVideoPath;
         Log.d(TAG, photoPath.toString());
         File cameraPhoto = new File(photoPath);
@@ -344,7 +344,7 @@ public class LocalVideoPbPresenter extends BasePresenter{
         shareIntent.setAction(Intent.ACTION_SEND);
         shareIntent.setDataAndType( fileUri, "video/*");
         activity.startActivityForResult(Intent.createChooser(shareIntent, activity.getResources().getString(R.string.gallery_share_to)), 1 );
-    }
+    }*/
 
     public void delete() {
         if(videoPbMode != VideoPbMode.MODE_VIDEO_IDLE){

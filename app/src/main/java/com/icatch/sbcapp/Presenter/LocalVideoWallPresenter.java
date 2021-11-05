@@ -166,7 +166,8 @@ public class LocalVideoWallPresenter extends BasePresenter {
         //JIRA BUG ICOM-3524 Start add by b.jiang 20160725
         isFirstEnterThisActivity = true;
         //JIRA BUG ICOM-3524 End add by b.jiang 20160725
-        if (ICatchWificamAssist.getInstance().supportLocalPlay(videoPath)) {
+        //ICatchWificamAssist.getInstance().supportLocalPlay(videoPath)
+        if (true) {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {

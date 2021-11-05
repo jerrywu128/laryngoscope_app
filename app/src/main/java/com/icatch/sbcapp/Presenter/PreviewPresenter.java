@@ -211,6 +211,7 @@ public class PreviewPresenter extends BasePresenter {
 //        GetCurrentImageSizeTask task = new GetCurrentImageSizeTask();
 //		getImageSizeTimer = new Timer(true);
 //		getImageSizeTimer.schedule(task, 0,5000);
+        FileOper.createDirectory(StorageUtil.getDownloadPath(activity));
     }
 
     public void initStatus() {
@@ -330,6 +331,7 @@ public class PreviewPresenter extends BasePresenter {
         }
     }
 
+
     public boolean stopMediaStream() {
         if (!currentCamera.isStreaming) {
             AppLog.d(TAG, "stopMediaStream currnet Streaming has stopped,do not need to stop again!");
@@ -419,6 +421,7 @@ public class PreviewPresenter extends BasePresenter {
         this.mPreview = mPreview;
         if (curMode == PreviewMode.APP_STATE_VIDEO_PREVIEW) {
             curMode = PreviewMode.APP_STATE_VIDEO_CAPTURE;
+            previewView.setRecording_text(View.VISIBLE);
             startVideoCaptureButtomChangeTimer();
             if (videoCaptureStartBeep != null) {
                 videoCaptureStartBeep.start();
@@ -455,6 +458,7 @@ public class PreviewPresenter extends BasePresenter {
             }*/
         } else if (curMode == PreviewMode.APP_STATE_VIDEO_CAPTURE) {
             curMode = PreviewMode.APP_STATE_VIDEO_PREVIEW;
+            previewView.setRecording_text(View.GONE);
             stopVideoCaptureButtomChangeTimer();
             if (videoCaptureStartBeep != null) {
                 videoCaptureStartBeep.start();
@@ -1903,6 +1907,7 @@ public class PreviewPresenter extends BasePresenter {
     public void closeBLC(){
         currentCamera.getUSB_PIMA_DCP_IQ_BLC().setValue(0);
     }
+
 
 
 }

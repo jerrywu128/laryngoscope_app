@@ -11,6 +11,9 @@ import com.icatch.sbcapp.MyCamera.MyCamera;
  * Created by zhang yanhu C001012 on 2015/12/4 15:09.
  */
 public interface PreviewView {
+
+    void setRecording_text(int visibility);
+
     void setmPreviewVisibility(int visibility);
 
     void setWbStatusVisibility(int visibility);

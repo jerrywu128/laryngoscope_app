@@ -27,6 +27,7 @@
 
 
         </ListView>
+
         <include layout="@layout/item_local_photo_wall_list_header" />
     </FrameLayout>
 

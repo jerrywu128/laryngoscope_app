@@ -282,6 +282,17 @@
             android:layout_marginBottom="5dp"
             android:src="@drawable/video_start" />
 
+        <TextView
+            android:id="@+id/recording_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/recording"
+            android:layout_toRightOf="@+id/doCapture"
+            android:textColor="@color/red"
+            android:visibility="gone"
+        >
+        </TextView>
         <ImageView
             android:id="@+id/pv_mode"
             android:layout_width="wrap_content"

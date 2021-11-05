@@ -67,7 +67,6 @@ public class mediaScreenCapture  {
 
 
         path = StorageUtil.getDownloadPath(context);
-
         FileOper.createDirectory(path);
     }
 

@@ -37,6 +37,7 @@ import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.appcompat.app.ActionBar;
@@ -46,6 +47,7 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.common.internal.Constants;
 import com.icatch.sbcapp.Adapter.SettingListAdapter;
+import com.icatch.sbcapp.AppInfo.AppInfo;
 import com.icatch.sbcapp.ExtendComponent.MPreview;
 import com.icatch.sbcapp.ExtendComponent.MyToast;
 import com.icatch.sbcapp.ExtendComponent.ZoomView;
@@ -61,8 +63,11 @@ import com.icatch.sbcapp.Presenter.PreviewPresenter;
 import com.icatch.sbcapp.R;
 import com.icatch.sbcapp.SdkApi.CameraProperties;
 import com.icatch.sbcapp.SystemInfo.SystemInfo;
+import com.icatch.sbcapp.Tools.StorageUtil;
 import com.icatch.sbcapp.View.Interface.PreviewView;
 import com.icatch.sbcapp.Function.mediaScreenCapture;
+
+import java.io.File;
 
 public class PreviewActivity extends BaseActivity implements View.OnClickListener, PreviewView {
 
@@ -118,6 +123,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
     private Button brightness_BT, HUE_BT,saturation_BT,white_balance_BT,BLC_BT;
     private Button WB_AUTO,WB_DAYLIGHT,WB_CLOUDY,WB_TUNGSTEN,WB_FLOURESCENT_H,CHANGE_IQ_PASSWORD;
     private TextView quality_name,seekbar_value;
+    private TextView recording_text;
     private SeekBar seekBar;
     private int[] progress_save;
     private ToggleButton blc_toggle;
@@ -249,7 +255,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
         mainMenuList = (ListView) findViewById(R.id.setup_menu_listView);
         noSupportPreviewTxv = (TextView) findViewById(R.id.not_support_preview_txv);
         pvModeBtn = (ImageView) findViewById(R.id.pv_mode);
-
+        recording_text = (TextView) findViewById(R.id.recording_text);
         contentView = LayoutInflater.from(PreviewActivity.this).inflate(R.layout.camer_mode_switch_layout, null);
         pvModePopupWindow = new PopupWindow(contentView,
                 GridLayout.LayoutParams.WRAP_CONTENT, GridLayout.LayoutParams.WRAP_CONTENT, true);
@@ -568,8 +574,14 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
             case R.id.multi_pb:
                 AppLog.i(TAG, "click the multi_pb");
                 if(Utils.isFastClick()) { //防止重複點擊造成崩潰
-                    presenter.redirectToAnotherActivity(PreviewActivity.this, MultiPbActivity.class);
-                      //presenter.redirectToAnotherActivity(PreviewActivity.this,LocalPhotoWallActivity.class);
+
+                    File file = new File(StorageUtil.getDownloadPath(this));
+                    if(file.list().length!=0) {
+                        presenter.redirectToAnotherActivity(PreviewActivity.this, MultiPbActivity.class);
+                    }else{
+                        MyToast.show(this, R.string.pb_null);
+                    }
+                    //presenter.redirectToAnotherActivity(PreviewActivity.this,LocalPhotoWallActivity.class);
                     //presenter.redirectToAnotherActivity(PreviewActivity.this,LocalVideoWallActivity.class);
                 }
                 break;
@@ -1085,6 +1097,11 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
         }
     }
 
+    @Override
+    public void setRecording_text(int visibility){
+        recording_text.setVisibility(visibility);
+    }
+
     //JIRA ICOM-3669 begin add by b.jiang 20160914
     public void refresh() {
         presenter.refresh();
@@ -1094,6 +1111,8 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
     public void stopStream() {
         presenter.stopStream();
     }
+
+
 
 
 }

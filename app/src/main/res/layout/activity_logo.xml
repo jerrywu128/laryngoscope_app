@@ -10,5 +10,12 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:src="@drawable/laryngoscope_logo"/>
+    <TextView
+        android:id="@+id/version_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:textAlignment="center"
+        android:textSize="15dp"/>
 
 </RelativeLayout>

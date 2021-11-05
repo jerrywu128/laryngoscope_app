@@ -245,4 +245,6 @@
     <string name="input_new_password">請輸入新密碼</string>
     <string name="change_password_sucess">變更密碼成功</string>
     <string name="new_password_null">新密碼不可為空</string>
+    <string name="pb_null">相簿內沒有檔案</string>
+    <string name="recording">錄製中</string>
 </resources>

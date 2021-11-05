@@ -246,5 +246,6 @@
     <string name="input_new_password">请输入新密码</string>
     <string name="change_password_sucess">变更密码成功</string>
     <string name="new_password_null">新密码不可为空</string>
-
+    <string name="pb_null">相簿内没有档案</string>
+    <string name="recording">录制中</string>
 </resources>
