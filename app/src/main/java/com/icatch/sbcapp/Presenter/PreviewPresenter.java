@@ -74,6 +74,7 @@ import com.icatch.sbcapp.Setting.OptionSetting;
 import com.icatch.sbcapp.ThumbnailGetting.ThumbnailOperation;
 import com.icatch.sbcapp.Tools.BitmapTools;
 import com.icatch.sbcapp.Tools.ConvertTools;
+import com.icatch.sbcapp.Tools.FileDES;
 import com.icatch.sbcapp.Tools.FileOpertion.FileOper;
 import com.icatch.sbcapp.Tools.FileOpertion.FileTools;
 import com.icatch.sbcapp.Tools.QRCode;
@@ -101,6 +102,7 @@ import com.icatch.wificam.customer.type.ICatchPreviewMode;
 import com.icatch.sbcapp.Mode.IQMode;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Timer;

@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
+import com.icatch.sbcapp.Tools.FileDES;
 import com.icatch.sbcapp.Tools.FileOpertion.FileOper;
 import com.icatch.sbcapp.Tools.StorageUtil;
 
@@ -154,11 +155,21 @@ public class mediaScreenCapture  {
                             Log.d(TAG, "End now!!!!!!  Screenshot saved in " + fileName);
                             Toast.makeText(mContext, "Screenshot saved in " + fileName,
                                     Toast.LENGTH_LONG);
+
+                            FileDES fileDES = new FileDES("test.key");
+                            fileDES.doEncryptFile(fileName,path+"DES"+date.format(
+                                    currentDate));
+                            fileDES.decrypt(path+"DES"+date.format(
+                                    currentDate),path+date.format(
+                                    currentDate)+".jpg");
+
                             MediaScannerConnection
                                     .scanFile(mContext, new String[] { fileName }, null, null); //更新相冊
                             stopProjection();
                         }
                     } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (Exception e) {
                         e.printStackTrace();
                     } finally {
                         if (null != fos) {

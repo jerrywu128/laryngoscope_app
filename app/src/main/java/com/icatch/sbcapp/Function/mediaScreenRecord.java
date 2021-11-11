@@ -1,6 +1,7 @@
 package com.icatch.sbcapp.Function;
 
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.display.DisplayManager;
 import android.hardware.display.VirtualDisplay;
 import android.media.ImageReader;
@@ -24,9 +25,12 @@ import android.view.WindowManager;
 import androidx.annotation.RequiresApi;
 
 import com.icatch.sbcapp.ExtendComponent.MyToast;
+import com.icatch.sbcapp.Tools.FileDES;
 import com.icatch.sbcapp.Tools.FileOpertion.FileOper;
 import com.icatch.sbcapp.Tools.StorageUtil;
+import com.icatch.sbcapp.View.Activity.LaunchActivity;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
@@ -57,7 +61,7 @@ public class mediaScreenRecord {
     private Surface surface;
     private VirtualDisplay virtualDisplay;
     private int dpi = 1;
-    private String fileName;
+    private String fileName,fileNameTemp;
 
     public mediaScreenRecord (Context context, MediaProjection mediaProjection) {
         mMediaProjection = mediaProjection;
@@ -85,9 +89,9 @@ public class mediaScreenRecord {
 
         Date currentDate = new Date();
         SimpleDateFormat date = new SimpleDateFormat("yyyyMMddhhmmss");
-        fileName = path + date.format(
-                currentDate) + ".mp4";
-
+        fileNameTemp = path + date.format(
+                currentDate);
+        fileName = fileNameTemp + ".mp4";
         WindowManager window = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         mDisplay = window.getDefaultDisplay();
         final DisplayMetrics metrics = new DisplayMetrics();
@@ -196,11 +200,21 @@ public class mediaScreenRecord {
             @Override
             public void run() {
                 if (mMediaProjection != null) {
+                    try {
+                        FileDES fileDES =new FileDES("test.key");
+                        fileDES.encrypt(fileName);
+                        fileDES.encrypt(fileName);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
                     mMediaProjection.stop();
                 }
             }
         });
+
     }
+
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void release() {
         if (mMediaCodec != null) {
