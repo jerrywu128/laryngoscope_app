@@ -12,6 +12,7 @@ import com.icatch.sbcapp.BaseItems.PhotoWallPreviewType;
 import com.icatch.sbcapp.GlobalApp.GlobalInfo;
 import com.icatch.sbcapp.Log.AppLog;
 import com.icatch.sbcapp.Presenter.Interface.BasePresenter;
+import com.icatch.sbcapp.Tools.FileDES;
 import com.icatch.sbcapp.Tools.FileOpertion.MFileTools;
 import com.icatch.sbcapp.Tools.StorageUtil;
 import com.icatch.sbcapp.View.Interface.LocalPhotoFragmentView;
@@ -27,6 +28,7 @@ import java.util.Map;
 
 public class LocalPhotoFragmentPresenter extends BasePresenter {
     String TAG = "LocalPhotoFragmentPresenter";
+    String path;
     private LocalPhotoFragmentView localPhotoFragmentView;
     private LocalPhotoWallListAdapter localPhotoWallListAdapter;
     private PhotoWallPreviewType layoutType = PhotoWallPreviewType.PREVIEW_TYPE_LIST;
@@ -81,7 +83,8 @@ public class LocalPhotoFragmentPresenter extends BasePresenter {
         return photoList;
     }
 
-    public void loadLocalPhotoWall() {
+    public void loadLocalPhotoWall()  {
+
         if (photoList == null) {
             photoList = getPhotoList();
         }
@@ -111,6 +114,32 @@ public class LocalPhotoFragmentPresenter extends BasePresenter {
         AppLog.i(TAG, "intent:start redirectToAnotherActivity class =" + cls.getName());
         intent.setClass(context, cls);
         context.startActivity(intent);
+    }
+
+    public void decodePhoto() throws Exception {
+
+        String path = StorageUtil.getDownloadPath(activity);
+        FileDES fileDES = null;
+        try {
+            fileDES = new FileDES("test.key");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        File file = new File(path+"/DES");
+        File[] files = file.listFiles();
+        for (int i = 0; i < files.length; i++) {
+            File childFile = files[i];
+            String childName = childFile.getName();
+            try {
+                fileDES.doDecryptFile(path+"DES/"+childName,path+childName+".jpg");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+
+
     }
 
 }

@@ -19,10 +19,13 @@ import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
 import javax.crypto.CipherOutputStream;
 import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
-public class FileDES {/**加密解密的key*/
-private Key mKey;
+public class FileDES {
+    /**加密解密的key*/
+    private Key mKey;
     /**解密的密码*/
     private Cipher mDecryptCipher;
     /**加密的密码*/
@@ -39,10 +42,11 @@ private Key mKey;
      */
     public void initKey(String keyRule) throws UnsupportedEncodingException {
         try {
-            KeyGenerator _generator = KeyGenerator.getInstance("DES");
-            _generator.init(new SecureRandom(keyRule.getBytes()));
-            this.mKey = _generator.generateKey();
-            _generator = null;
+            DESKeySpec dks = new DESKeySpec(keyRule.getBytes());
+            SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
+            //key的长度不能够小于8位字节
+            mKey = keyFactory.generateSecret(dks);
+            System.out.println("newkey"+mKey.toString());
         } catch (Exception e) {
             throw new RuntimeException("Error initializing SqlMap class. Cause: " + e);
         }
@@ -166,5 +170,37 @@ private Key mKey;
         }
     }
 
+    public void doDecryptFile(InputStream in, String path) {
+        if (in == null) {
+            System.out.println("inputstream is null");
+            return;
+        }
+        try {
+            CipherInputStream cin = new CipherInputStream(in, mDecryptCipher);
+            OutputStream outputStream = new FileOutputStream(path);
+            byte[] bytes = new byte[1024];
+            int length = -1;
+            while ((length = cin.read(bytes)) > 0) {
+                outputStream.write(bytes, 0, length);
+                outputStream.flush();
+            }
+            cin.close();
+            in.close();
+            System.out.println("解密成功");
+        } catch (Exception e) {
+            System.out.println("解密失败");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 解密文件
+     *
+     * @param filePath 文件路径
+     * @throws Exception
+     */
+    public void doDecryptFile(String filePath, String outPath) throws Exception {
+        doDecryptFile(new FileInputStream(filePath), outPath);
+    }
 
 }

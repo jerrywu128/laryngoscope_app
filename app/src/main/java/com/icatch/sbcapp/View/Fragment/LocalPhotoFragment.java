@@ -23,6 +23,8 @@ import com.icatch.sbcapp.Listener.OnStatusChangedListener;
 import com.icatch.sbcapp.Presenter.LocalPhotoFragmentPresenter;
 import com.icatch.sbcapp.Presenter.LocalPhotoWallPresenter;
 import com.icatch.sbcapp.R;
+import com.icatch.sbcapp.Tools.FileDES;
+import com.icatch.sbcapp.Tools.StorageUtil;
 import com.icatch.sbcapp.View.Activity.LocalPhotoPbActivity;
 import com.icatch.sbcapp.View.Activity.LocalPhotoWallActivity;
 import com.icatch.sbcapp.View.Interface.LocalPhotoFragmentView;
@@ -30,6 +32,7 @@ import com.icatch.sbcapp.View.Interface.LocalPhotoWallView;
 
 public class LocalPhotoFragment extends Fragment implements LocalPhotoFragmentView {
     String TAG = "LocalPhotoFragment";
+
     ListView localPhotoListView;
     TextView localPhotoHeaderView;
     FrameLayout localPhotoWallListLayout;
@@ -42,6 +45,7 @@ public class LocalPhotoFragment extends Fragment implements LocalPhotoFragmentVi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.activity_local_photo_wall, container, false);
         //localPhotoGridView = (StickyGridHeadersGridView) findViewById(R.id.local_photo_wall_grid_view);
         localPhotoListView = (ListView) view.findViewById(R.id.local_photo_wall_list_view);
@@ -49,6 +53,11 @@ public class LocalPhotoFragment extends Fragment implements LocalPhotoFragmentVi
         localPhotoWallListLayout = (FrameLayout) view.findViewById(R.id.local_photo_wall_list_layout);
         presenter = new LocalPhotoFragmentPresenter(getActivity());
         presenter.setView(this);
+        try {
+            presenter.decodePhoto();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         localPhotoListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

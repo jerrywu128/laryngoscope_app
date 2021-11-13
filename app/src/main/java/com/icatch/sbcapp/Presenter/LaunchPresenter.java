@@ -48,6 +48,7 @@ import com.icatch.sbcapp.SdkApi.CameraProperties;
 import com.icatch.sbcapp.SystemInfo.MWifiManager;
 import com.icatch.sbcapp.SystemInfo.SystemInfo;
 import com.icatch.sbcapp.ThumbnailGetting.ThumbnailOperation;
+import com.icatch.sbcapp.Tools.FileDES;
 import com.icatch.sbcapp.Tools.FileOpertion.MFileTools;
 import com.icatch.sbcapp.Tools.LruCacheTool;
 import com.icatch.sbcapp.Tools.StorageUtil;
@@ -59,6 +60,7 @@ import com.icatch.sbcapp.View.Interface.LaunchView;
 import com.icatch.wificam.customer.type.ICatchEventID;
 
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;

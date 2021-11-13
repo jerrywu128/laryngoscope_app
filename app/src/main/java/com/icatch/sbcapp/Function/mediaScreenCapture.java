@@ -24,6 +24,7 @@ import androidx.annotation.RequiresApi;
 
 import com.icatch.sbcapp.Tools.FileDES;
 import com.icatch.sbcapp.Tools.FileOpertion.FileOper;
+import com.icatch.sbcapp.Tools.FileOpertion.MFileTools;
 import com.icatch.sbcapp.Tools.StorageUtil;
 
 import java.io.File;
@@ -33,6 +34,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class mediaScreenCapture  {
     private static final String TAG = "mediaScreenCapture";
@@ -64,11 +66,9 @@ public class mediaScreenCapture  {
                 Looper.loop();
             }
         }.start();
-
-
-
         path = StorageUtil.getDownloadPath(context);
         FileOper.createDirectory(path);
+        FileOper.createDirectory(path+"/DES");
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -148,8 +148,8 @@ public class mediaScreenCapture  {
 
                             Date currentDate = new Date();
                             SimpleDateFormat date = new SimpleDateFormat("yyyyMMddhhmmss");
-                            String fileName = path + date.format(
-                                    currentDate) + ".jpg";
+                            String Datetemp=date.format(currentDate);
+                            String fileName = path +"DES/"+ Datetemp + ".jpg";
                             fos = new FileOutputStream(fileName);
                             mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
                             Log.d(TAG, "End now!!!!!!  Screenshot saved in " + fileName);
@@ -157,11 +157,12 @@ public class mediaScreenCapture  {
                                     Toast.LENGTH_LONG);
 
                             FileDES fileDES = new FileDES("test.key");
-                            fileDES.doEncryptFile(fileName,path+"DES"+date.format(
-                                    currentDate));
-                            fileDES.decrypt(path+"DES"+date.format(
-                                    currentDate),path+date.format(
-                                    currentDate)+".jpg");
+                            fileDES.doEncryptFile(fileName,path +"DES/"+ Datetemp +"des");
+                            File file =new File(fileName);
+                            file.delete();//delete original photo
+
+
+
 
                             MediaScannerConnection
                                     .scanFile(mContext, new String[] { fileName }, null, null); //更新相冊

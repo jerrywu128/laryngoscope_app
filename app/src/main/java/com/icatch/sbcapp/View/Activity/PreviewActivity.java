@@ -60,6 +60,7 @@ import com.icatch.sbcapp.Mode.PreviewLaunchMode;
 import com.icatch.sbcapp.Mode.PreviewMode;
 import com.icatch.sbcapp.MyCamera.MyCamera;
 import com.icatch.sbcapp.Presenter.PreviewPresenter;
+import com.icatch.sbcapp.PropertyId.PropertyId;
 import com.icatch.sbcapp.R;
 import com.icatch.sbcapp.SdkApi.CameraProperties;
 import com.icatch.sbcapp.SystemInfo.SystemInfo;
@@ -597,6 +598,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
                 AppLog.i(TAG, "click the close_IQ_bar");
                 pb_IQ.setVisibility(View.GONE);
                 buttom_bar.setVisibility((View.VISIBLE));
+                CameraProperties.getInstance().setPropertyValue(PropertyId.USB_PIMA_DCP_MANUFACTURE, 0);
                 break;
             case R.id.close_seekbar:
                 AppLog.i(TAG, "click the close_seekbar");

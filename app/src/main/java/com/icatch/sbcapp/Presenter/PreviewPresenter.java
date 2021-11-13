@@ -214,6 +214,25 @@ public class PreviewPresenter extends BasePresenter {
 //		getImageSizeTimer = new Timer(true);
 //		getImageSizeTimer.schedule(task, 0,5000);
         FileOper.createDirectory(StorageUtil.getDownloadPath(activity));
+
+
+
+        String path;
+        path = StorageUtil.getDownloadPath(activity);
+        File file = new File(path+"/DES");
+        File[] files = file.listFiles();
+        for (int i = 0; i < files.length; i++) {
+            File childFile = files[i];
+            String childName = childFile.getName();
+           // try {
+            //    fileDES.decrypt(path+"/DES/"+childName,path+childName+".jpg");
+          //  } catch (Exception e) {
+           //     e.printStackTrace();
+           // }
+
+        }
+
+
     }
 
     public void initStatus() {
@@ -1789,9 +1808,6 @@ public class PreviewPresenter extends BasePresenter {
     }
 
     public void startIQlayout(RelativeLayout pb_IQ,RelativeLayout buttom_bar){
-
-
-
 
         if (curMode == PreviewMode.APP_STATE_STILL_CAPTURE ||
                 curMode == PreviewMode.APP_STATE_VIDEO_CAPTURE) {
