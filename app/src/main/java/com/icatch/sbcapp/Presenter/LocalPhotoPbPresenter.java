@@ -227,8 +227,14 @@ public class LocalPhotoPbPresenter extends BasePresenter {
             curPhotoIdx = photoPbView.getViewPagerCurrentItem();
             LocalPbItemInfo curFile = localPhotoList.get(curPhotoIdx);
             if (curFile.file.exists()) {
-                curFile.file.delete();
+                System.out.println("garrr"+curFile.file.getName());
+                String temp [] =null;
+                temp = curFile.file.getName().split("\\."); //DES file name
+                String despath = StorageUtil.getDownloadPath(activity)+"DES/";
+                File file =new File(despath+temp[0]);
+                file.delete();
                 //ICOM-4574
+                curFile.file.delete();
                 MediaRefresh.notifySystemToScan(curFile.file);
             }
                 handler.post(new Runnable() {

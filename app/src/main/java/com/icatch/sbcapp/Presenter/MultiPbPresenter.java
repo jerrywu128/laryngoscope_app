@@ -28,6 +28,8 @@ import com.icatch.sbcapp.Presenter.Interface.BasePresenter;
 import com.icatch.sbcapp.R;
 import com.icatch.sbcapp.SdkApi.FileOperation;
 import com.icatch.sbcapp.SystemInfo.SystemInfo;
+import com.icatch.sbcapp.Tools.FileDES;
+import com.icatch.sbcapp.Tools.StorageUtil;
 import com.icatch.sbcapp.View.Fragment.LocalPhotoFragment;
 import com.icatch.sbcapp.View.Fragment.LocalVideoFragment;
 import com.icatch.sbcapp.View.Fragment.MultiPbPhotoFragment;
@@ -35,6 +37,7 @@ import com.icatch.sbcapp.View.Fragment.MultiPbVideoFragment;
 import com.icatch.sbcapp.View.Interface.MultiPbView;
 import com.icatch.wificam.customer.type.ICatchFile;
 
+import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -412,6 +415,21 @@ public class MultiPbPresenter extends BasePresenter {
              multiPbPhotoFragment.quitEditMode();
         } else if (GlobalInfo.currentViewpagerPosition == 1) {
             multiPbVideoFragment.quitEditMode();
+        }
+    }
+
+    public void clearDecodeFile(){
+        String path = StorageUtil.getDownloadPath(activity);
+
+        File file = new File(path);
+        File[] files = file.listFiles();
+        for (int i = 0; i < files.length; i++) {
+            File childFile = files[i];
+            String childName = childFile.getName();
+            if(!childName.equals("DES")){
+                childFile.delete();
+            }
+
         }
     }
 }

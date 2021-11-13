@@ -131,6 +131,7 @@ public class MultiPbActivity extends BaseActivity implements MultiPbView {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        presenter.clearDecodeFile();
         presenter.clearCache();
         presenter.reset();
         presenter.removeActivity();

@@ -163,7 +163,6 @@ public class mediaScreenCapture  {
 
 
 
-
                             MediaScannerConnection
                                     .scanFile(mContext, new String[] { fileName }, null, null); //更新相冊
                             stopProjection();

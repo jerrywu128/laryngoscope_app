@@ -64,6 +64,7 @@ import com.icatch.sbcapp.PropertyId.PropertyId;
 import com.icatch.sbcapp.R;
 import com.icatch.sbcapp.SdkApi.CameraProperties;
 import com.icatch.sbcapp.SystemInfo.SystemInfo;
+import com.icatch.sbcapp.Tools.FileDES;
 import com.icatch.sbcapp.Tools.StorageUtil;
 import com.icatch.sbcapp.View.Interface.PreviewView;
 import com.icatch.sbcapp.Function.mediaScreenCapture;
@@ -299,57 +300,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
                 presenter.setCameraSwitch();
             }
         });
-/*
-        googleAccountBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                presenter.gotoGoogleAccountManagement();
-            }
-        });
 
-        youtubeLiveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                presenter.startOrStopYouTubeLive();
-            }
-        });
-*/
-
-
-
-
-     /*test   zoomView = (ZoomView) findViewById(R.id.zoom_view);
-        zoomView.setZoomInOnclickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                presenter.zoomIn();
-            }
-        });
-
-        zoomView.setZoomOutOnclickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                presenter.zoomOut();
-            }
-        });
-
-        zoomView.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                presenter.zoomBySeekBar();
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                presenter.zoomBySeekBar();
-            }
-        });
-*/
         pvModeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -409,7 +360,6 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 9999);
 
         }
-
 
 
     }

@@ -217,22 +217,6 @@ public class PreviewPresenter extends BasePresenter {
 
 
 
-        String path;
-        path = StorageUtil.getDownloadPath(activity);
-        File file = new File(path+"/DES");
-        File[] files = file.listFiles();
-        for (int i = 0; i < files.length; i++) {
-            File childFile = files[i];
-            String childName = childFile.getName();
-           // try {
-            //    fileDES.decrypt(path+"/DES/"+childName,path+childName+".jpg");
-          //  } catch (Exception e) {
-           //     e.printStackTrace();
-           // }
-
-        }
-
-
     }
 
     public void initStatus() {
