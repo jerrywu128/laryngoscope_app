@@ -45,6 +45,8 @@ public class GlobalInfo {
     ScreenListener listener;
     private Handler handler = new Handler();
 
+    private String videoName;
+
     public static PhotoWallPreviewType photoWallPreviewType = PhotoWallPreviewType.PREVIEW_TYPE_LIST;
     public static int currentViewpagerPosition = 0;
     public static boolean enableSoftwareDecoder = false;
@@ -91,6 +93,15 @@ public class GlobalInfo {
 
     public String getSsid() {
         return ssid;
+    }
+
+    public void setVideoName(String videoName){
+        AppLog.d(TAG, "videoName = " + videoName);
+        this.videoName=videoName;
+    }
+
+    public String getVideoName(){
+        return videoName;
     }
 
     public Context getAppContext() {

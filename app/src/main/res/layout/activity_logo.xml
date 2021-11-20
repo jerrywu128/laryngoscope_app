@@ -6,10 +6,11 @@
     android:background="@color/white"
     tools:context="com.icatch.sbcapp.View.Activity.LogoActivity">
     <ImageView
+        android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:src="@drawable/laryngoscope_logo"/>
+        android:src="@drawable/cn_usharemedical_logo"/>
     <TextView
         android:id="@+id/version_info"
         android:layout_width="match_parent"

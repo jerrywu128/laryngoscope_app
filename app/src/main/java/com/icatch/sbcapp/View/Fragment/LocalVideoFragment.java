@@ -56,6 +56,11 @@ public class LocalVideoFragment extends Fragment implements LocalVideoFragmentVi
         presenter = new LocalVideoFragmentPresenter(getActivity());
         presenter.setView(this);
 
+        try {
+            presenter.decodeVideo();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

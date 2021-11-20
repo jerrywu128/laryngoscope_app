@@ -67,7 +67,7 @@ public class FileDES {
     }
 
     /**
-     * 加密文件
+     * 加密圖檔文件
      * @param in
      * @param savePath 加密后保存的位置
      */
@@ -99,7 +99,7 @@ public class FileDES {
     }
 
     /**
-     * 加密文件
+     * 加密圖檔文件
      * @param filePath 需要加密的文件路径
      * @param savePath 加密后保存的位置
      * @throws FileNotFoundException
@@ -108,34 +108,43 @@ public class FileDES {
     {
         doEncryptFile(new FileInputStream(filePath), savePath);
     }
-
+    public void doDecryptFile(InputStream in, String path) {
+        if (in == null) {
+            System.out.println("inputstream is null");
+            return;
+        }
+        try {
+            CipherInputStream cin = new CipherInputStream(in, mDecryptCipher);
+            OutputStream outputStream = new FileOutputStream(path);
+            byte[] bytes = new byte[1024];
+            int length = -1;
+            while ((length = cin.read(bytes)) > 0) {
+                outputStream.write(bytes, 0, length);
+                outputStream.flush();
+            }
+            cin.close();
+            in.close();
+            System.out.println("解密成功");
+        } catch (Exception e) {
+            System.out.println("解密失败");
+            e.printStackTrace();
+        }
+    }
 
     /**
-     * 解密文件
+     * 解密圖檔文件
+     *
+     * @param filePath 文件路径
+     * @throws Exception
      */
-
-
-
-    public void decrypt(String file, String destFile) throws Exception {
-        Cipher cipher = Cipher.getInstance("DES");
-        cipher.init(Cipher.DECRYPT_MODE, this.mKey);
-        InputStream is = new FileInputStream(file);
-        OutputStream out = new FileOutputStream(destFile);
-        CipherOutputStream cos = new CipherOutputStream(out, cipher);
-        byte[] buffer = new byte[1024];
-        int r;
-        while ((r = is.read(buffer)) >= 0) {
-            System.out.println();
-            cos.write(buffer, 0, r);
-        }
-        cos.close();
-        out.close();
-        is.close();
+    public void doDecryptFile(String filePath, String outPath) throws Exception {
+        doDecryptFile(new FileInputStream(filePath), outPath);
     }
+
 
     private final int REVERSE_LENGTH = 100;
     /**
-     * 加解密
+     * 加密視頻文件
      *
      * @param strFile 源文件绝对路径
      * @return
@@ -170,37 +179,43 @@ public class FileDES {
         }
     }
 
-    public void doDecryptFile(InputStream in, String path) {
-        if (in == null) {
-            System.out.println("inputstream is null");
-            return;
-        }
+    /**
+     * 解密視頻文件
+     */
+
+
+
+    public boolean decrypt(String filePath) {
+        int len = REVERSE_LENGTH;
         try {
-            CipherInputStream cin = new CipherInputStream(in, mDecryptCipher);
-            OutputStream outputStream = new FileOutputStream(path);
-            byte[] bytes = new byte[1024];
-            int length = -1;
-            while ((length = cin.read(bytes)) > 0) {
-                outputStream.write(bytes, 0, length);
-                outputStream.flush();
+            File f = new File(filePath);
+            RandomAccessFile raf = new RandomAccessFile(f, "rw");
+            long totalLen = raf.length();
+
+            if (totalLen < REVERSE_LENGTH)
+                len = (int) totalLen;
+
+            FileChannel channel = raf.getChannel();
+            MappedByteBuffer buffer = channel.map(
+                    FileChannel.MapMode.READ_WRITE, 0, REVERSE_LENGTH);
+            byte tmp;
+            for (int i = 0; i < len; ++i) {
+                byte rawByte = buffer.get(i);
+                tmp = (byte) (rawByte ^ i);
+                buffer.put(i, tmp);
             }
-            cin.close();
-            in.close();
-            System.out.println("解密成功");
+            buffer.force();
+            buffer.clear();
+            channel.close();
+            raf.close();
+            return true;
         } catch (Exception e) {
-            System.out.println("解密失败");
             e.printStackTrace();
+            return false;
         }
     }
 
-    /**
-     * 解密文件
-     *
-     * @param filePath 文件路径
-     * @throws Exception
-     */
-    public void doDecryptFile(String filePath, String outPath) throws Exception {
-        doDecryptFile(new FileInputStream(filePath), outPath);
-    }
+
+
 
 }

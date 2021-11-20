@@ -25,6 +25,7 @@ import com.icatch.sbcapp.Presenter.Interface.BasePresenter;
 import com.icatch.sbcapp.R;
 import com.icatch.sbcapp.SystemInfo.SystemInfo;
 import com.icatch.sbcapp.ThumbnailGetting.ThumbnailOperation;
+import com.icatch.sbcapp.Tools.FileDES;
 import com.icatch.sbcapp.Tools.FileOpertion.MFileTools;
 import com.icatch.sbcapp.Tools.LruCacheTool;
 import com.icatch.sbcapp.Tools.StorageUtil;
@@ -99,24 +100,26 @@ public class LocalVideoFragmentPresenter extends BasePresenter {
     private List<LocalPbItemInfo> getVideoList() {
         List<LocalPbItemInfo> tempList = new ArrayList<LocalPbItemInfo>();
         width = SystemInfo.getMetrics().widthPixels;
-        String filePath = StorageUtil.getDownloadPath(activity);
+        String filePath = StorageUtil.getDownloadPath(activity)+"ENVIDEO/";
         //String filePath = Environment.getExternalStorageDirectory().toString() + "/DCIM/Camera/thumbnails/";
 
         String fileDate;
         fileList = MFileTools.getVideosOrderByDate(filePath);
         //fileList =  FileTools.getFilesOrderByDate(filePath, FileType.FILE_PHOTO);
-        for (int ii = 0; ii < fileList.size(); ii++) {
-            long time = fileList.get(ii).lastModified();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            fileDate = format.format(new Date(time));
-            if (!sectionMap.containsKey(fileDate)) {
-                sectionMap.put(fileDate, section);
-                LocalPbItemInfo mGridItem = new LocalPbItemInfo(fileList.get(ii), sectionMap.get(fileDate));
-                tempList.add(mGridItem);
-                section++;
-            } else {
-                LocalPbItemInfo mGridItem = new LocalPbItemInfo(fileList.get(ii), sectionMap.get(fileDate));
-                tempList.add(mGridItem);
+        if(fileList!=null){
+            for (int ii = 0; ii < fileList.size(); ii++) {
+                long time = fileList.get(ii).lastModified();
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                fileDate = format.format(new Date(time));
+                if (!sectionMap.containsKey(fileDate)) {
+                    sectionMap.put(fileDate, section);
+                    LocalPbItemInfo mGridItem = new LocalPbItemInfo(fileList.get(ii), sectionMap.get(fileDate));
+                    tempList.add(mGridItem);
+                    section++;
+                } else {
+                    LocalPbItemInfo mGridItem = new LocalPbItemInfo(fileList.get(ii), sectionMap.get(fileDate));
+                    tempList.add(mGridItem);
+                }
             }
         }
         return tempList;
@@ -336,4 +339,36 @@ public class LocalVideoFragmentPresenter extends BasePresenter {
         });
         builder.create().show();
     }
+
+    public void decodeVideo() throws Exception {
+
+        String path = StorageUtil.getDownloadPath(activity);
+        FileDES fileDES = null;
+        try {
+            fileDES = new FileDES("test.key");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        File file = new File(path+"/ENVIDEO");
+        File[] files = file.listFiles();
+        for (int i = 0; i < files.length; i++) {
+            File childFile = files[i];
+            String childName = childFile.getName();
+
+
+            try {
+
+                fileDES.encrypt(path+"ENVIDEO/"+childName);
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+
+
+    }
+
 }

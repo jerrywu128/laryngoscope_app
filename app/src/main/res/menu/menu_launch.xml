@@ -2,35 +2,29 @@
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
       tools:context=".LaunchActivity">
-    <item
-        android:title="@string/text_btpair_skip"
-        android:orderInCategory="100"
-        app:showAsAction="always"
-        android:visible="false"/>
-    <item
-        android:title="@string/text_btpair_skip"
-        android:orderInCategory="100"
-        android:icon="@drawable/ic_refresh_white_24dp"
-        app:showAsAction="always"
-        android:visible="false"/>
+
     <!--<item android:id="@+id/action_search"-->
           <!--android:title="@string/action_search"-->
           <!--android:orderInCategory="100"-->
           <!--app:showAsAction="never"/>-->
-    <item android:id="@+id/action_set_ip"
-        android:title="@string/action_set_ip"
-        android:orderInCategory="100"
-        app:showAsAction="never"/>
+    <!--  <item android:id="@+id/action_set_ip"
+          android:title="@string/action_set_ip"
+          android:orderInCategory="100"
+          app:showAsAction="never"/>
+      <item android:id="@+id/action_about"
+            android:title="@string/setting_about"
+            android:orderInCategory="100"
+            app:showAsAction="never"/>
+      <item android:id="@+id/action_license"
+            android:title="@string/text_license"
+            android:orderInCategory="100"
+            app:showAsAction="never"/>
+      <item android:id="@+id/action_help"
+          android:title="@string/help"
+          android:orderInCategory="100"
+          app:showAsAction="never"/>-->
     <item android:id="@+id/action_about"
-          android:title="@string/setting_about"
-          android:orderInCategory="100"
-          app:showAsAction="never"/>
-    <item android:id="@+id/action_license"
-          android:title="@string/text_license"
-          android:orderInCategory="100"
-          app:showAsAction="never"/>
-    <item android:id="@+id/action_help"
-        android:title="@string/help"
+        android:title="@string/setting_about"
         android:orderInCategory="100"
         app:showAsAction="never"/>
-</menu>
+  </menu>

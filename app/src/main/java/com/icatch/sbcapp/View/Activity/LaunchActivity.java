@@ -377,7 +377,7 @@ public class LaunchActivity extends BaseActivity implements View.OnClickListener
     public boolean onPrepareOptionsMenu(Menu menu) {
         AppLog.d(TAG, "onPrepareOptionsMenu");
         super.onPrepareOptionsMenu(menu);
-        menuSetIp = menu.findItem(R.id.action_set_ip);
+        //tmenuSetIp = menu.findItem(R.id.action_set_ip);
         presenter.initMenu();
         return true;
     }

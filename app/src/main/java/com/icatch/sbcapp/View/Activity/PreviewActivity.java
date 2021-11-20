@@ -40,6 +40,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -54,6 +55,7 @@ import com.icatch.sbcapp.ExtendComponent.ZoomView;
 import com.icatch.sbcapp.Function.MediaCaptureService;
 import com.icatch.sbcapp.Function.MediaRecordService;
 import com.icatch.sbcapp.Function.mediaScreenRecord;
+import com.icatch.sbcapp.GlobalApp.GlobalInfo;
 import com.icatch.sbcapp.Listener.OnDecodeTimeListener;
 import com.icatch.sbcapp.Log.AppLog;
 import com.icatch.sbcapp.Mode.PreviewLaunchMode;
@@ -65,6 +67,7 @@ import com.icatch.sbcapp.R;
 import com.icatch.sbcapp.SdkApi.CameraProperties;
 import com.icatch.sbcapp.SystemInfo.SystemInfo;
 import com.icatch.sbcapp.Tools.FileDES;
+import com.icatch.sbcapp.Tools.FileOpertion.FileOper;
 import com.icatch.sbcapp.Tools.StorageUtil;
 import com.icatch.sbcapp.View.Interface.PreviewView;
 import com.icatch.sbcapp.Function.mediaScreenCapture;
@@ -361,7 +364,10 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
 
         }
 
+        String path = StorageUtil.getDownloadPath(this);
 
+        FileOper.createDirectory(path);
+        FileOper.createDirectory(path+"/ENVIDEO");
     }
 
 
@@ -672,7 +678,9 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
                 MyToast.show(this, "null");
             }
         }
+        presenter.encodeVideo();
     }
+
 
 
     @Override

@@ -25,6 +25,7 @@ import android.view.WindowManager;
 import androidx.annotation.RequiresApi;
 
 import com.icatch.sbcapp.ExtendComponent.MyToast;
+import com.icatch.sbcapp.GlobalApp.GlobalInfo;
 import com.icatch.sbcapp.Tools.FileDES;
 import com.icatch.sbcapp.Tools.FileOpertion.FileOper;
 import com.icatch.sbcapp.Tools.StorageUtil;
@@ -82,6 +83,7 @@ public class mediaScreenRecord {
         path = StorageUtil.getDownloadPath(context);
 
         FileOper.createDirectory(path);
+        FileOper.createDirectory(path+"/ENVIDEO");
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -89,9 +91,10 @@ public class mediaScreenRecord {
 
         Date currentDate = new Date();
         SimpleDateFormat date = new SimpleDateFormat("yyyyMMddhhmmss");
-        fileNameTemp = path + date.format(
+        fileNameTemp = path +"ENVIDEO/"+ date.format(
                 currentDate);
         fileName = fileNameTemp + ".mp4";
+        GlobalInfo.getInstance().setVideoName(fileName);
         WindowManager window = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
         mDisplay = window.getDefaultDisplay();
         final DisplayMetrics metrics = new DisplayMetrics();
@@ -200,14 +203,6 @@ public class mediaScreenRecord {
             @Override
             public void run() {
                 if (mMediaProjection != null) {
-                    try {
-                        FileDES fileDES =new FileDES("test.key");
-                        fileDES.encrypt(fileName);
-                        fileDES.encrypt(fileName);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
                     mMediaProjection.stop();
                 }
             }

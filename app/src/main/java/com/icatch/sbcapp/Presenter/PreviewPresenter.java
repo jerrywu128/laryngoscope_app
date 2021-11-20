@@ -497,7 +497,7 @@ public class PreviewPresenter extends BasePresenter {
         }
         AppLog.d(TAG, "end processing for responsing captureBtn clicking");
     }
-
+/*
     public void start(){
         mediaRecorder = new MediaRecorder();
         mediaRecorder.setVideoSource(MediaRecorder.VideoSource.SURFACE);
@@ -533,7 +533,7 @@ public class PreviewPresenter extends BasePresenter {
             mediaRecorder=null;
         }
 
-    }
+    }*/
 
     public void createUIByMode(int previewMode) {
         AppLog.i(TAG, "start createUIByMode previewMode=" + previewMode);
@@ -1793,6 +1793,7 @@ public class PreviewPresenter extends BasePresenter {
 
     public void startIQlayout(RelativeLayout pb_IQ,RelativeLayout buttom_bar){
 
+
         if (curMode == PreviewMode.APP_STATE_STILL_CAPTURE ||
                 curMode == PreviewMode.APP_STATE_VIDEO_CAPTURE) {
             if (curMode == PreviewMode.APP_STATE_STILL_CAPTURE) {
@@ -1910,6 +1911,20 @@ public class PreviewPresenter extends BasePresenter {
         currentCamera.getUSB_PIMA_DCP_IQ_BLC().setValue(0);
     }
 
-
+    public void encodeVideo(){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                String path = StorageUtil.getDownloadPath(activity);
+                FileDES fileDES = null;
+                try {
+                    fileDES = new FileDES("test.key");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                fileDES.encrypt(GlobalInfo.getInstance().getVideoName());
+            }
+        }, 500);
+    }
 
 }

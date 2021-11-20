@@ -426,8 +426,31 @@ public class MultiPbPresenter extends BasePresenter {
         for (int i = 0; i < files.length; i++) {
             File childFile = files[i];
             String childName = childFile.getName();
-            if(!childName.equals("DES")){
+            if(!(childName.equals("DES")||childName.equals("ENVIDEO"))){
                 childFile.delete();
+            }
+
+        }
+    }
+
+    public void encodeVideo(){
+        AppLog.d(TAG, "encode video");
+        String path = StorageUtil.getDownloadPath(activity);
+        FileDES fileDES = null;
+        try {
+            fileDES = new FileDES("test.key");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        File file = new File(path+"/ENVIDEO");
+        File[] files = file.listFiles();
+        for (int i = 0; i < files.length; i++) {
+            File childFile = files[i];
+            String childName = childFile.getName();
+            try {
+                fileDES.encrypt(path+"ENVIDEO/"+childName);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
         }
