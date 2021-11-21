@@ -5,14 +5,18 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.util.LruCache;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.icatch.sbcapp.Adapter.LocalVideoWallListAdapter;
 import com.icatch.sbcapp.BaseItems.LimitQueue;
@@ -65,6 +69,7 @@ public class LocalVideoFragmentPresenter extends BasePresenter {
     private LruCache<String, Bitmap> mLruCache = LruCacheTool.getInstance().getLruCache();
     private static int NUM_COLUMNS = 4;
     private Handler handler = new Handler();
+    private static boolean isCheck_Password =false;
     public LocalVideoFragmentPresenter(Activity activity) {
         super(activity);
         this.activity = activity;
@@ -155,6 +160,7 @@ public class LocalVideoFragmentPresenter extends BasePresenter {
     }
 
     public void redirectToAnotherActivity(final Context context, final Class<?> cls, final int position) {
+
         AppLog.i(TAG, "redirectToAnotherActivity position=" + position);
         clealAsytaskList();
         final String videoPath = mGirdList.get(position).getFilePath();
@@ -369,6 +375,42 @@ public class LocalVideoFragmentPresenter extends BasePresenter {
 
 
 
+    }
+
+    public boolean check_password(){
+        SharedPreferences mySharedPreferences= activity.getSharedPreferences("test",
+                Activity.MODE_PRIVATE);
+        String password =mySharedPreferences.getString("IQ_password", "password");
+        if(!isCheck_Password){
+        LayoutInflater inflater = LayoutInflater.from(activity);
+        final View v = inflater.inflate(R.layout.iq_password_dialog, null);
+
+        new AlertDialog.Builder(activity)
+                .setTitle(R.string.please_input_password)
+                .setView(v)
+                .setPositiveButton(R.string.sure, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        EditText editText = (EditText) (v.findViewById(R.id.password_text));
+                        if (password.equals(editText.getText().toString())) {
+                            isCheck_Password = true;
+                            Toast.makeText(activity, R.string.check_video_password_sucess, Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(activity, R.string.iq_password_error, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //cancel
+                    }
+                })
+                .show();
+            return isCheck_Password;
+        }else {
+            return isCheck_Password;
+        }
     }
 
 }

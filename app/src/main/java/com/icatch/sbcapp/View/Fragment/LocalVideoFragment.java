@@ -41,7 +41,6 @@ public class LocalVideoFragment extends Fragment implements LocalVideoFragmentVi
     FrameLayout listLayout;
     //private MenuItem menuVideoWallType;
     private OnStatusChangedListener modeChangedListener;
-
     public LocalVideoFragment(){
         // Required empty public constructor
     }
@@ -65,7 +64,11 @@ public class LocalVideoFragment extends Fragment implements LocalVideoFragmentVi
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                presenter.redirectToAnotherActivity(getActivity(), LocalVideoPbActivity.class, position);
+                if(!presenter.check_password()){
+                    //check password
+                }else {
+                    presenter.redirectToAnotherActivity(getActivity(), LocalVideoPbActivity.class, position);
+                }
             }
         });
         return view;

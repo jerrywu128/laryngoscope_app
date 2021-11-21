@@ -182,5 +182,28 @@ public class AppDialog {
         });
         builder.create().show();
     }
+    public static void showSystemInfo(Context context){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        PackageInfo packageInfo = null;
+        try {
+            packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        String appVersion = "";
+        if (packageInfo != null) {
+            appVersion = packageInfo.versionName;
+        }
+        builder.setTitle(R.string.app_name).setMessage("App version : " + appVersion);
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.create().show();
+    }
 
 }

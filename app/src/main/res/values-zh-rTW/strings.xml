@@ -247,4 +247,5 @@
     <string name="new_password_null">新密碼不可為空</string>
     <string name="pb_null">相簿內沒有檔案</string>
     <string name="recording">錄製中</string>
+    <string name="check_video_password_sucess">驗證成功!</string>
 </resources>

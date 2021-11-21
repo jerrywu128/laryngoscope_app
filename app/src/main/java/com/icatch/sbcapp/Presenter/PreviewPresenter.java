@@ -1,6 +1,5 @@
 package com.icatch.sbcapp.Presenter;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
@@ -9,7 +8,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
@@ -20,7 +18,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -31,11 +28,9 @@ import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.icatch.sbcapp.Adapter.SettingListAdapter;
 import com.icatch.sbcapp.AppDialog.AppDialog;
-import com.icatch.sbcapp.AppDialog.AppToast;
 import com.icatch.sbcapp.AppInfo.AppInfo;
 import com.icatch.sbcapp.BaseItems.CameraSwitch;
 import com.icatch.sbcapp.BaseItems.SlowMotion;
-import com.icatch.sbcapp.BaseItems.TimeLapseInterval;
 import com.icatch.sbcapp.BaseItems.TimeLapseMode;
 import com.icatch.sbcapp.BaseItems.Tristate;
 import com.icatch.sbcapp.BaseItems.Upside;
@@ -47,8 +42,6 @@ import com.icatch.sbcapp.DataConvert.StreamInfoConvert;
 import com.icatch.sbcapp.ExtendComponent.MPreview;
 import com.icatch.sbcapp.ExtendComponent.MyProgressDialog;
 import com.icatch.sbcapp.ExtendComponent.MyToast;
-import com.icatch.sbcapp.Function.PhotoCapture;
-import com.icatch.sbcapp.Function.ZoomInOut;
 import com.icatch.sbcapp.GlobalApp.GlobalInfo;
 import com.icatch.sbcapp.Listener.OnDecodeTimeListener;
 import com.icatch.sbcapp.Listener.OnSettingCompleteListener;
@@ -80,18 +73,10 @@ import com.icatch.sbcapp.Tools.FileOpertion.FileTools;
 import com.icatch.sbcapp.Tools.QRCode;
 import com.icatch.sbcapp.Tools.StorageUtil;
 import com.icatch.sbcapp.Tools.TimeTools;
-import com.icatch.sbcapp.View.Activity.LaunchActivity;
 import com.icatch.sbcapp.View.Activity.LoginGoogleActivity;
 import com.icatch.sbcapp.View.Interface.PreviewView;
-import com.icatch.wificam.core.jni.extractor.NativeValueExtractor;
 import com.icatch.wificam.customer.ICatchWificamConfig;
 import com.icatch.wificam.customer.ICatchWificamPreview;
-import com.icatch.wificam.customer.exception.IchCameraModeException;
-import com.icatch.wificam.customer.exception.IchDevicePropException;
-import com.icatch.wificam.customer.exception.IchInvalidSessionException;
-import com.icatch.wificam.customer.exception.IchSocketException;
-import com.icatch.wificam.customer.type.ICatchCameraProperty;
-import com.icatch.wificam.customer.type.ICatchDateStamp;
 import com.icatch.wificam.customer.type.ICatchEventID;
 import com.icatch.wificam.customer.type.ICatchFile;
 import com.icatch.wificam.customer.type.ICatchH264StreamParam;
@@ -99,19 +84,13 @@ import com.icatch.wificam.customer.type.ICatchMJPGStreamParam;
 import com.icatch.wificam.customer.type.ICatchMode;
 import com.icatch.wificam.customer.type.ICatchPreviewMode;
 
-import com.icatch.sbcapp.Mode.IQMode;
-
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import static com.icatch.sbcapp.Mode.PreviewMode.APP_STATE_TIMELAPSE_VIDEO_PREVIEW;
-import static com.icatch.wificam.core.jni.extractor.NativeValueExtractor.extractNativeBoolValue;
-
-import androidx.core.app.ActivityCompat;
 
 /**
  * Created by zhang yanhu C001012 on 2015/12/4 14:22.
@@ -154,7 +133,7 @@ public class PreviewPresenter extends BasePresenter {
     private boolean needShowSBCHint = true;
     private MediaRecorder mediaRecorder;;
     private MPreview mPreview;
-    private boolean IQ_ischeck_password=false;
+    private boolean isCheck_Password =false;
     public PreviewPresenter(Activity activity) {
         super(activity);
         this.activity = activity;
@@ -1773,7 +1752,7 @@ public class PreviewPresenter extends BasePresenter {
                                 SharedPreferences.Editor editor = mySharedPreferences.edit();
                                 editor.putString("IQ_password", new_password_text.getText().toString());
                                 editor.commit();
-                                IQ_ischeck_password=false;
+                                isCheck_Password =false;
                                 Toast.makeText(activity, R.string.change_password_sucess, Toast.LENGTH_SHORT).show();
                             }
                         } else {
@@ -1808,7 +1787,7 @@ public class PreviewPresenter extends BasePresenter {
                 Activity.MODE_PRIVATE);
         String IQ_pwd =mySharedPreferences.getString("IQ_password", "password");
 
-        if(!IQ_ischeck_password) {
+        if(!isCheck_Password) {
             LayoutInflater inflater = LayoutInflater.from(activity);
             final View v = inflater.inflate(R.layout.iq_password_dialog, null);
 
@@ -1823,7 +1802,7 @@ public class PreviewPresenter extends BasePresenter {
                             if (IQ_pwd.equals(editText.getText().toString())) {
                                 pb_IQ.setVisibility(View.VISIBLE);
                                 buttom_bar.setVisibility((View.GONE));
-                                IQ_ischeck_password =true;
+                                isCheck_Password =true;
                             }else{
                                 Toast.makeText(activity, R.string.iq_password_error, Toast.LENGTH_SHORT).show();
                             }

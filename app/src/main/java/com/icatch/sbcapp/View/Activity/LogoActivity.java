@@ -21,6 +21,7 @@ public class LogoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logo);
         logo = (ImageView)findViewById(R.id.logo);
+        
         String Language = getResources().getConfiguration().locale.getLanguage();
         String Traditional_Language = Language+"-"+ getResources().getConfiguration().locale.getCountry();
 

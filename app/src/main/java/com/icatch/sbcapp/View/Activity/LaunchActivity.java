@@ -381,7 +381,7 @@ public class LaunchActivity extends BaseActivity implements View.OnClickListener
         presenter.initMenu();
         return true;
     }
-/*
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -399,19 +399,11 @@ public class LaunchActivity extends BaseActivity implements View.OnClickListener
 //            finish();
             removeFragment();
             return true;
-        } else if (id == R.id.action_set_ip) {
-            presenter.showSettingIpDialog(LaunchActivity.this);
-        } else if (id == R.id.action_about) {
+        }  else if (id == R.id.action_about) {
             AppDialog.showAPPVersionDialog(LaunchActivity.this);
-        } else if (id == R.id.action_license) {
-            Intent mainIntent = new Intent(LaunchActivity.this, LicenseAgreementActivity.class);
-            LaunchActivity.this.startActivity(mainIntent);
-        } else if (id == R.id.action_help) {
-            Intent mainIntent = new Intent(LaunchActivity.this, LaunchHelpActivity.class);
-            LaunchActivity.this.startActivity(mainIntent);
         }
         return super.onOptionsItemSelected(item);
-    }*/
+    }
 
     @Override
     public void onClick(View v) {
@@ -516,6 +508,7 @@ public class LaunchActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case PermissionTools.WRITE_OR_READ_EXTERNAL_STORAGE_REQUEST_CODE:
                 AppLog.i(tag, "permissions.length = " + permissions.length);
@@ -530,8 +523,8 @@ public class LaunchActivity extends BaseActivity implements View.OnClickListener
                     }
                 }
                 if (retValue) {
-                     presenter.loadLocalThumbnails();
-                     presenter.showLicenseAgreementDialog();
+                    presenter.loadLocalThumbnails();
+                    presenter.showLicenseAgreementDialog();
                     ConfigureInfo.getInstance().initCfgInfo(this.getApplicationContext());
                 } else {
                     AppDialog.showDialogQuit(this, R.string.permission_is_denied_info);

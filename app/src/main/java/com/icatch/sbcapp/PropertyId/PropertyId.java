@@ -70,4 +70,7 @@ public class PropertyId {
     public final static int USB_PIMA_DCP_IQ_SATURATION = 0xD721;
     public final static int USB_PIMA_DCP_IQ_HUE = 0xD722;
     public final static int USB_PIMA_DCP_IQ_BLC = 0xD723;
+
+    //System Info 20211121
+    public final static int USB_PIMA_DCP_SYSTEM_INFO =  0xD80A;
 }
