@@ -48,6 +48,7 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.common.internal.Constants;
 import com.icatch.sbcapp.Adapter.SettingListAdapter;
+import com.icatch.sbcapp.AppDialog.AppDialog;
 import com.icatch.sbcapp.AppInfo.AppInfo;
 import com.icatch.sbcapp.ExtendComponent.MPreview;
 import com.icatch.sbcapp.ExtendComponent.MyToast;
@@ -93,6 +94,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
     private ImageView close_seek_bar;
     private ImageView close_WB_IQ;
     private ImageView close_blcToggle_bar;
+    private ImageView about;
     private TextView recordingTime;
     private ImageView autoDownloadImagview;
     private TextView delayCaptureText;
@@ -192,6 +194,8 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
         close_WB_IQ = (ImageView) findViewById(R.id.close_WB);
         close_WB_IQ.setOnClickListener(this);
         close_blcToggle_bar = (ImageView) findViewById(R.id.close_toggle);
+        about = (ImageView) findViewById(R.id.about);
+        about.setOnClickListener(this);
         close_blcToggle_bar.setOnClickListener(this);
         pb_IQ = (RelativeLayout)findViewById(R.id.pb_IQ);
         WB_change_IQ = (RelativeLayout)findViewById(R.id.WB_IQ);
@@ -573,6 +577,10 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
                 break;
             case R.id.change_iq_pwd_bt:
                 presenter.change_IQ_password();
+                break;
+            case R.id.about:
+
+                AppDialog.showSystemInfo(this);
                 break;
             /**IQ_BT_OnClick*/
             case R.id.brightness_bt:

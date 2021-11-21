@@ -139,22 +139,20 @@ public class MultiPbActivity extends BaseActivity implements MultiPbView {
 //        presenter.clealAsytaskList();
         //-----------------
     }
-/*
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_multi_pb, menu);
         return true;
     }
-*/
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-       /* if (id == R.id.menu_multi_pb_preview_type) {
-                menuPhotoWallType = item;
-                presenter.changePreviewType();
-        } else*/
-        if (id == android.R.id.home) {
+        if (id == R.id.video_change_password) {
+                presenter.changevideoPassword();
+        } else if (id == android.R.id.home) {
             presenter.reback();
             return true;
         }

@@ -164,6 +164,8 @@ public class LocalVideoFragment extends Fragment implements LocalVideoFragmentVi
         this.modeChangedListener = modeChangedListener;
     }
 
-
+    public void changevideoPassword(){
+        presenter.change_video_password();
+    }
 
 }

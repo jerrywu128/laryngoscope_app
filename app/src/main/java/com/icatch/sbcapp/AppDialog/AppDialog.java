@@ -11,6 +11,7 @@ import android.view.View;
 import com.icatch.sbcapp.GlobalApp.ExitApp;
 import com.icatch.sbcapp.Log.AppLog;
 import com.icatch.sbcapp.R;
+import com.icatch.sbcapp.SdkApi.CameraProperties;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -195,7 +196,7 @@ public class AppDialog {
         if (packageInfo != null) {
             appVersion = packageInfo.versionName;
         }
-        builder.setTitle(R.string.app_name).setMessage("App version : " + appVersion);
+        builder.setTitle(R.string.app_name).setMessage(CameraProperties.getInstance().getCameraInfo());
         builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 
             @Override

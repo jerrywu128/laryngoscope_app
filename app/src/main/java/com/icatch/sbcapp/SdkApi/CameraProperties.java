@@ -1577,6 +1577,32 @@ public class CameraProperties {
         return retValue;
     }
 
+    public String getCameraInfo(){
+        AppLog.i(TAG, "start getCameraInfo");
+        String retValue = null;
+        try {
+            retValue = cameraConfiguration.getCurrentStringPropertyValue(PropertyId.USB_PIMA_DCP_SYSTEM_INFO);
+        } catch (IchSocketException e) {
+            AppLog.e(TAG, "IchSocketException");
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IchCameraModeException e) {
+            AppLog.e(TAG, "IchCameraModeException");
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IchInvalidSessionException e) {
+            AppLog.e(TAG, "IchInvalidSessionException");
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IchDevicePropException e) {
+            AppLog.e(TAG, "IchDevicePropException");
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        AppLog.i(TAG, "end getCameraInfo retValue =" + retValue);
+        return retValue;
+    }
+
     public String getCameraName(ICatchWificamProperty cameraConfiguration1) {
         AppLog.i(TAG, "start getCameraName");
         String retValue = null;

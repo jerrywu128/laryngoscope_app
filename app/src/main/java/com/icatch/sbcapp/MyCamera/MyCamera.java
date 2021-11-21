@@ -81,7 +81,6 @@ public class MyCamera {
     private PropertyTypeInteger USB_PIMA_DCP_IQ_HUE;
     private PropertyTypeInteger USB_PIMA_DCP_IQ_BLC;
 
-    private PropertyTypeString systemInfo;
 
 
     public int timeLapsePreviewMode = TimeLapseMode.TIME_LAPSE_MODE_VIDEO;
@@ -225,8 +224,6 @@ public class MyCamera {
         USB_PIMA_DCP_IQ_BLC = new PropertyTypeInteger(PropertyId.USB_PIMA_DCP_IQ_BLC, GlobalInfo.getInstance().getAppContext());
         USB_PIMA_DCP_IQ_HUE = new PropertyTypeInteger(PropertyId.USB_PIMA_DCP_IQ_HUE, GlobalInfo.getInstance().getAppContext());
 
-        //20211121
-        systemInfo = new PropertyTypeString(PropertyId.USB_PIMA_DCP_SYSTEM_INFO, GlobalInfo.getInstance().getAppContext());
 
 
         AppLog.i(tag, "End initProperty");
@@ -365,6 +362,8 @@ public class MyCamera {
     public PropertyTypeInteger getUSB_PIMA_DCP_IQ_BLC(){return USB_PIMA_DCP_IQ_BLC;}
 
     //public PropertyTypeInteger getUSB_PIMA_DCP_PIV_TRIGGER(){return USB_PIMA_DCP_PIV_TRIGGER;}
+
+
 
     public boolean isSdCardReady() {
         return isSdCardReady;

@@ -3,12 +3,16 @@ package com.icatch.sbcapp.Presenter;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Handler;
 //import android.support.v4.app.FragmentActivity;
 //import android.support.v4.app.FragmentManager;
 import android.util.LruCache;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -454,5 +458,9 @@ public class MultiPbPresenter extends BasePresenter {
             }
 
         }
+    }
+
+    public void changevideoPassword(){
+        localVideoFragment.changevideoPassword();
     }
 }

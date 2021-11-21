@@ -133,7 +133,7 @@ public class PreviewPresenter extends BasePresenter {
     private boolean needShowSBCHint = true;
     private MediaRecorder mediaRecorder;;
     private MPreview mPreview;
-    private boolean isCheck_Password =false;
+    private boolean iq_isCheck_Password =false;
     public PreviewPresenter(Activity activity) {
         super(activity);
         this.activity = activity;
@@ -1752,7 +1752,7 @@ public class PreviewPresenter extends BasePresenter {
                                 SharedPreferences.Editor editor = mySharedPreferences.edit();
                                 editor.putString("IQ_password", new_password_text.getText().toString());
                                 editor.commit();
-                                isCheck_Password =false;
+                                iq_isCheck_Password =false;
                                 Toast.makeText(activity, R.string.change_password_sucess, Toast.LENGTH_SHORT).show();
                             }
                         } else {
@@ -1787,7 +1787,7 @@ public class PreviewPresenter extends BasePresenter {
                 Activity.MODE_PRIVATE);
         String IQ_pwd =mySharedPreferences.getString("IQ_password", "password");
 
-        if(!isCheck_Password) {
+        if(!iq_isCheck_Password) {
             LayoutInflater inflater = LayoutInflater.from(activity);
             final View v = inflater.inflate(R.layout.iq_password_dialog, null);
 
@@ -1802,7 +1802,7 @@ public class PreviewPresenter extends BasePresenter {
                             if (IQ_pwd.equals(editText.getText().toString())) {
                                 pb_IQ.setVisibility(View.VISIBLE);
                                 buttom_bar.setVisibility((View.GONE));
-                                isCheck_Password =true;
+                                iq_isCheck_Password =true;
                             }else{
                                 Toast.makeText(activity, R.string.iq_password_error, Toast.LENGTH_SHORT).show();
                             }
@@ -1905,5 +1905,7 @@ public class PreviewPresenter extends BasePresenter {
             }
         }, 500);
     }
+
+
 
 }

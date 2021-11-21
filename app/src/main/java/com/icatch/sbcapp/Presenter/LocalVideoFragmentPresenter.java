@@ -380,7 +380,7 @@ public class LocalVideoFragmentPresenter extends BasePresenter {
     public boolean check_password(){
         SharedPreferences mySharedPreferences= activity.getSharedPreferences("test",
                 Activity.MODE_PRIVATE);
-        String password =mySharedPreferences.getString("IQ_password", "password");
+        String password =mySharedPreferences.getString("video_password", "password");
         if(!isCheck_Password){
         LayoutInflater inflater = LayoutInflater.from(activity);
         final View v = inflater.inflate(R.layout.iq_password_dialog, null);
@@ -406,11 +406,59 @@ public class LocalVideoFragmentPresenter extends BasePresenter {
                         //cancel
                     }
                 })
+                .setNeutralButton(R.string.change_password,new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //change password
+                        change_video_password();
+                    }
+                })
                 .show();
             return isCheck_Password;
         }else {
             return isCheck_Password;
         }
     }
+
+    public void change_video_password() {
+        SharedPreferences mySharedPreferences= activity.getSharedPreferences("test",
+                Activity.MODE_PRIVATE);
+        String video_pwd =mySharedPreferences.getString("video_password", "password");
+        LayoutInflater inflater = LayoutInflater.from(activity);
+        final View v2 = inflater.inflate(R.layout.iq_change_password, null);
+        new AlertDialog.Builder(activity)
+                .setTitle(R.string.change_password)
+                .setView(v2)
+                .setPositiveButton(R.string.sure, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog2, int which2) {
+                        EditText old_password_text = (EditText) (v2.findViewById(R.id.old_password));
+                        EditText new_password_text = (EditText) (v2.findViewById(R.id.new_password));
+                        if (video_pwd.equals(old_password_text.getText().toString())) {
+                            if("".equals(new_password_text.getText().toString())){
+                                Toast.makeText(activity, R.string.new_password_null, Toast.LENGTH_SHORT).show();
+                            }else {
+                                SharedPreferences.Editor editor = mySharedPreferences.edit();
+                                editor.putString("video_password", new_password_text.getText().toString());
+                                editor.commit();
+                                isCheck_Password =false;
+                                Toast.makeText(activity, R.string.change_password_sucess, Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(activity, R.string.iq_password_error, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //cancel
+                    }
+                })
+                .show();
+
+    }
+
+
 
 }
