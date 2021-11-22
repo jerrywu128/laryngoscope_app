@@ -48,7 +48,6 @@ public class LocalVideoPbPresenter extends BasePresenter{
     private Activity activity;
     private VideoPlayback videoPlayback;
     private CameraAction cameraAction;
-    //private MyCamera myCamera;
     private VideoPbMode videoPbMode = VideoPbMode.MODE_VIDEO_IDLE;
     private boolean needUpdateSeekBar = true;
     private String curLocalVideoPath;

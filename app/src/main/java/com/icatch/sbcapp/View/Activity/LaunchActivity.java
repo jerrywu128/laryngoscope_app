@@ -397,7 +397,7 @@ public class LaunchActivity extends BaseActivity implements View.OnClickListener
 //        } else
         if (id == android.R.id.home) {
 //            finish();
-            removeFragment();
+            //tremoveFragment();
             return true;
         }  else if (id == R.id.action_about) {
             AppDialog.showAPPVersionDialog(LaunchActivity.this);

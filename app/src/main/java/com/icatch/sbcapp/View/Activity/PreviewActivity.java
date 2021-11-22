@@ -473,11 +473,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
                 presenter.finishActivity();
             }
            //presenter.finishActivity();
-        } /*else if (id == R.id.action_setting) {
-            presenter.stopIQlayout(pb_IQ,buttom_bar,quality_bar,WB_change_IQ);
-            settingMenu = item;
-            presenter.loadSettingMenuList();
-        }*/
+        }
         return super.onOptionsItemSelected(item);
     }
 

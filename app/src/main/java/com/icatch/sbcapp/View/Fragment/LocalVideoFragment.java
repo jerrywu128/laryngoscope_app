@@ -64,11 +64,7 @@ public class LocalVideoFragment extends Fragment implements LocalVideoFragmentVi
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(!presenter.check_password()){
-                    //check password
-                }else {
                     presenter.redirectToAnotherActivity(getActivity(), LocalVideoPbActivity.class, position);
-                }
             }
         });
         return view;

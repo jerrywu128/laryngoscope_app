@@ -1,11 +1,15 @@
 package com.icatch.sbcapp.View.Activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 //import android.support.design.widget.TabLayout;
 //import android.support.v4.app.FragmentPagerAdapter;
 //import android.support.v4.view.ViewPager;
 //import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -21,6 +25,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
+import com.icatch.sbcapp.ExtendComponent.MyToast;
 import com.icatch.sbcapp.Log.AppLog;
 import com.icatch.sbcapp.Presenter.MultiPbPresenter;
 import com.icatch.sbcapp.R;
@@ -143,16 +148,14 @@ public class MultiPbActivity extends BaseActivity implements MultiPbView {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_multi_pb, menu);
+       // getMenuInflater().inflate(R.menu.menu_multi_pb, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.video_change_password) {
-                presenter.changevideoPassword();
-        } else if (id == android.R.id.home) {
+        if (id == android.R.id.home) {
             presenter.reback();
             return true;
         }
@@ -232,4 +235,6 @@ public class MultiPbActivity extends BaseActivity implements MultiPbView {
     public void setEditLayoutVisibiliy(int visibiliy) {
         multiPbEditLayout.setVisibility(visibiliy);
     }
+
+
 }
