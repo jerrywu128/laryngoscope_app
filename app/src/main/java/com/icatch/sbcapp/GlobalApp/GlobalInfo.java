@@ -62,7 +62,8 @@ public class GlobalInfo {
     public static boolean isNeedGetBTClient = true;
     public static int curSlotId = 0;
     public static boolean isPrepareSession = false;
-
+    public static int mWidth = 0;
+    public static int mHeight = 0;
 
     public Handler getAppStartHandler() {
         return appStartHandler;
@@ -242,4 +243,20 @@ public class GlobalInfo {
             });
         }
     }
+
+    public void setVideosize(int width,int height){
+        mHeight = height;
+        mWidth = width;
+    }
+
+
+    public int getVideoheight(){
+        return mHeight;
+    }
+
+
+    public int getVideowidth(){
+        return mWidth;
+    }
+
 }

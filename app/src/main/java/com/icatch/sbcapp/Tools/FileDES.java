@@ -1,5 +1,10 @@
 package com.icatch.sbcapp.Tools;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
+import com.icatch.sbcapp.GlobalApp.GlobalInfo;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,10 +35,53 @@ public class FileDES {
     private Cipher mDecryptCipher;
     /**加密的密码*/
     private Cipher mEncryptCipher;
+    private final static String HEX = "0123456789ABCDEF";
+    private  static final String  SHA1PRNG="SHA1PRNG";
     public FileDES(String key) throws Exception
     {
         initKey(key);
         initCipher();
+    }
+    public static String getPbKey(){
+        Boolean isFirstGet = false;
+        SharedPreferences pref = GlobalInfo.getInstance().getAppContext().getSharedPreferences("myActivityName", 0);
+        isFirstGet = pref.getBoolean("isFirstGet", true);
+        if(isFirstGet){
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putString("PB_password",generateKey());
+            editor.commit();
+        }
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putBoolean("isFirstGet", false);
+        editor.commit();
+
+        return pref.getString("PB_password","test.key");
+    }
+    public static String generateKey() {
+        try {
+            SecureRandom localSecureRandom = SecureRandom.getInstance(SHA1PRNG);
+            byte[] bytes_key = new byte[10];
+            localSecureRandom.nextBytes(bytes_key);
+            String str_key = toHex(bytes_key);
+            return str_key;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    //二进制转字符
+    public static String toHex(byte[] buf) {
+        if (buf == null)
+            return "";
+        StringBuffer result = new StringBuffer(2 * buf.length);
+        for (int i = 0; i < buf.length; i++) {
+            appendHex(result, buf[i]);
+        }
+        return result.toString();
+    }
+
+    private static void appendHex(StringBuffer sb, byte b) {
+        sb.append(HEX.charAt((b >> 4) & 0x0f)).append(HEX.charAt(b & 0x0f));
     }
 
     /**
@@ -46,7 +94,6 @@ public class FileDES {
             SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
             //key的长度不能够小于8位字节
             mKey = keyFactory.generateSecret(dks);
-            System.out.println("newkey"+mKey.toString());
         } catch (Exception e) {
             throw new RuntimeException("Error initializing SqlMap class. Cause: " + e);
         }

@@ -1,6 +1,7 @@
 package com.icatch.sbcapp.View.Interface;
 
 import android.graphics.Bitmap;
+import android.view.View;
 
 import com.icatch.sbcapp.Adapter.SettingListAdapter;
 import com.icatch.sbcapp.Function.mediaScreenRecord;
@@ -89,6 +90,8 @@ public interface PreviewView {
     void setPvModeBtnBackgroundResource(int drawableId);
 
     void showPopupWindow(int curMode);
+
+    void showPopupMenu(View view);
 
     void setTimepLapseRadioBtnVisibility(int visibility);
 

@@ -102,13 +102,13 @@ public class LaunchActivity extends BaseActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(false);
-        actionBar.setDisplayShowTitleEnabled(false);
+       //t Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+       //t setSupportActionBar(toolbar);
+       //t actionBar = getSupportActionBar();
+       //t actionBar.setDisplayHomeAsUpEnabled(false);
+       //t actionBar.setDisplayShowTitleEnabled(false);
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-        appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
+       //t appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
         launchLayout = (LinearLayout) findViewById(R.id.launch_view);
         launchSettingFrame = (FrameLayout) findViewById(R.id.launch_setting_frame);
 
@@ -116,38 +116,14 @@ public class LaunchActivity extends BaseActivity implements View.OnClickListener
         qrScannerText=(TextView) findViewById(R.id.qrscanner_text);
 
 
-    /*    noPhotosFound = (TextView) findViewById(R.id.no_local_photos);
-        noVideosFound = (TextView) findViewById(R.id.no_local_videos);
 
-        localVideo = (ImageView) findViewById(R.id.local_video);
-        localVideo.setOnClickListener(this);
-
-        localPhoto = (ImageView) findViewById(R.id.local_photo);
-        localPhoto.setOnClickListener(this);
-*/
         presenter = new LaunchPresenter(LaunchActivity.this);
         presenter.setView(this);
         GlobalInfo.getInstance().addEventListener(ICatchEventID.ICH_EVENT_SDCARD_REMOVED, false);//        presenter.addGlobalLisnter(ICatchEventID.ICH_EVENT_SDCARD_REMOVED, false);
 
         result_data = new String("");
 
-      /*  camSlotListView = (ListView) findViewById(R.id.cam_slot_listview);
-        camSlotListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                presenter.removeCamera(position);
-                return false;
-            }
-        });
 
-        camSlotListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                FragmentManager fm = getSupportFragmentManager();
-                getSupportFragmentManager();
-                presenter.launchCamera(position, fm);
-            }
-        });*/
         LruCacheTool.getInstance().initLruCache();
         presenter.submitAppInfo();
         presenter.checkFirstInapp();
@@ -155,12 +131,7 @@ public class LaunchActivity extends BaseActivity implements View.OnClickListener
             AppDialog.showDialogWarn(this, R.string.dialog_mobiledata);
         }
 
-       /* if (Build.VERSION.SDK_INT < 23 || PermissionTools.CheckSelfPermission(this)) {
-            ConfigureInfo.getInstance().initCfgInfo(this.getApplicationContext());
-             presenter.showLicenseAgreementDialog();
-        } else {
-            PermissionTools.RequestPermissions(LaunchActivity.this);
-        }*/
+
 
         mCodeScanner = new CodeScanner(this, scannerView);
         mCodeScanner.setDecodeCallback(new DecodeCallback() {
@@ -369,7 +340,7 @@ public class LaunchActivity extends BaseActivity implements View.OnClickListener
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_launch, menu);
+     //   getMenuInflater().inflate(R.menu.menu_launch, menu);
         return true;
     }
 
@@ -408,20 +379,9 @@ public class LaunchActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         AppLog.i(tag, "click info:::v.getId() =" + v.getId());
-        //AppLog.i(tag, "click info:::R.id.local_photo =" + R.id.local_photo);
-        //AppLog.i(tag, "click info:::R.id.local_video =" + R.id.local_video);
-       /* switch (v.getId()) {
-            case R.id.local_photo:
-                AppLog.i(tag, "click the local photo");
-               //t presenter.redirectToAnotherActivity(LaunchActivity.this, LocalPhotoWallActivity.class);
-                //presenter.redirectToAnotherActivity(LaunchActivity.this, MultiPbActivity.class);
 
-                break;
-            case R.id.local_video:
-              //t  presenter.redirectToAnotherActivity(LaunchActivity.this, LocalVideoWallActivity.class);
-                break;
-            default:
-                break;
+       /* switch (v.getId()) {
+
         }*/
     }
 

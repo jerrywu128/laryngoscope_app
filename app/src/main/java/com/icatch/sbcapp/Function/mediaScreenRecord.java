@@ -24,6 +24,7 @@ import android.view.WindowManager;
 
 import androidx.annotation.RequiresApi;
 
+import com.arthenica.ffmpegkit.FFmpegSession;
 import com.icatch.sbcapp.ExtendComponent.MyToast;
 import com.icatch.sbcapp.GlobalApp.GlobalInfo;
 import com.icatch.sbcapp.Tools.FileDES;
@@ -47,6 +48,7 @@ public class mediaScreenRecord {
     private Display mDisplay;
     private int mWidth;
     private int mHeight;
+    private int mformatHeight;
     private ImageReader mImageReader;
     private VirtualDisplay mVirtualDisplay;
     private Handler mHandler;
@@ -106,7 +108,10 @@ public class mediaScreenRecord {
         Log.d(TAG, "metrics.heightPixels is " + metrics.heightPixels);
         mWidth = metrics.widthPixels;//size.x;
         mHeight = metrics.heightPixels;//size.y;
+        mformatHeight = (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)? metrics.heightPixels:
+                (int)(metrics.heightPixels*0.8);//size.y;
 
+        GlobalInfo.getInstance().setVideosize(mWidth,mHeight);
         new Thread() {
             @Override
             public void run() {
@@ -133,7 +138,7 @@ public class mediaScreenRecord {
     }
 
     private void prepareEncoder() throws IOException {
-        MediaFormat format = MediaFormat.createVideoFormat("video/avc", mWidth, mHeight);
+        MediaFormat format = MediaFormat.createVideoFormat("video/avc", mWidth, mformatHeight);
         format.setInteger(MediaFormat.KEY_COLOR_FORMAT,
                 MediaCodecInfo.CodecCapabilities.COLOR_FormatSurface);
         format.setInteger(MediaFormat.KEY_BIT_RATE, 6000000);
@@ -192,6 +197,7 @@ public class mediaScreenRecord {
             encodedData.limit(bufferInfo.offset + bufferInfo.size);
             mMediaMuxer.writeSampleData(videoTrackIndex, encodedData, bufferInfo);
         }
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

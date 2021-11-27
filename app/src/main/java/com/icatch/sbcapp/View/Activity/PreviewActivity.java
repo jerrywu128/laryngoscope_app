@@ -1,7 +1,5 @@
 package com.icatch.sbcapp.View.Activity;
 
-import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
-import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.os.Build.VERSION.SDK_INT;
 
 import android.Manifest;
@@ -16,11 +14,9 @@ import android.media.projection.MediaProjection;
 import android.media.projection.MediaProjectionManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 //import android.support.v7.app.ActionBar;
 //import android.support.v7.widget.Toolbar;
-import android.provider.SyncStateContract;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -32,24 +28,18 @@ import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
-import com.google.android.gms.common.internal.Constants;
 import com.icatch.sbcapp.Adapter.SettingListAdapter;
 import com.icatch.sbcapp.AppDialog.AppDialog;
-import com.icatch.sbcapp.AppInfo.AppInfo;
 import com.icatch.sbcapp.ExtendComponent.MPreview;
 import com.icatch.sbcapp.ExtendComponent.MyToast;
 import com.icatch.sbcapp.ExtendComponent.ZoomView;
@@ -67,7 +57,6 @@ import com.icatch.sbcapp.PropertyId.PropertyId;
 import com.icatch.sbcapp.R;
 import com.icatch.sbcapp.SdkApi.CameraProperties;
 import com.icatch.sbcapp.SystemInfo.SystemInfo;
-import com.icatch.sbcapp.Tools.FileDES;
 import com.icatch.sbcapp.Tools.FileOpertion.FileOper;
 import com.icatch.sbcapp.Tools.StorageUtil;
 import com.icatch.sbcapp.View.Interface.PreviewView;
@@ -94,7 +83,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
     private ImageView close_seek_bar;
     private ImageView close_WB_IQ;
     private ImageView close_blcToggle_bar;
-    private ImageView about;
+    private ImageView device_menu;
     private TextView recordingTime;
     private ImageView autoDownloadImagview;
     private TextView delayCaptureText;
@@ -107,6 +96,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
     //private ActionBar actionBar;
     private TextView noSupportPreviewTxv;
     private PopupWindow pvModePopupWindow;
+    private PopupMenu devicePopupMenu;
     private RadioButton captureRadioBtn;
     private RadioButton videoRadioBtn;
     private RadioButton timepLapseRadioBtn;
@@ -194,8 +184,8 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
         close_WB_IQ = (ImageView) findViewById(R.id.close_WB);
         close_WB_IQ.setOnClickListener(this);
         close_blcToggle_bar = (ImageView) findViewById(R.id.close_toggle);
-        about = (ImageView) findViewById(R.id.about);
-        about.setOnClickListener(this);
+        device_menu = (ImageView) findViewById(R.id.device_menu);
+        device_menu.setOnClickListener(this);
         close_blcToggle_bar.setOnClickListener(this);
         pb_IQ = (RelativeLayout)findViewById(R.id.pb_IQ);
         WB_change_IQ = (RelativeLayout)findViewById(R.id.WB_IQ);
@@ -273,6 +263,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
         pvModePopupWindow.setFocusable(true);
         pvModePopupWindow.setOutsideTouchable(true);
         //ICOM-4096 end add by b.jiang 20170112
+
         captureRadioBtn = (RadioButton) contentView.findViewById(R.id.capture_radio);
         videoRadioBtn = (RadioButton) contentView.findViewById(R.id.video_radio);
         timepLapseRadioBtn = (RadioButton) contentView.findViewById(R.id.timeLapse_radio);
@@ -531,7 +522,6 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
             case R.id.multi_pb:
                 AppLog.i(TAG, "click the multi_pb");
                 if(Utils.isFastClick()) { //防止重複點擊造成崩潰
-
                     File file = new File(StorageUtil.getDownloadPath(this));
                     if(file.list().length!=0) {
                         presenter.redirectToAnotherActivity(PreviewActivity.this, MultiPbActivity.class);
@@ -574,9 +564,8 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
             case R.id.change_iq_pwd_bt:
                 presenter.change_IQ_password();
                 break;
-            case R.id.about:
-
-                AppDialog.showSystemInfo(this);
+            case R.id.device_menu:
+                presenter.showDevicePopupMenu(device_menu);
                 break;
             /**IQ_BT_OnClick*/
             case R.id.brightness_bt:
@@ -674,6 +663,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
     public void stopRecordlocalCapture(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             stopService(new Intent(this, MediaRecordService.class));
+            presenter.videoResize();
         }
         else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             if(mMediaScreenRecord!=null){
@@ -682,6 +672,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
                 MyToast.show(this, "null");
             }
         }
+
         presenter.encodeVideo();
     }
 
@@ -1050,6 +1041,34 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
             pvModePopupWindow.showAsDropDown(pvModeBtn, 0, -pvModeBtn.getHeight() - contentViewH);
             //JIRA BUG IC-587 End modify by b.jiang 20160719
         }
+    }
+
+    @Override
+    public void showPopupMenu(View view){
+
+        devicePopupMenu = new PopupMenu(this,view);
+        devicePopupMenu.getMenuInflater().inflate(R.menu.menu_launch,devicePopupMenu.getMenu());
+        devicePopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                int id = item.getItemId();
+
+                if(id == R.id.action_about){
+                    AppDialog.showSystemInfo(GlobalInfo.getInstance().getAppContext());
+                }
+
+                return false;
+            }
+        });
+
+        devicePopupMenu.setOnDismissListener(new PopupMenu.OnDismissListener() {
+            @Override
+            public void onDismiss(PopupMenu menu) {
+                //close menu
+            }
+        });
+
+        devicePopupMenu.show();
     }
 
     @Override

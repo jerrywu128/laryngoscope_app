@@ -442,7 +442,7 @@ public class MultiPbPresenter extends BasePresenter {
         String path = StorageUtil.getDownloadPath(activity);
         FileDES fileDES = null;
         try {
-            fileDES = new FileDES("test.key");
+            fileDES = new FileDES(FileDES.getPbKey());
         } catch (Exception e) {
             e.printStackTrace();
         }

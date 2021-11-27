@@ -39,6 +39,7 @@ import com.icatch.sbcapp.Beans.SettingMenu;
 import com.icatch.sbcapp.Beans.StreamInfo;
 import com.icatch.sbcapp.CustomException.NullPointerException;
 import com.icatch.sbcapp.DataConvert.StreamInfoConvert;
+import com.icatch.sbcapp.ExtendComponent.Ffmpeg;
 import com.icatch.sbcapp.ExtendComponent.MPreview;
 import com.icatch.sbcapp.ExtendComponent.MyProgressDialog;
 import com.icatch.sbcapp.ExtendComponent.MyToast;
@@ -976,6 +977,26 @@ public class PreviewPresenter extends BasePresenter {
         }
     }
 
+    public void showDevicePopupMenu(View view){
+        AppLog.d(TAG, "showDevicePopupmenu");
+
+        if (curMode == PreviewMode.APP_STATE_STILL_CAPTURE ||
+                curMode == PreviewMode.APP_STATE_TIMELAPSE_VIDEO_CAPTURE ||
+                curMode == PreviewMode.APP_STATE_TIMELAPSE_STILL_CAPTURE ||
+                curMode == PreviewMode.APP_STATE_VIDEO_CAPTURE) {
+            //IC-754 Begin modify 20161212 BY b.jiang
+            if (curMode == PreviewMode.APP_STATE_STILL_CAPTURE || curMode == PreviewMode.APP_STATE_TIMELAPSE_STILL_CAPTURE) {
+                MyToast.show(activity, R.string.stream_error_capturing);
+            } else if (curMode == PreviewMode.APP_STATE_VIDEO_CAPTURE || curMode == PreviewMode.APP_STATE_TIMELAPSE_VIDEO_CAPTURE) {
+                MyToast.show(activity, R.string.stream_error_recording);
+            }
+            //IC-754 End modify 20161212 BY b.jiang
+            return;
+        }
+
+        previewView.showPopupMenu(view);
+    }
+
     public void showPvModePopupWindow() {
         AppLog.d(TAG, "showPvModePopupWindow curMode=" + curMode);
 
@@ -1771,8 +1792,6 @@ public class PreviewPresenter extends BasePresenter {
     }
 
     public void startIQlayout(RelativeLayout pb_IQ,RelativeLayout buttom_bar){
-
-
         if (curMode == PreviewMode.APP_STATE_STILL_CAPTURE ||
                 curMode == PreviewMode.APP_STATE_VIDEO_CAPTURE) {
             if (curMode == PreviewMode.APP_STATE_STILL_CAPTURE) {
@@ -1890,6 +1909,16 @@ public class PreviewPresenter extends BasePresenter {
         currentCamera.getUSB_PIMA_DCP_IQ_BLC().setValue(0);
     }
 
+
+    public void videoResize(){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Ffmpeg.videoResize();
+            }
+        }, 300);
+    }
+
     public void encodeVideo(){
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -1897,7 +1926,7 @@ public class PreviewPresenter extends BasePresenter {
                 String path = StorageUtil.getDownloadPath(activity);
                 FileDES fileDES = null;
                 try {
-                    fileDES = new FileDES("test.key");
+                    fileDES = new FileDES(FileDES.getPbKey());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

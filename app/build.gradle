@@ -4,13 +4,13 @@ android {
     buildToolsVersion '30.0.3'
     defaultConfig {
         applicationId "com.icatch.sbcapp"
-        minSdkVersion 19
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode 22
-        versionName 'V0.03.00'
+        versionName 'V0.04.02'
         multiDexEnabled true
         ndk {
-            abiFilters 'armeabi'//, 'arm64-v8a' // 'x86', 'x86_64' may be added
+            abiFilters 'armeabi', 'arm64-v8a' , 'x86', 'x86_64' //may be added
         }
     }
     buildTypes {
@@ -37,7 +37,9 @@ android {
     tasks.findByPath(':clean').dependsOn ndkClean
 
 }
-
+repositories {
+    mavenCentral()
+}
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation files('libs/wificammobilesdk.jar')
@@ -71,7 +73,7 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.budiyev.android:code-scanner:2.1.0'
     implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
-
+    implementation 'com.arthenica:ffmpeg-kit-full:4.5.LTS'
 }
 
 

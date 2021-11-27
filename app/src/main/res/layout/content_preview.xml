@@ -292,14 +292,15 @@
             android:textColor="@color/red"
             android:visibility="gone"
         />
+
         <ImageView
-            android:id="@+id/about"
+            android:id="@+id/device_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
-            android:src="@drawable/ic_baseline_info_24" />
+            android:src="@drawable/ic_baseline_menu_24" />
 
         <ImageView
             android:id="@+id/pv_mode"

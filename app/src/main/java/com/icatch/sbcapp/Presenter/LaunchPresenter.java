@@ -206,39 +206,6 @@ public class LaunchPresenter extends BasePresenter {
         }*/
     }
 
-    public void launchCamera(final int position, FragmentManager fm) {
-        cameraSlotPosition = position;
-        String wifiSsid = MWifiManager.getSsid(activity);
-        /*if (camSlotList.get(position).isWifiReady) {
-            MyProgressDialog.showProgressDialog(activity, activity.getResources().getString(R.string.action_processing));
-            new Thread(new Runnable() {
-                public void run() {
-                    beginConnectCamera(position, MWifiManager.getIp(activity));
-                }
-            }).start();
-        } else {
-            if (camSlotList.get(position).isOccupied) {
-                AppDialog.showDialogWarn(activity, "Please connect camera wifi " + camSlotList.get(position).cameraName);
-                //Toast.makeText(activity, "Please connect camera wifi " + camSlotList.get(position).cameraName, Toast.LENGTH_SHORT).show();
-
-            } else if (!isRegistered(MWifiManager.getSsid(activity))) {
-                launchView.setLaunchLayoutVisibility(View.GONE);
-                launchView.setLaunchSettingFrameVisibility(View.VISIBLE);
-                launchView.setNavigationTitle("");
-                launchView.setBackBtnVisibility(true);
-                GlobalInfo.getInstance().setAppStartHandler(launchHandler);
-                AddNewCamFragment addNewCamFragment = new AddNewCamFragment();
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.launch_setting_frame, addNewCamFragment, "other");
-                ft.addToBackStack("tag");
-                ft.commit();
-            } else {
-                AppDialog.showDialogWarn(activity, "Camera " + wifiSsid + " has been registered");
-                //Toast.makeText(activity, "Camera " + wifiSsid + " has been registered", Toast.LENGTH_LONG).show();
-            }
-        }*/
-    }
-
     public void removeCamera(int position) {
         AppLog.i(TAG, "remove camera position = " + position);
         //tint id = camSlotList.get(position).id;
@@ -419,63 +386,7 @@ public class LaunchPresenter extends BasePresenter {
         }
     }
 
-    private void beginConnectCamera(int position, String ip) {
-        AppLog.i(TAG, "isWifiConnect() == true");
-        currentCamera = new MyCamera();
-        if (currentCamera.getSDKsession().prepareSession(ip) == false) {
-            launchHandler.obtainMessage(AppMessage.MESSAGE_CAMERA_CONNECT_FAIL).sendToTarget();
-            return;
-        }
-        if (currentCamera.getSDKsession().checkWifiConnection() == true) {
-            GlobalInfo.getInstance().setCurrentCamera(currentCamera);
-            currentCamera.initCamera();
-            if (CameraProperties.getInstance().hasFuction(PropertyId.CAMERA_DATE)) {
 
-                CameraProperties.getInstance().setCameraDate();
-            }
-            if (CameraProperties.getInstance().hasFuction(PropertyId.CAMERA_DATE_TIMEZONE)) {
-                CameraProperties.getInstance().setCameraDateTimeZone();
-            }
-            currentCamera.setMyMode(CameraNetworkMode.AP);
-//            CameraSlotSQLite.getInstance().curSlotPosition = position;
-            //tGlobalInfo.curSlotId = camSlotList.get(position).id;
-            DatabaseHelper.updateCameraName(GlobalInfo.curSlotId, MWifiManager.getSsid(activity));
-//            CameraSlotSQLite.getInstance().curWifiSsid = MWifiManager.getSsid(activity);
-            GlobalInfo.getInstance().setSsid(MWifiManager.getSsid(activity));
-
-//            CameraSlotSQLite.getInstance().update(new CameraSlot(position, true, MWifiManager.getSsid(activity), null, true));
-            launchHandler.obtainMessage(AppMessage.MESSAGE_CAMERA_CONNECT_SUCCESS).sendToTarget();
-            return;
-        } else {
-            AppLog.i(TAG, "..........checkWifiConnection  fail");
-            launchHandler.obtainMessage(AppMessage.MESSAGE_CAMERA_CONNECT_FAIL).sendToTarget();
-            return;
-        }
-
-    }
-
-    private boolean isRegistered(String ssid) {
-       /* for (CameraSlot camSlot : camSlotList) {
-            if (camSlot.cameraName != null && camSlot.cameraName.equals(ssid)) {
-                return true;
-            }
-        }*/
-        return false;
-    }
-
-    public void registerWifiReceiver() {
-        if (wifiListener == null) {
-            wifiListener = new WifiListener(activity, launchHandler);
-        }
-        wifiListener.registerReceiver();
-    }
-
-    public void unregisterWifiReceiver() {
-        if (wifiListener != null) {
-            wifiListener.unregisterReceiver();
-            wifiListener = null;
-        }
-    }
 
     void setWifiState(boolean isWifiReady, String ssid) {
         if (ssid == null || ssid.equals("")) {

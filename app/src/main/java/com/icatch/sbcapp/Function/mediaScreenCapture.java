@@ -156,7 +156,7 @@ public class mediaScreenCapture  {
                             Toast.makeText(mContext, "Screenshot saved in " + fileName,
                                     Toast.LENGTH_LONG);
 
-                            FileDES fileDES = new FileDES("test.key");
+                            FileDES fileDES = new FileDES(FileDES.getPbKey());
                             fileDES.doEncryptFile(fileName,path +"DES/"+ Datetemp +"des");
                             File file =new File(fileName);
                             file.delete();//delete original photo

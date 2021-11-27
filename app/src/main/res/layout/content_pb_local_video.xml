@@ -10,13 +10,14 @@
                 tools:context="com.icatch.sbcapp.View.Activity.LocalVideoPbActivity"
                 tools:showIn="@layout/activity_pb_local_video">
 
-    <FrameLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/local_pb_top_layout"
+          >
+
             <VideoView
                 android:id="@+id/locail_videoview"
                 android:layout_width="wrap_content"
@@ -32,7 +33,8 @@
             android:layout_height="?attr/actionBarSize"
             android:layout_gravity="top"
             android:background="@color/half_transparent_grey"
-            android:weightSum="1">
+            android:weightSum="1"
+            >
 
             <ImageButton
                 android:id="@+id/local_pb_back"
@@ -76,6 +78,6 @@
 
 
 
-    </FrameLayout>
+
 
 </RelativeLayout>
