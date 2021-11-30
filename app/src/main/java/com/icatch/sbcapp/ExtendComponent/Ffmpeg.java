@@ -19,7 +19,7 @@ public class Ffmpeg {
         String [] tempStr = GlobalInfo.getInstance().getVideoName().split("\\.");//在檔名標示修改過
         String newVideoName = tempStr[0]+"R."+tempStr[1];
         FFmpegSession session = FFmpegKit.execute("-i "+ GlobalInfo.getInstance().getVideoName() + " -strict -2 -vf crop="+GlobalInfo.getInstance().getVideowidth()+":"
-                + GlobalInfo.getInstance().getVideoheight()*0.65+":0:0 -preset fast "+ newVideoName );
+                + GlobalInfo.getInstance().getVideoheight()*0.75+":0:0 -preset medium "+ newVideoName );
         if (ReturnCode.isSuccess(session.getReturnCode())) {
             File file = new File(GlobalInfo.getInstance().getVideoName());
             file.delete();//刪除未裁切之視頻
@@ -27,9 +27,7 @@ public class Ffmpeg {
             // SUCCESS
 
         } else if (ReturnCode.isCancel(session.getReturnCode())) {
-
             // CANCEL
-
         } else {
 
             // FAILURE
