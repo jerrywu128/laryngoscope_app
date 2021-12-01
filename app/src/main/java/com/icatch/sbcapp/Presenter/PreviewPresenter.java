@@ -1911,10 +1911,12 @@ public class PreviewPresenter extends BasePresenter {
 
 
     public void videoResize(){
+        MyProgressDialog.showProgressDialog(activity, R.string.action_processing);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 Ffmpeg.videoResize();
+                MyProgressDialog.closeProgressDialog();
             }
         }, 300);
     }

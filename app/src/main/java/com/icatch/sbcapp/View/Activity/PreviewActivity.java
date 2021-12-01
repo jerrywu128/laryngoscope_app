@@ -41,6 +41,7 @@ import androidx.core.app.ActivityCompat;
 import com.icatch.sbcapp.Adapter.SettingListAdapter;
 import com.icatch.sbcapp.AppDialog.AppDialog;
 import com.icatch.sbcapp.ExtendComponent.MPreview;
+import com.icatch.sbcapp.ExtendComponent.MyProgressDialog;
 import com.icatch.sbcapp.ExtendComponent.MyToast;
 import com.icatch.sbcapp.ExtendComponent.ZoomView;
 import com.icatch.sbcapp.Function.MediaCaptureService;
@@ -672,7 +673,6 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
                 MyToast.show(this, "null");
             }
         }
-
         presenter.encodeVideo();
     }
 
@@ -684,7 +684,6 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
         //會執行initPreview
         Log.d(TAG, "on result : requestCode = " + requestCode + " resultCode = " + resultCode);
         if (RESULT_OK == resultCode) {
-
             if(PHOTO_REQUEST_CODE == requestCode){
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                     if(photostaticResultCode == 0 && photostaticIntentData == null) {
