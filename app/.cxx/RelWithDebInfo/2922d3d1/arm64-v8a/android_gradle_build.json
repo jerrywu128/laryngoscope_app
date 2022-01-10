@@ -1,0 +1,40 @@
+{
+  "stringTable": {},
+  "buildFiles": [
+    "C:\\Users\\User\\Desktop\\iCatch APP SDK\\iCatch_AndroidSDK_1.4.17.tar\\iCatch_AndroidSDK_1.4.17\\1.4\\Android\\code\\app\\src\\main\\cpp\\CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "C:\\Users\\User\\AppData\\Local\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe",
+      "-C",
+      "C:\\Users\\User\\Desktop\\iCatch APP SDK\\iCatch_AndroidSDK_1.4.17.tar\\iCatch_AndroidSDK_1.4.17\\1.4\\Android\\code\\app\\.cxx\\RelWithDebInfo\\2922d3d1\\arm64-v8a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "C:\\Users\\User\\AppData\\Local\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe",
+    "-C",
+    "C:\\Users\\User\\Desktop\\iCatch APP SDK\\iCatch_AndroidSDK_1.4.17.tar\\iCatch_AndroidSDK_1.4.17\\1.4\\Android\\code\\app\\.cxx\\RelWithDebInfo\\2922d3d1\\arm64-v8a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "sbcapp-RelWithDebInfo-arm64-v8a": {
+      "buildCommandComponents": [
+        "C:\\Users\\User\\AppData\\Local\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe",
+        "-C",
+        "C:\\Users\\User\\Desktop\\iCatch APP SDK\\iCatch_AndroidSDK_1.4.17.tar\\iCatch_AndroidSDK_1.4.17\\1.4\\Android\\code\\app\\.cxx\\RelWithDebInfo\\2922d3d1\\arm64-v8a",
+        "sbcapp"
+      ],
+      "buildType": "release",
+      "abi": "arm64-v8a",
+      "artifactName": "sbcapp",
+      "output": "C:\\Users\\User\\Desktop\\iCatch APP SDK\\iCatch_AndroidSDK_1.4.17.tar\\iCatch_AndroidSDK_1.4.17\\1.4\\Android\\code\\app\\build\\intermediates\\cxx\\RelWithDebInfo\\2922d3d1\\obj\\arm64-v8a\\libsbcapp.so",
+      "runtimeFiles": []
+    }
+  },
+  "toolchains": {},
+  "cFileExtensions": [],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}

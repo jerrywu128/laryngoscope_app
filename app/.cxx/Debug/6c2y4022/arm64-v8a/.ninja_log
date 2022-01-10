@@ -1,0 +1,6 @@
+# ninja log v5
+1	34	657547252	CMakeFiles/sbcapp.dir/sbcapp.cpp.o	8935838dc8b97e7f
+0	47	657548258	CMakeFiles/sbcapp.dir/sbcapp.cpp.o	f33374fe275de005
+47	1300	657548260	C:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/build/intermediates/cxx/Debug/6c2y4022/obj/arm64-v8a/libsbcapp.so	372e565960acf02b
+0	40	657548383	CMakeFiles/sbcapp.dir/native-lib.cpp.o	690dbb825d1ab684
+40	1212	657548384	C:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/build/intermediates/cxx/Debug/6c2y4022/obj/arm64-v8a/libsbcapp.so	dfa12f09450fc49

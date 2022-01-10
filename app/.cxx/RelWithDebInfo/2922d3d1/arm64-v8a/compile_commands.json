@@ -1,0 +1,7 @@
+[
+{
+  "directory": "C:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/.cxx/RelWithDebInfo/2922d3d1/arm64-v8a",
+  "command": "C:\\Users\\User\\AppData\\Local\\Android\\Sdk\\ndk\\22.1.7171670\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe --target=aarch64-none-linux-android21 --gcc-toolchain=C:/Users/User/AppData/Local/Android/Sdk/ndk/22.1.7171670/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=C:/Users/User/AppData/Local/Android/Sdk/ndk/22.1.7171670/toolchains/llvm/prebuilt/windows-x86_64/sysroot  -Dsbcapp_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O2 -g -DNDEBUG -fPIC   -o CMakeFiles\\sbcapp.dir\\native-lib.cpp.o -c \"C:\\Users\\User\\Desktop\\iCatch APP SDK\\iCatch_AndroidSDK_1.4.17.tar\\iCatch_AndroidSDK_1.4.17\\1.4\\Android\\code\\app\\src\\main\\cpp\\native-lib.cpp\"",
+  "file": "C:\\Users\\User\\Desktop\\iCatch APP SDK\\iCatch_AndroidSDK_1.4.17.tar\\iCatch_AndroidSDK_1.4.17\\1.4\\Android\\code\\app\\src\\main\\cpp\\native-lib.cpp"
+}
+]

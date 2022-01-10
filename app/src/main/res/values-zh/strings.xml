@@ -240,7 +240,7 @@
     <string name="white_balance">白平衡</string>
     <string name="BLC">背光捕捉</string>
     <string name="gain">增益</string>
-    <string name="dialog_mobiledata">请关闭行动数据，以确保连线稳定。</string>
+    <string name="dialog_mobiledata">请关闭移动数据，以确保连线稳定。</string>
     <string name="please_input_password">请输入密码</string>
     <string name="sure">确定</string>
     <string name="iq_password_error">请确认密码是否输入错误</string>

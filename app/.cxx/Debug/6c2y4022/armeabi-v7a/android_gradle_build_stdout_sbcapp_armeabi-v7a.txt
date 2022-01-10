@@ -1,0 +1,2 @@
+ninja: Entering directory `C:\Users\User\Desktop\iCatch APP SDK\iCatch_AndroidSDK_1.4.17.tar\iCatch_AndroidSDK_1.4.17\1.4\Android\code\app\.cxx\Debug\6c2y4022\armeabi-v7a'
+ninja: no work to do.

@@ -1,0 +1,23 @@
+                    Executable : C:\Users\User\AppData\Local\Android\Sdk\cmake\3.10.2.4988404\bin\cmake.exe
+arguments : 
+-HC:\Users\User\Desktop\iCatch APP SDK\iCatch_AndroidSDK_1.4.17.tar\iCatch_AndroidSDK_1.4.17\1.4\Android\code\app\src\main\cpp
+-DCMAKE_SYSTEM_NAME=Android
+-DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+-DCMAKE_SYSTEM_VERSION=19
+-DANDROID_PLATFORM=android-19
+-DANDROID_ABI=arm64-v8a
+-DCMAKE_ANDROID_ARCH_ABI=arm64-v8a
+-DANDROID_NDK=C:\Users\User\AppData\Local\Android\Sdk\ndk\22.1.7171670
+-DCMAKE_ANDROID_NDK=C:\Users\User\AppData\Local\Android\Sdk\ndk\22.1.7171670
+-DCMAKE_TOOLCHAIN_FILE=C:\Users\User\AppData\Local\Android\Sdk\ndk\22.1.7171670\build\cmake\android.toolchain.cmake
+-DCMAKE_MAKE_PROGRAM=C:\Users\User\AppData\Local\Android\Sdk\cmake\3.10.2.4988404\bin\ninja.exe
+-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=C:\Users\User\Desktop\iCatch APP SDK\iCatch_AndroidSDK_1.4.17.tar\iCatch_AndroidSDK_1.4.17\1.4\Android\code\app\build\intermediates\cxx\RelWithDebInfo\2922d3d1\obj\arm64-v8a
+-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=C:\Users\User\Desktop\iCatch APP SDK\iCatch_AndroidSDK_1.4.17.tar\iCatch_AndroidSDK_1.4.17\1.4\Android\code\app\build\intermediates\cxx\RelWithDebInfo\2922d3d1\obj\arm64-v8a
+-DCMAKE_BUILD_TYPE=RelWithDebInfo
+-BC:\Users\User\Desktop\iCatch APP SDK\iCatch_AndroidSDK_1.4.17.tar\iCatch_AndroidSDK_1.4.17\1.4\Android\code\app\.cxx\RelWithDebInfo\2922d3d1\arm64-v8a
+-GNinja
+jvmArgs : 
+
+
+                    Build command args: []
+                    Version: 2

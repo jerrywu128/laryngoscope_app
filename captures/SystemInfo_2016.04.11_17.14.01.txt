@@ -1,0 +1,338 @@
+TASK com.wificammobileappalbum id=12404
+  ACTIVITY com.wificammobileappalbum/.View.Activity.MultiPbActivity 3adb2c08 pid=2967
+    Local FragmentActivity 9cc65e8 State:
+      mCreated=truemResumed=true mStopped=false mReallyStopped=false
+      mLoadersStarted=true
+    Active Fragments in 2c844401:
+      #0: MultiPbPhotoFragment{1acf72a6 #0 id=0x7f0f009d android:switcher:2131689629:0}
+        mFragmentId=#7f0f009d mContainerId=#7f0f009d mTag=android:switcher:2131689629:0
+        mState=5 mIndex=0 mWho=android:fragment:0 mBackStackNesting=0
+        mAdded=true mRemoving=false mResumed=true mFromLayout=false mInLayout=false
+        mHidden=false mDetached=false mMenuVisible=true mHasMenu=false
+        mRetainInstance=false mRetaining=false mUserVisibleHint=true
+        mFragmentManager=FragmentManager{2c844401 in HostCallbacks{31a694e7}}
+        mHost=android.support.v4.app.FragmentActivity$HostCallbacks@31a694e7
+        mContainer=android.support.v4.view.ViewPager{14e57fe1 VFED.... ........ 0,0-1080,1500 #7f0f009d app:id/vPager}
+        mView=android.widget.LinearLayout{21afeb89 V.E..... ........ 0,0-1080,1500}
+        mInnerView=android.widget.LinearLayout{21afeb89 V.E..... ........ 0,0-1080,1500}
+        Child FragmentManager{36f5f894 in MultiPbPhotoFragment{1acf72a6}}:
+          FragmentManager misc state:
+            mHost=android.support.v4.app.FragmentActivity$HostCallbacks@31a694e7
+            mContainer=android.support.v4.app.Fragment$1@2ef01f3d
+            mParent=MultiPbPhotoFragment{1acf72a6 #0 id=0x7f0f009d android:switcher:2131689629:0}
+            mCurState=5 mStateSaved=false mDestroyed=false
+      #1: MultiPbVideoFragment{bf01332 #1 id=0x7f0f009d android:switcher:2131689629:1}
+        mFragmentId=#7f0f009d mContainerId=#7f0f009d mTag=android:switcher:2131689629:1
+        mState=5 mIndex=1 mWho=android:fragment:1 mBackStackNesting=0
+        mAdded=true mRemoving=false mResumed=true mFromLayout=false mInLayout=false
+        mHidden=false mDetached=false mMenuVisible=false mHasMenu=false
+        mRetainInstance=false mRetaining=false mUserVisibleHint=false
+        mFragmentManager=FragmentManager{2c844401 in HostCallbacks{31a694e7}}
+        mHost=android.support.v4.app.FragmentActivity$HostCallbacks@31a694e7
+        mContainer=android.support.v4.view.ViewPager{14e57fe1 VFED.... ........ 0,0-1080,1500 #7f0f009d app:id/vPager}
+        mView=android.widget.RelativeLayout{3e3035bb V.E..... ......ID 1080,0-2160,1500}
+        mInnerView=android.widget.RelativeLayout{3e3035bb V.E..... ......ID 1080,0-2160,1500}
+        Child FragmentManager{5bd9883 in MultiPbVideoFragment{bf01332}}:
+          FragmentManager misc state:
+            mHost=android.support.v4.app.FragmentActivity$HostCallbacks@31a694e7
+            mContainer=android.support.v4.app.Fragment$1@2e840a00
+            mParent=MultiPbVideoFragment{bf01332 #1 id=0x7f0f009d android:switcher:2131689629:1}
+            mCurState=5 mStateSaved=false mDestroyed=false
+    Added Fragments:
+      #0: MultiPbPhotoFragment{1acf72a6 #0 id=0x7f0f009d android:switcher:2131689629:0}
+      #1: MultiPbVideoFragment{bf01332 #1 id=0x7f0f009d android:switcher:2131689629:1}
+    FragmentManager misc state:
+      mHost=android.support.v4.app.FragmentActivity$HostCallbacks@31a694e7
+      mContainer=android.support.v4.app.FragmentActivity$HostCallbacks@31a694e7
+      mCurState=5 mStateSaved=false mDestroyed=false
+    View Hierarchy:
+      com.android.internal.policy.impl.PhoneWindow$DecorView{386dbb39 V.E..... ... 0,0-1080,1920}
+        android.widget.LinearLayout{26e5d1f5 V.E..... ... 0,0-1080,1920}
+          android.view.ViewStub{2e513b8a G.E..... ... 0,0-0,0 #1020375}
+          android.widget.FrameLayout{f7695fb V.E..... ... 0,0-1080,1920}
+            android.support.v7.internal.widget.FitWindowsLinearLayout{f8e96d7 V.E..... ... 0,0-1080,1920 #7f0f0052 app:id/action_bar_root}
+              android.support.v7.internal.widget.ViewStubCompat{12f5ebc4 G.E..... ... 0,0-0,0 #7f0f0053 app:id/action_mode_bar_stub}
+              android.support.v7.internal.widget.ContentFrameLayout{495b1e2 V.E..... ... 0,0-1080,1920 #1020002 android:id/content}
+                android.support.design.widget.CoordinatorLayout{17480030 V.E..... ... 0,0-1080,1920}
+                  android.support.design.widget.AppBarLayout{2ed6e4a9 V.E..... ... 0,0-1080,312}
+                    android.support.v7.widget.Toolbar{2ee10a2e V.E..... ... 0,0-1080,168 #7f0f0068 app:id/toolbar}
+                      android.widget.TextView{14f0e78c V.ED.... ... 180,43-584,124}
+                      android.widget.ImageButton{203c84bf VFED..C. ... 0,0-168,168}
+                      android.support.v7.widget.ActionMenuView{1fede220 V.E..... ... 936,0-1080,168}
+                        android.support.v7.internal.view.menu.ActionMenuItemView{27127895 VFED..CL ... 0,12-144,156 #7f0f013a app:id/menu_multi_pb_preview_type}
+                    android.support.design.widget.TabLayout{3b64ef5c VFED.... ... 0,168-1080,312 #7f0f0069 app:id/tabs}
+                      android.support.design.widget.TabLayout$SlidingTabStrip{18779b3a V.ED.... ... 0,0-1080,144}
+                        android.support.design.widget.TabLayout$TabView{348d46ea VFE...C. .S. 0,0-540,144}
+                          android.widget.ImageView{128af078 G.ED.... .S. 0,0-0,0}
+                          android.support.v7.widget.AppCompatTextView{1f70e7b6 V.ED.... .S. 207,39-332,104}
+                        android.support.design.widget.TabLayout$TabView{36704cb7 VFE...C. ... 540,0-1080,144}
+                          android.widget.ImageView{31ba9c24 G.ED.... ... 0,0-0,0}
+                          android.support.v7.widget.AppCompatTextView{2fdfa38d V.ED.... ... 209,39-331,104}
+                  android.widget.LinearLayout{3effa548 V.E..... ... 0,312-1080,1920}
+                    android.support.v4.view.ViewPager{14e57fe1 VFED.... ... 0,0-1080,1500 #7f0f009d app:id/vPager}
+                      android.widget.LinearLayout{21afeb89 V.E..... ... 0,0-1080,1500}
+                        android.widget.RelativeLayout{26a1378e V.E..... ... 0,0-1080,1500}
+                          com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView{17661baf VFED.VCL F.. 0,0-1080,1500 #7f0f00f5 app:id/multi_pb_photo_grid_view}
+                            com.tonicartos.widget.stickygridheaders.StickyGridHeadersBaseAdapterWrapper$HeaderFillerView{2bb03a76 V.E..... ... 0,0-267,113}
+                            com.tonicartos.widget.stickygridheaders.StickyGridHeadersBaseAdapterWrapper$FillerView{3cdd8802 V.ED.... ... 270,0-537,113}
+                            com.tonicartos.widget.stickygridheaders.StickyGridHeadersBaseAdapterWrapper$FillerView{1d4fb513 V.ED.... ... 540,0-807,113}
+                            com.tonicartos.widget.stickygridheaders.StickyGridHeadersBaseAdapterWrapper$FillerView{23ce1350 V.ED.... ... 810,0-1077,113}
+                            android.widget.RelativeLayout{13a0224e V.E..... ... 0,116-267,397}
+                              android.widget.ImageView{689147c V.ED.... ... 6,6-261,275 #7f0f00fc app:id/local_photo_wall_grid_item}
+                              android.widget.ImageView{26e0155a G.ED.... ... 0,0-0,0 #7f0f00fd app:id/video_sign}
+                              android.widget.ImageView{3186b38b G.ED.... ... 0,0-0,0 #7f0f00fe app:id/local_photo_wall_grid_edit}
+                            android.widget.RelativeLayout{990fc68 V.E..... ... 270,116-537,397}
+                              android.widget.ImageView{20135881 V.ED.... ... 6,6-261,275 #7f0f00fc app:id/local_photo_wall_grid_item}
+                              android.widget.ImageView{1fa2d26 G.ED.... ... 0,0-0,0 #7f0f00fd app:id/video_sign}
+                              android.widget.ImageView{22aafd67 G.ED.... ... 0,0-0,0 #7f0f00fe app:id/local_photo_wall_grid_edit}
+                            android.widget.RelativeLayout{ad7714 V.E..... ... 540,116-807,397}
+                              android.widget.ImageView{119bfbbd V.ED.... ... 6,6-261,275 #7f0f00fc app:id/local_photo_wall_grid_item}
+                              android.widget.ImageView{374bf5b2 G.ED.... ... 0,0-0,0 #7f0f00fd app:id/video_sign}
+                              android.widget.ImageView{29e00903 G.ED.... ... 0,0-0,0 #7f0f00fe app:id/local_photo_wall_grid_edit}
+                            android.widget.RelativeLayout{1274f080 V.E..... ... 810,116-1077,397}
+                              android.widget.ImageView{1196b9 V.ED.... ... 6,6-261,275 #7f0f00fc app:id/local_photo_wall_grid_item}
+                              android.widget.ImageView{2f7fbafe G.ED.... ... 0,0-0,0 #7f0f00fd app:id/video_sign}
+                              android.widget.ImageView{2d0325f G.ED.... ... 0,0-0,0 #7f0f00fe app:id/local_photo_wall_grid_edit}
+                            android.widget.RelativeLayout{367894ac V.E..... ... 0,400-267,681}
+                              android.widget.ImageView{17abe575 V.ED.... ... 6,6-261,275 #7f0f00fc app:id/local_photo_wall_grid_item}
+                              android.widget.ImageView{2198890a G.ED.... ... 0,0-0,0 #7f0f00fd app:id/video_sign}
+                              android.widget.ImageView{f6f957b G.ED.... ... 0,0-0,0 #7f0f00fe app:id/local_photo_wall_grid_edit}
+                            android.widget.RelativeLayout{2a304f98 V.E..... ... 270,400-537,681}
+                              android.widget.ImageView{166263f1 V.ED.... ... 6,6-261,275 #7f0f00fc app:id/local_photo_wall_grid_item}
+                              android.widget.ImageView{3fbe2bd6 G.ED.... ... 0,0-0,0 #7f0f00fd app:id/video_sign}
+                              android.widget.ImageView{12d80e57 G.ED.... ... 0,0-0,0 #7f0f00fe app:id/local_photo_wall_grid_edit}
+                            android.widget.RelativeLayout{8a6cd44 V.E..... ... 540,400-807,681}
+                              android.widget.ImageView{8284e2d V.ED.... ... 6,6-261,275 #7f0f00fc app:id/local_photo_wall_grid_item}
+                              android.widget.ImageView{24c92f62 G.ED.... ... 0,0-0,0 #7f0f00fd app:id/video_sign}
+                              android.widget.ImageView{3de538f3 G.ED.... ... 0,0-0,0 #7f0f00fe app:id/local_photo_wall_grid_edit}
+                            android.widget.RelativeLayout{30e579b0 V.E..... ... 810,400-1077,681}
+                              android.widget.ImageView{ae8a029 V.ED.... ... 6,6-261,275 #7f0f00fc app:id/local_photo_wall_grid_item}
+                              android.widget.ImageView{e8edfae G.ED.... ... 0,0-0,0 #7f0f00fd app:id/video_sign}
+                              android.widget.ImageView{2990714f G.ED.... ... 0,0-0,0 #7f0f00fe app:id/local_photo_wall_grid_edit}
+                            android.widget.RelativeLayout{272080dc V.E..... ... 0,684-267,965}
+                              android.widget.ImageView{164215e5 V.ED.... ... 6,6-261,275 #7f0f00fc app:id/local_photo_wall_grid_item}
+                              android.widget.ImageView{30ed48ba G.ED.... ... 0,0-0,0 #7f0f00fd app:id/video_sign}
+                              android.widget.ImageView{1b0cd36b G.ED.... ... 0,0-0,0 #7f0f00fe app:id/local_photo_wall_grid_edit}
+                            android.widget.RelativeLayout{1ca2cec8 V.E..... ... 270,684-537,965}
+                              android.widget.ImageView{3032b61 V.ED.... ... 6,6-261,275 #7f0f00fc app:id/local_photo_wall_grid_item}
+                              android.widget.ImageView{2d973686 G.ED.... ... 0,0-0,0 #7f0f00fd app:id/video_sign}
+                              android.widget.ImageView{2da33b47 G.ED.... ... 0,0-0,0 #7f0f00fe app:id/local_photo_wall_grid_edit}
+                            android.widget.RelativeLayout{a7a0f74 V.E..... ... 540,684-807,965}
+                              android.widget.ImageView{e661c9d V.ED.... ... 6,6-261,275 #7f0f00fc app:id/local_photo_wall_grid_item}
+                              android.widget.ImageView{3ca03512 G.ED.... ... 0,0-0,0 #7f0f00fd app:id/video_sign}
+                              android.widget.ImageView{3e4e44e3 G.ED.... ... 0,0-0,0 #7f0f00fe app:id/local_photo_wall_grid_edit}
+                            android.widget.RelativeLayout{ae2aee0 V.E..... ... 810,684-1077,965}
+                              android.widget.ImageView{150ce599 V.ED.... ... 6,6-261,275 #7f0f00fc app:id/local_photo_wall_grid_item}
+                              android.widget.ImageView{11c8905e G.ED.... ... 0,0-0,0 #7f0f00fd app:id/video_sign}
+                              android.widget.ImageView{35164c3f G.ED.... ... 0,0-0,0 #7f0f00fe app:id/local_photo_wall_grid_edit}
+                            android.widget.RelativeLayout{1d73d90c V.E..... ... 0,968-267,1249}
+                              android.widget.ImageView{1bd4255 V.ED.... ... 6,6-261,275 #7f0f00fc app:id/local_photo_wall_grid_item}
+                              android.widget.ImageView{a89546a G.ED.... ... 0,0-0,0 #7f0f00fd app:id/video_sign}
+                              android.widget.ImageView{82d6d5b G.ED.... ... 0,0-0,0 #7f0f00fe app:id/local_photo_wall_grid_edit}
+                            android.widget.RelativeLayout{20b79f8 V.E..... ... 270,968-537,1249}
+                              android.widget.ImageView{2bdcaed1 V.ED.... ... 6,6-261,275 #7f0f00fc app:id/local_photo_wall_grid_item}
+                              android.widget.ImageView{30e04d36 G.ED.... ... 0,0-0,0 #7f0f00fd app:id/video_sign}
+                              android.widget.ImageView{14cb8437 G.ED.... ... 0,0-0,0 #7f0f00fe app:id/local_photo_wall_grid_edit}
+                            android.widget.RelativeLayout{167a3da4 V.E..... ... 540,968-807,1249}
+                              android.widget.ImageView{21ac670d V.ED.... ... 6,6-261,275 #7f0f00fc app:id/local_photo_wall_grid_item}
+                              android.widget.ImageView{1edc06c2 G.ED.... ... 0,0-0,0 #7f0f00fd app:id/video_sign}
+                              android.widget.ImageView{29ca2cd3 G.ED.... ... 0,0-0,0 #7f0f00fe app:id/local_photo_wall_grid_edit}
+                            android.widget.RelativeLayout{22ef9010 V.E..... ... 810,968-1077,1249}
+                              android.widget.ImageView{1a456709 V.ED.... ... 6,6-261,275 #7f0f00fc app:id/local_photo_wall_grid_item}
+                              android.widget.ImageView{ee7cd0e G.ED.... ... 0,0-0,0 #7f0f00fd app:id/video_sign}
+                              android.widget.ImageView{2000c32f G.ED.... ... 0,0-0,0 #7f0f00fe app:id/local_photo_wall_grid_edit}
+                            android.widget.RelativeLayout{1259d3c V.E..... ... 0,1252-267,1533}
+                              android.widget.ImageView{b546ac5 V.ED.... ... 6,6-261,275 #7f0f00fc app:id/local_photo_wall_grid_item}
+                              android.widget.ImageView{24d7ac1a G.ED.... ... 0,0-0,0 #7f0f00fd app:id/video_sign}
+                              android.widget.ImageView{1c60634b G.ED.... ... 0,0-0,0 #7f0f00fe app:id/local_photo_wall_grid_edit}
+                            android.widget.RelativeLayout{a4d5128 V.E..... ... 270,1252-537,1533}
+                              android.widget.ImageView{1e95ee41 V.ED.... ... 6,6-261,275 #7f0f00fc app:id/local_photo_wall_grid_item}
+                              android.widget.ImageView{3bb46fe6 G.ED.... ... 0,0-0,0 #7f0f00fd app:id/video_sign}
+                              android.widget.ImageView{17cfe927 G.ED.... ... 0,0-0,0 #7f0f00fe app:id/local_photo_wall_grid_edit}
+                            android.widget.RelativeLayout{37ba57d4 V.E..... ... 540,1252-807,1533}
+                              android.widget.ImageView{3122d7d V.ED.... ... 6,6-261,275 #7f0f00fc app:id/local_photo_wall_grid_item}
+                              android.widget.ImageView{447a472 G.ED.... ... 0,0-0,0 #7f0f00fd app:id/video_sign}
+                              android.widget.ImageView{8c7f0c3 G.ED.... ... 0,0-0,0 #7f0f00fe app:id/local_photo_wall_grid_edit}
+                            android.widget.RelativeLayout{224f1d40 V.E..... ... 810,1252-1077,1533}
+                              android.widget.ImageView{16192479 V.ED.... ... 6,6-261,275 #7f0f00fc app:id/local_photo_wall_grid_item}
+                              android.widget.ImageView{6795be G.ED.... ... 0,0-0,0 #7f0f00fd app:id/video_sign}
+                              android.widget.ImageView{aaed61f G.ED.... ... 0,0-0,0 #7f0f00fe app:id/local_photo_wall_grid_edit}
+                          android.widget.FrameLayout{2b434bbc G.E..... ... 0,0-1080,1500 #7f0f00f6 app:id/multi_pb_photo_list_layout}
+                            android.widget.ListView{3c22b745 V.ED.VCL ... 0,0-1080,1500 #7f0f00f7 app:id/multi_pb_photo_list_view}
+                            android.widget.RelativeLayout{2402c3cb V.E..... ... 0,0-1080,113}
+                              android.support.v7.widget.AppCompatTextView{26d767a8 V.ED.... ... 0,0-1080,113 #7f0f0105 app:id/photo_wall_header}
+                      android.widget.RelativeLayout{3e3035bb V.E..... ... 1080,0-2160,1500}
+                        com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView{34880ad8 V.ED.VCL ... 0,0-1080,1500 #7f0f00f8 app:id/multi_pb_video_grid_view}
+                        android.widget.FrameLayout{c4a9e31 V.E..... ... 0,0-1080,1500 #7f0f00f9 app:id/multi_pb_video_list_layout}
+                          android.widget.ListView{2de7916 V.ED.VCL ... 0,0-1080,1500 #7f0f00fa app:id/multi_pb_video_list_view}
+                          android.widget.RelativeLayout{21defc84 V.E..... ... 0,0-1080,113}
+                            android.support.v7.widget.AppCompatTextView{2ef9ec6d V.ED.... ... 0,0-1080,113 #7f0f0105 app:id/photo_wall_header}
+                        android.widget.LinearLayout{2791a133 G.E..... ... 0,0-0,0 #7f0f0113 app:id/edit_layout}
+                          android.widget.ImageButton{18915cf0 GFED..C. ... 0,0-0,0 #7f0f0114 app:id/action_select}
+                          android.widget.ImageButton{11d5e269 VFED..C. ... 0,0-0,0 #7f0f0115 app:id/action_delete}
+                          android.widget.ImageButton{94394ee VFED..C. ... 0,0-0,0 #7f0f0116 app:id/action_download}
+                          android.support.v7.widget.AppCompatTextView{273b1d8f G.ED.... ... 0,0-0,0 #7f0f0117 app:id/info_selected_num}
+                    android.widget.LinearLayout{234ce3c7 V.E..... ... 0,1500-1080,1608 #7f0f0113 app:id/edit_layout}
+                      android.widget.ImageButton{280dcdf4 GFED..C. ... 0,0-0,0 #7f0f0114 app:id/action_select}
+                      android.widget.ImageButton{bd25792 VFED..C. ... 0,0-540,108 #7f0f0115 app:id/action_delete}
+                      android.widget.ImageButton{2c29f563 VFED..C. ... 540,0-1080,108 #7f0f0116 app:id/action_download}
+                      android.support.v7.widget.AppCompatTextView{433d560 G.ED.... ... 0,0-0,0 #7f0f0117 app:id/info_selected_num}
+
+  ACTIVITY com.wificammobileappalbum/.View.Activity.PreviewActivity 1ffde079 pid=2967
+    Local FragmentActivity 5e1de0c State:
+      mCreated=truemResumed=false mStopped=true mReallyStopped=true
+      mLoadersStarted=true
+    FragmentManager misc state:
+      mHost=android.support.v4.app.FragmentActivity$HostCallbacks@5447239
+      mContainer=android.support.v4.app.FragmentActivity$HostCallbacks@5447239
+      mCurState=2 mStateSaved=true mDestroyed=false
+    View Hierarchy:
+      com.android.internal.policy.impl.PhoneWindow$DecorView{19c2817f I.E..... ... 0,0-1080,1920}
+        android.widget.LinearLayout{16e79995 V.E..... ... 0,0-1080,1920}
+          android.view.ViewStub{2fa5faaa G.E..... ... 0,0-0,0 #1020375}
+          android.widget.FrameLayout{2587b69b V.E..... ... 0,0-1080,1920}
+            android.support.v7.internal.widget.FitWindowsLinearLayout{9a12177 V.E..... ... 0,0-1080,1920 #7f0f0052 app:id/action_bar_root}
+              android.support.v7.internal.widget.ViewStubCompat{ad7b1e4 G.E..... ... 0,0-0,0 #7f0f0053 app:id/action_mode_bar_stub}
+              android.support.v7.internal.widget.ContentFrameLayout{219f3502 V.E..... ... 0,0-1080,1920 #1020002 android:id/content}
+                android.widget.RelativeLayout{33500850 V.E..... ... 0,0-1080,1920}
+                  android.support.design.widget.AppBarLayout{397c1a49 V.E..... ... 0,0-1080,168 #7f0f006a app:id/AppBarLayout}
+                    android.support.v7.widget.Toolbar{274f9f4e V.E..... ... 0,0-1080,168 #7f0f0068 app:id/toolbar}
+                      android.widget.TextView{13fcb9b3 V.ED.... ... 48,43-258,124}
+                      android.support.v7.widget.ActionMenuView{e7f7f45 V.E..... ... 936,0-1080,168}
+                        android.support.v7.internal.view.menu.ActionMenuItemView{38513a5a VFED..CL ... 0,12-144,156 #7f0f013b app:id/action_setting}
+                  android.widget.RelativeLayout{34631205 V.E..... ... 0,168-1080,1920}
+                    android.widget.RelativeLayout{328a625a V.E..... ... 0,0-1080,1608}
+                      com.wificammobileappalbum.ExtendComponent.MPreview{1a7f7c8b V.E...C. ... 0,0-1080,1608 #7f0f00b6 app:id/m_preview}
+                    android.widget.RelativeLayout{3ebc9168 V.E..... ... 0,0-1080,102 #7f0f00b7 app:id/status_bar1}
+                      android.widget.RelativeLayout{907c981 V.E..... ... 30,30-172,102}
+                        android.widget.ImageView{127c4a26 V.ED.... ... 0,0-40,72 #7f0f00b8 app:id/battery_status}
+                        android.widget.ImageView{257d5c14 V.ED.... ... 70,0-142,72 #7f0f00b9 app:id/wifi_status}
+                    android.widget.RelativeLayout{a52e2b2 V.E..... ... 0,132-204,204 #7f0f00ba app:id/status_bar2}
+                      android.widget.ImageView{2e08f203 V.ED.... ... 30,0-102,72 #7f0f00bb app:id/wb_status}
+                      android.widget.ImageView{30327b9 V.ED.... ... 132,0-204,72 #7f0f00bc app:id/burst_status}
+                      android.widget.ImageView{b1eab5f G.ED.... ... 0,0-0,0 #7f0f00bd app:id/timelapse_mode}
+                      android.widget.ImageView{6a58675 G.ED.... ... 0,0-0,0 #7f0f00be app:id/slow_motion}
+                      android.widget.ImageView{20ac9e7b G.ED.... ... 0,0-0,0 #7f0f00bf app:id/car_mode}
+                    android.widget.RelativeLayout{11d514f1 V.E..... ... 0,234-0,234 #7f0f00c0 app:id/status_bar3}
+                      android.support.v7.widget.AppCompatTextView{278188d6 G.ED.... ... 0,0-0,0 #7f0f00c1 app:id/recording_time}
+                    android.widget.RelativeLayout{355ca757 V.E..... ... 612,30-1080,254 #7f0f00c2 app:id/control_bar}
+                      android.widget.RelativeLayout{37b9f244 V.E...C. ... 30,0-174,224 #7f0f00c3 app:id/delay_capture_layout}
+                        android.widget.ImageView{6950f2d V.ED.... ... 0,0-144,144 #7f0f00c4 app:id/delay_capture_iv}
+                        android.support.v7.widget.AppCompatTextView{29e07129 V.ED.... ... 29,159-115,224 #7f0f00c5 app:id/delay_capture_text}
+                      android.widget.RelativeLayout{25c0dcae G.E..... ... 30,0-294,224 #7f0f00c6 app:id/video_size_layout}
+                        android.support.v7.widget.AppCompatButton{32ef2a4f VFED..C. ... 0,0-264,144 #7f0f00c7 app:id/video_size_button}
+                        android.support.v7.widget.AppCompatTextView{1c1b6355 V.ED.... ... 73,159-191,224 #7f0f00c8 app:id/remain_recording_time_text}
+                      android.widget.RelativeLayout{38ab616a V.E..... ... 204,0-468,224 #7f0f00c9 app:id/image_size_layout}
+                        android.support.v7.widget.AppCompatButton{1aa2f65b VFED..C. ... 0,0-264,144 #7f0f00ca app:id/image_size_button}
+                        android.support.v7.widget.AppCompatTextView{3392b3c2 V.ED.... ... 78,159-186,224 #7f0f00cb app:id/remain_capture_count_text}
+                    android.widget.ImageView{3247d5d3 V.ED.... ... 780,284-1080,584 #7f0f00cc app:id/auto_download_imageview}
+                    com.wificammobileappalbum.ExtendComponent.ZoomView{3fee8510 G.E..... ... 0,0-0,0 #7f0f00cd app:id/zoom_view}
+                      android.widget.RelativeLayout{1cdc4a0e V.E..... ... 0,0-0,0 #7f0f0132 app:id/zoom_layout}
+                        android.widget.ImageButton{3d2ffc2f VFED..C. ... 0,0-0,0 #7f0f0133 app:id/zoom_out}
+                        android.widget.ImageButton{3dfccbc5 VFED..C. ... 0,0-0,0 #7f0f0134 app:id/zoom_in}
+                        com.wificammobileappalbum.ExtendComponent.ZoomBar{fca2c4b VFED.... ... 0,0-0,0 #7f0f0135 app:id/zoomBar}
+                        android.support.v7.widget.AppCompatTextView{9e35f41 V.ED.... ... 0,0-0,0 #7f0f0136 app:id/zoom_rate}
+                    android.widget.RelativeLayout{2a1b8ce6 V.E..... ... 0,1608-1080,1752 #7f0f00b5 app:id/buttomBar}
+                      android.widget.ImageButton{328d4227 VFED..C. ... 0,16-132,128 #7f0f00ce app:id/multi_pb}
+                      android.widget.ImageButton{1481d9c3 VFED..C. ... 468,0-612,144 #7f0f00cf app:id/doCapture}
+                    android.widget.RelativeLayout{2d83b579 V.E..... ... 950,584-1080,1752}
+                      android.widget.ImageButton{16f552be VFED..C. ... 0,539-130,629 #7f0f00d0 app:id/stillToggle}
+                      android.widget.ImageButton{2a7d526c VFED..C. ... 0,386-130,464 #7f0f00d1 app:id/videoToggle}
+                      android.widget.ImageButton{2b232958 VFED..C. ... 0,704-130,792 #7f0f00d2 app:id/timeLapseToggle}
+                    android.widget.RelativeLayout{29350317 G.E..... ... 0,0-1080,1752 #7f0f012b app:id/setupMainMenu}
+                      android.widget.ListView{2d4d8304 VFED.VC. ... 0,0-1080,1752 #7f0f012c app:id/setup_menu_listView}
+                        android.widget.LinearLayout{5a93f9f V.E..... ... 0,0-1080,182}
+                          android.support.v7.widget.AppCompatTextView{e6cb8ec V.ED.... ... 30,30-468,95 #7f0f006d app:id/item_text}
+                          android.support.v7.widget.AppCompatTextView{372ad4b5 V.ED.... ... 30,95-215,152 #7f0f012d app:id/item_value}
+                        android.widget.LinearLayout{309e74a V.E..... ... 0,184-1080,366}
+                          android.support.v7.widget.AppCompatTextView{3cec36bb V.ED.... ... 30,30-330,95 #7f0f006d app:id/item_text}
+                          android.support.v7.widget.AppCompatTextView{38e277d8 V.ED.... ... 30,95-136,152 #7f0f012d app:id/item_value}
+                        android.widget.LinearLayout{2010731 V.E..... ... 0,368-1080,550}
+                          android.support.v7.widget.AppCompatTextView{2b872e16 V.ED.... ... 30,30-249,95 #7f0f006d app:id/item_text}
+                          android.support.v7.widget.AppCompatTextView{339d8397 V.ED.... ... 30,95-131,152 #7f0f012d app:id/item_value}
+                        android.widget.LinearLayout{15f33984 V.E..... ... 0,552-1080,734}
+                          android.support.v7.widget.AppCompatTextView{342de56d V.ED.... ... 30,30-278,95 #7f0f006d app:id/item_text}
+                          android.support.v7.widget.AppCompatTextView{12c015a2 V.ED.... ... 30,95-106,152 #7f0f012d app:id/item_value}
+                        android.widget.RelativeLayout{62c69f0 V.E..... ... 0,736-1080,880}
+                          android.support.v7.widget.AppCompatTextView{8d06b69 V.ED.... ... 30,39-347,104 #7f0f006d app:id/item_text}
+                          android.support.v7.widget.AppCompatCheckBox{3dade9ee VFED..C. ... 902,30-1050,114 #7f0f006e app:id/switcher}
+                        android.widget.RelativeLayout{2386351c V.E..... ... 0,882-1080,1064}
+                          android.support.v7.widget.AppCompatTextView{33fb5525 V.ED.... ... 30,30-618,95 #7f0f006d app:id/item_text}
+                          android.support.v7.widget.AppCompatTextView{3592b6fa V.ED.... ... 30,95-141,152 #7f0f006f app:id/download_size}
+                        android.widget.RelativeLayout{1e311ea1 V.E..... ... 0,1066-1080,1210}
+                          android.support.v7.widget.AppCompatTextView{23c548c6 V.ED.... ... 30,39-300,104 #7f0f006d app:id/item_text}
+                          android.support.v7.widget.AppCompatCheckBox{26508087 VFED..C. ... 902,30-1050,114 #7f0f006e app:id/switcher}
+                        android.widget.LinearLayout{6da0bb4 V.E..... ... 0,1212-1080,1337}
+                          android.support.v7.widget.AppCompatTextView{1ba003dd V.ED.... ... 30,30-362,95 #7f0f006d app:id/item_text}
+                          android.support.v7.widget.AppCompatTextView{1e3d2b52 G.ED.... ... 0,0-0,0 #7f0f012d app:id/item_value}
+                        android.widget.LinearLayout{16aa9e23 V.E..... ... 0,1339-1080,1521}
+                          android.support.v7.widget.AppCompatTextView{14e62f20 V.ED.... ... 30,30-176,95 #7f0f006d app:id/item_text}
+                          android.support.v7.widget.AppCompatTextView{1b1e00d9 V.ED.... ... 30,95-106,152 #7f0f012d app:id/item_value}
+                        android.widget.LinearLayout{30deaa9e V.E..... ... 0,1523-1080,1648}
+                          android.support.v7.widget.AppCompatTextView{3afef97f V.ED.... ... 30,30-603,95 #7f0f006d app:id/item_text}
+                          android.support.v7.widget.AppCompatTextView{5cf1d4c G.ED.... ... 0,0-0,0 #7f0f012d app:id/item_value}
+                        android.widget.LinearLayout{8e4d195 V.E..... ... 0,1650-1080,1832}
+                          android.support.v7.widget.AppCompatTextView{2f86d2aa V.ED.... ... 30,30-284,95 #7f0f006d app:id/item_text}
+                          android.support.v7.widget.AppCompatTextView{2a13ae9b V.ED.... ... 30,95-146,152 #7f0f012d app:id/item_value}
+
+  ACTIVITY com.wificammobileappalbum/.View.Activity.LaunchActivity 226d14ba pid=2967
+    Local FragmentActivity 11a1ed4b State:
+      mCreated=truemResumed=false mStopped=true mReallyStopped=true
+      mLoadersStarted=true
+    FragmentManager misc state:
+      mHost=android.support.v4.app.FragmentActivity$HostCallbacks@2a08307e
+      mContainer=android.support.v4.app.FragmentActivity$HostCallbacks@2a08307e
+      mCurState=2 mStateSaved=true mDestroyed=false
+    View Hierarchy:
+      com.android.internal.policy.impl.PhoneWindow$DecorView{334cb857 I.E..... ... 0,0-1080,1920}
+        android.widget.LinearLayout{1fa82f3 V.E..... ... 0,0-1080,1920}
+          android.view.ViewStub{2681fbb0 G.E..... ... 0,0-0,0 #1020375}
+          android.widget.FrameLayout{1a27fa29 V.E..... ... 0,0-1080,1920}
+            android.support.v7.internal.widget.FitWindowsLinearLayout{231d0fe5 V.E..... ... 0,0-1080,1920 #7f0f0052 app:id/action_bar_root}
+              android.support.v7.internal.widget.ViewStubCompat{3e55baba G.E..... ... 0,0-0,0 #7f0f0053 app:id/action_mode_bar_stub}
+              android.support.v7.internal.widget.ContentFrameLayout{150d90c8 V.E..... ... 0,0-1080,1920 #1020002 android:id/content}
+                android.support.design.widget.CoordinatorLayout{31966547 V.ED.... ... 0,0-1080,1920}
+                  android.support.design.widget.AppBarLayout{bcef174 V.E..... ... 0,0-1080,168}
+                    android.support.v7.widget.Toolbar{866569d V.E..... ... 0,0-1080,168 #7f0f0068 app:id/toolbar}
+                      android.widget.TextView{3013f3c V.ED.... ... 48,43-274,124}
+                      android.support.v7.widget.ActionMenuView{9cf4971 V.E..... ... 960,0-1080,168}
+                        android.support.v7.widget.ActionMenuPresenter$OverflowMenuButton{1408e356 VFED..C. ... 0,12-120,156}
+                  android.widget.RelativeLayout{27d6bf99 V.E..... ... 0,168-1080,1920}
+                    android.widget.LinearLayout{2e26625e V.E..... ... 48,48-1032,1704}
+                      android.widget.ListView{b04b63f VFED.VCL F.. 0,0-984,993 #7f0f0092 app:id/cam_slot_listview}
+                        android.widget.LinearLayout{1cfa39ff V.E..... ... 0,0-984,304}
+                          android.widget.LinearLayout{2e7093cc V.E..... ... 30,15-646,289 #7f0f007f app:id/slot_layout_add}
+                            android.widget.LinearLayout{2ebf4615 V.E..... ... 0,0-539,274}
+                              android.widget.ImageView{38096d2a V.ED.... ... 15,89-111,185}
+                              android.support.v7.widget.AppCompatTextView{13c2771b V.ED.... ... 126,0-539,274 #7f0f0080 app:id/slot_add_camera}
+                          android.widget.LinearLayout{23f920b8 V.E..... ... 646,15-954,289}
+                            com.wificammobileappalbum.ExtendComponent.RoundAngleImageView{3f5b2e91 V.ED.... ... 15,15-293,259}
+                        android.widget.LinearLayout{172931f6 V.E..... ... 0,319-984,623}
+                          android.widget.LinearLayout{40769f7 V.E..... ... 30,15-646,289 #7f0f0079 app:id/slot_layout}
+                            android.widget.LinearLayout{257b9064 V.E..... ... 0,0-338,137}
+                              android.widget.ImageView{2cf322cd V.ED.... ... 15,20-111,116 #7f0f007a app:id/slot_connect_sign}
+                              android.support.v7.widget.AppCompatTextView{2fae7782 V.ED.... ... 126,0-338,137 #7f0f007b app:id/slot_connect_state}
+                            android.support.v7.widget.AppCompatTextView{263eae93 V.ED.... ... 15,137-616,274 #7f0f007c app:id/slot_camera_name}
+                          android.widget.RelativeLayout{3a934ed0 V.E..... ... 646,15-954,289}
+                            com.wificammobileappalbum.ExtendComponent.RoundAngleImageView{179c1ec9 V.ED.... ... 15,15-293,259 #7f0f007d app:id/slotPhoto}
+                            android.widget.ImageView{375089ce V.ED..C. ... 200,0-308,114 #7f0f007e app:id/delete_camera}
+                        android.widget.LinearLayout{3a9ba0ef V.E..... ... 0,638-984,942}
+                          android.widget.LinearLayout{72687fc V.E..... ... 30,15-646,289 #7f0f0079 app:id/slot_layout}
+                            android.widget.LinearLayout{31bede85 V.E..... ... 0,0-346,137}
+                              android.widget.ImageView{35ef74da V.ED.... ... 15,20-111,116 #7f0f007a app:id/slot_connect_sign}
+                              android.support.v7.widget.AppCompatTextView{272b5d0b V.ED.... ... 126,0-346,137 #7f0f007b app:id/slot_connect_state}
+                            android.support.v7.widget.AppCompatTextView{255227e8 V.ED.... ... 15,137-616,274 #7f0f007c app:id/slot_camera_name}
+                          android.widget.RelativeLayout{3193de01 V.E..... ... 646,15-954,289}
+                            com.wificammobileappalbum.ExtendComponent.RoundAngleImageView{1f6004a6 V.ED.... ... 15,15-293,259 #7f0f007d app:id/slotPhoto}
+                            android.widget.ImageView{1bb0bee7 V.ED..C. ... 200,0-308,114 #7f0f007e app:id/delete_camera}
+                      android.widget.LinearLayout{4abc55 V.E..... ... 0,993-984,1656}
+                        android.support.v7.widget.AppCompatTextView{23f2466a V.ED.... ... 15,15-969,96}
+                        android.widget.LinearLayout{3f98775b V.E..... ... 30,141-954,633}
+                          android.widget.RelativeLayout{33aabbf8 V.E..... ... 0,0-432,492}
+                            com.wificammobileappalbum.ExtendComponent.RoundAngleImageView{1ce65f36 V.ED..C. ... 30,15-402,477 #7f0f0093 app:id/local_photo}
+                            android.support.v7.widget.AppCompatTextView{2fcb9fa4 G.ED.... ... 0,0-0,0 #7f0f0094 app:id/no_local_photos}
+                            android.support.v7.widget.AppCompatTextView{12f210d V.ED.... ... 30,404-402,477}
+                          android.widget.RelativeLayout{3a3138c2 V.E..... ... 492,0-924,492}
+                            com.wificammobileappalbum.ExtendComponent.RoundAngleImageView{2e4c76d3 V..D..C. ... 30,15-402,477 #7f0f0095 app:id/local_video}
+                            android.support.v7.widget.AppCompatTextView{3cf51210 V.ED.... ... 74,215-358,276 #7f0f0096 app:id/no_local_videos}
+                            android.support.v7.widget.AppCompatTextView{2839c109 V.ED.... ... 30,404-402,477}

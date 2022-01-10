@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Gradle: ./app/libs/icatchbluetoothsdk.jar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/libs/icatchbluetoothsdk.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

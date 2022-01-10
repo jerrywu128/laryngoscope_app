@@ -1,0 +1,7 @@
+Executable : C:\Users\User\AppData\Local\Android\Sdk\cmake\3.10.2.4988404\bin\ninja.exe
+arguments : 
+-C
+C:\Users\User\Desktop\iCatch APP SDK\iCatch_AndroidSDK_1.4.17.tar\iCatch_AndroidSDK_1.4.17\1.4\Android\code\app\.cxx\Debug\6c2y4022\armeabi-v7a
+sbcapp
+jvmArgs : 
+

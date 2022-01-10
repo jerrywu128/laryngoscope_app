@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/actionbar_border.xml" value="0.38125" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/capture_delay_btn.xml" value="0.38125" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/capture_toggle_btn_on.xml" value="0.38125" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/ic_baseline_dehaze_24.xml" value="0.3314814814814815" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/ic_baseline_folder_open_24.xml" value="0.26927083333333335" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/ic_outline_linked_camera_24.xml" value="0.38125" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/ic_outline_photo_camera_24.xml" value="0.3314814814814815" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/ic_outline_videocam_24.xml" value="0.26927083333333335" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/local_video_item_selector.xml" value="0.22239583333333332" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/pb_btn.xml" value="0.22239583333333332" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/po_seekbar_02.xml" value="0.22239583333333332" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/round_angle_view.xml" value="0.38125" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/round_angle_view2.xml" value="0.38125" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/seekbar_thumb.xml" value="0.22239583333333332" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/selector_btn_bg_color_grad.xml" value="0.22239583333333332" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/selector_primary.xml" value="0.22239583333333332" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/selector_radio_capture.xml" value="0.22239583333333332" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/selector_radio_timelapse.xml" value="0.22239583333333332" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/selector_radio_video.xml" value="0.22239583333333332" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/selector_switch_btn.xml" value="0.26927083333333335" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/selector_transparent2gray.xml" value="0.22239583333333332" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/selector_white.xml" value="0.22239583333333332" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/shape_dialog_bg.xml" value="0.22239583333333332" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/still_capture_btn.xml" value="0.26927083333333335" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/still_capture_btn_off.xml" value="0.26927083333333335" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/timelapse_toggle_btn_on.xml" value="0.26927083333333335" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/video_recording_btn_off.xml" value="0.26927083333333335" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/video_recording_btn_on.xml" value="0.26927083333333335" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/drawable/video_toggle_btn_on.xml" value="0.26927083333333335" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/activity_launch.xml" value="0.1" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/activity_launch_help.xml" value="0.2078125" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/activity_license.xml" value="0.2078125" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/activity_local_photo_pb.xml" value="0.2078125" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/activity_local_photo_wall.xml" value="0.2078125" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/activity_local_video_wall.xml" value="0.2078125" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/activity_login_google.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/activity_logo.xml" value="0.2078125" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/activity_multi_pb.xml" value="0.1" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/activity_pb_local_video.xml" value="0.15273556231003038" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/activity_photo_pb.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/activity_preview.xml" value="0.2078125" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/activity_qrcode_connect_wifi.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/activity_test.xml" value="0.2604166666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/activity_video_pb.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/activity_wifi_ap.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/audio_switch_layout.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/auto_download_layout.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/auto_download_layout_size.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/bluetooth_header.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/bluetooth_status.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/cam_slot_item.xml" value="0.2604166666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/cam_slot_item_add.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/camer_mode_switch_layout.xml" value="0.2604166666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/camera_name_password_set.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/change_blc_iq.xml" value="0.31023550724637683" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/change_white_balance.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/content_download_size_dialog.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/content_image_qt.xml" value="0.2552083333333333" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/content_launch.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/content_launch_help_img.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/content_local_photo_wall.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/content_local_video_wall.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/content_multi_pb.xml" value="0.1" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/content_pb_local_video.xml" value="0.267840593141798" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/content_preview.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/content_video_pb.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/download.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/download_content_dialog.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/download_dialog_title.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/fragment_add_new_cam.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/fragment_btpair_begin.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/fragment_btpair_completed.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/fragment_btpair_setup.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/fragment_multi_pb_photo.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/fragment_multi_pb_video.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/iq_change_password.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/iq_password_dialog.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/item_local_photo_wall_grid.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/item_local_photo_wall_list.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/item_local_photo_wall_list_header.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/item_local_video_wall_list.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/item_local_wall_grid_header.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/iten_local_video_wall_grid.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/license_agreement_layout.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/live_shared_url.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/load_dialog.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/multi_pb_edit_view.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/my_toast.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/pb_photo_item.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/quality_bar.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/setting_menu.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/setting_menu_item.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/setting_switch_layout.xml" value="0.2604166666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/single_download_content_dialog.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/layout/zoombar_view.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/menu/menu_launch.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/menu/menu_local_photo_wall.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/menu/menu_local_video_wall.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/menu/menu_multi_pb.xml" value="0.3651041666666667" />
+        <entry key="..\:/Users/User/Desktop/iCatch APP SDK/iCatch_AndroidSDK_1.4.17.tar/iCatch_AndroidSDK_1.4.17/1.4/Android/code/app/src/main/res/menu/menu_preview.xml" value="0.3651041666666667" />
+      </map>
+    </option>
+  </component>
+  <component name="NullableNotNullManager">
+    <option name="myDefaultNullable" value="android.support.annotation.Nullable" />
+    <option name="myDefaultNotNull" value="android.support.annotation.NonNull" />
+    <option name="myNullables">
+      <value>
+        <list size="14">
+          <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.Nullable" />
+          <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nullable" />
+          <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.Nullable" />
+          <item index="3" class="java.lang.String" itemvalue="android.support.annotation.Nullable" />
+          <item index="4" class="java.lang.String" itemvalue="androidx.annotation.Nullable" />
+          <item index="5" class="java.lang.String" itemvalue="androidx.annotation.RecentlyNullable" />
+          <item index="6" class="java.lang.String" itemvalue="com.android.annotations.Nullable" />
+          <item index="7" class="java.lang.String" itemvalue="javax.annotation.CheckForNull" />
+          <item index="8" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.qual.Nullable" />
+          <item index="9" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NullableDecl" />
+          <item index="10" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NullableType" />
+          <item index="11" class="java.lang.String" itemvalue="org.eclipse.jdt.annotation.Nullable" />
+          <item index="12" class="java.lang.String" itemvalue="io.reactivex.annotations.Nullable" />
+          <item index="13" class="java.lang.String" itemvalue="io.reactivex.rxjava3.annotations.Nullable" />
+        </list>
+      </value>
+    </option>
+    <option name="myNotNulls">
+      <value>
+        <list size="14">
+          <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.NotNull" />
+          <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nonnull" />
+          <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.NonNull" />
+          <item index="3" class="java.lang.String" itemvalue="android.support.annotation.NonNull" />
+          <item index="4" class="java.lang.String" itemvalue="androidx.annotation.NonNull" />
+          <item index="5" class="java.lang.String" itemvalue="androidx.annotation.RecentlyNonNull" />
+          <item index="6" class="java.lang.String" itemvalue="com.android.annotations.NonNull" />
+          <item index="7" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.qual.NonNull" />
+          <item index="8" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NonNullDecl" />
+          <item index="9" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NonNullType" />
+          <item index="10" class="java.lang.String" itemvalue="org.eclipse.jdt.annotation.NonNull" />
+          <item index="11" class="java.lang.String" itemvalue="io.reactivex.annotations.NonNull" />
+          <item index="12" class="java.lang.String" itemvalue="io.reactivex.rxjava3.annotations.NonNull" />
+          <item index="13" class="java.lang.String" itemvalue="lombok.NonNull" />
+        </list>
+      </value>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+  <component name="SvnBranchConfigurationManager">
+    <option name="mySupportsUserInfoFilter" value="true" />
+  </component>
+</project>
