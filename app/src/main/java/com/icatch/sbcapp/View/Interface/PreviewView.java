@@ -105,7 +105,6 @@ public interface PreviewView {
 
     void setProgressSave(int IQ,int value);
 
-    void setToggleStatus(boolean checked);
 
     void setVideoRadioBtnVisibility(int visibility);
 

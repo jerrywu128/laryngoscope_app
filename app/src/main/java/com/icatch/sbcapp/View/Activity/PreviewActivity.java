@@ -83,7 +83,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
     private ImageView close_IQ;
     private ImageView close_seek_bar;
     private ImageView close_WB_IQ;
-    private ImageView close_blcToggle_bar;
+
     private ImageView device_menu;
     private TextView recordingTime;
     private ImageView autoDownloadImagview;
@@ -117,15 +117,14 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
     private RelativeLayout buttom_bar;
     private RelativeLayout quality_bar;
     private RelativeLayout WB_change_IQ;
-    private RelativeLayout BLC_change_IQ;
-    private Button brightness_BT, HUE_BT,saturation_BT,white_balance_BT,BLC_BT;
+
+    private Button brightness_BT, HUE_BT,saturation_BT,white_balance_BT;
     private Button WB_AUTO,WB_DAYLIGHT,WB_CLOUDY,WB_TUNGSTEN,WB_FLOURESCENT_H,CHANGE_IQ_PASSWORD;
     private TextView quality_name,seekbar_value;
     private TextView recording_text;
     private SeekBar seekBar;
     private int[] progress_save;
-    private ToggleButton blc_toggle;
-    private boolean BLCtoggle_status;
+
     private MediaProjectionManager mMediaProjectionManager;
     private static final int PHOTO_REQUEST_CODE = 100;
     private static final int VIDEO_REQUEST_CODE = 101;
@@ -184,40 +183,37 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
         close_seek_bar.setOnClickListener(this);
         close_WB_IQ = (ImageView) findViewById(R.id.close_WB);
         close_WB_IQ.setOnClickListener(this);
-        close_blcToggle_bar = (ImageView) findViewById(R.id.close_toggle);
+
         device_menu = (ImageView) findViewById(R.id.device_menu);
         device_menu.setOnClickListener(this);
-        close_blcToggle_bar.setOnClickListener(this);
         pb_IQ = (RelativeLayout)findViewById(R.id.pb_IQ);
         WB_change_IQ = (RelativeLayout)findViewById(R.id.WB_IQ);
-        BLC_change_IQ = (RelativeLayout) findViewById(R.id.blc_bar);
         buttom_bar = (RelativeLayout) findViewById(R.id.buttomBar);
         quality_bar = (RelativeLayout) findViewById(R.id.quality_bar);
         quality_name = (TextView) findViewById(R.id.quality_name);
         seekbar_value = (TextView) findViewById(R.id.seekbar_value);
         seekBar = (SeekBar) findViewById(R.id.seekbar);
-        blc_toggle = (ToggleButton) findViewById(R.id.blc_toggle);
-        blc_toggle.setOnCheckedChangeListener(new ToggleListener());
+
         /**IQ_BT*/
         brightness_BT = (Button)findViewById(R.id.brightness_bt);
         HUE_BT = (Button)findViewById(R.id.hue_bt);
         saturation_BT = (Button)findViewById(R.id.saturation_bt);
         white_balance_BT = (Button)findViewById(R.id.white_balance_bt);
-        BLC_BT = (Button)findViewById(R.id.BLC_bt);
+
         CHANGE_IQ_PASSWORD = (Button)findViewById(R.id.change_iq_pwd_bt);
 
         brightness_BT.setOnClickListener(this);
         HUE_BT.setOnClickListener(this);
         saturation_BT.setOnClickListener(this);
         white_balance_BT.setOnClickListener(this);
-        BLC_BT.setOnClickListener(this);
+
         CHANGE_IQ_PASSWORD.setOnClickListener(this);
 
         progress_save = new int[3];
         progress_save[0]=128;//brightness
         progress_save[1]=128;//saturation
         progress_save[2]=0;//hue
-        BLCtoggle_status=false;
+
 
         /**----------------------------*/
         /**WB_IQ*/
@@ -499,18 +495,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
         }
     }
 
-    private class ToggleListener implements CompoundButton.OnCheckedChangeListener {
-        @Override
-        public void onCheckedChanged(CompoundButton buttonview, boolean ischecked) {
-            if (ischecked) {
-                presenter.openBLC();
-                BLCtoggle_status=true;
-            } else {
-                presenter.closeBLC();
-                BLCtoggle_status=false;
-            }
-        }
-    }
+
 
     @Override
     public void onClick(View v) {
@@ -554,7 +539,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
                 break;
             case R.id.close_toggle:
                 AppLog.i(TAG, "click the close_toggle");
-                BLC_change_IQ.setVisibility(View.GONE);
+
                 pb_IQ.setVisibility(View.VISIBLE);
                 break;
             case R.id.close_WB:
@@ -590,11 +575,6 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
             case R.id.white_balance_bt:
                 AppLog.i(TAG, "click the white_balance_bt");
                 presenter.openWB_IQ(pb_IQ,WB_change_IQ);
-                break;
-            case R.id.BLC_bt:
-                AppLog.i(TAG, "click the BLC_bt");
-                blc_toggle.setChecked(BLCtoggle_status);
-                presenter.openBLC_IQ(pb_IQ,BLC_change_IQ);
                 break;
             /**WB_Change*/
             case R.id.WB_AUTO:
@@ -731,10 +711,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
     }
 
 
-    @Override
-    public void setToggleStatus(boolean checked){
-        BLCtoggle_status=checked;
-    }
+
 
     @Override
     public void setProgressSave(int IQ,int value){

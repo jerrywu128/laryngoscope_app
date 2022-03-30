@@ -175,10 +175,9 @@ public class PreviewPresenter extends BasePresenter {
         previewView.setProgressSave(0,currentCamera.getUSB_PIMA_DCP_IQ_BRIGHTNESS().getCurrentValue());
         previewView.setProgressSave(1,currentCamera.getUSB_PIMA_DCP_IQ_SATURATION().getCurrentValue());
         previewView.setProgressSave(2,currentCamera.getUSB_PIMA_DCP_IQ_HUE().getCurrentValue());
-        int blc_value = currentCamera.getUSB_PIMA_DCP_IQ_BLC().getCurrentValue();
-        boolean ini_blc_value = (blc_value==0)?false:true;
 
-        previewView.setToggleStatus(ini_blc_value);
+
+
         if (cameraProperties.hasFuction(0xD7F0)) {
             cameraProperties.setCaptureDelayMode(1);
         }
@@ -1896,18 +1895,7 @@ public class PreviewPresenter extends BasePresenter {
         pb_IQ.setVisibility(View.GONE);
         WB_IQ.setVisibility(View.VISIBLE);
     }
-    public void openBLC_IQ(RelativeLayout pb_IQ, RelativeLayout BLC_IQ){
-        pb_IQ.setVisibility(View.GONE);
-        BLC_IQ.setVisibility(View.VISIBLE);
-    }
 
-    public void openBLC(){
-        currentCamera.getUSB_PIMA_DCP_IQ_BLC().setValue(1);
-    }
-
-    public void closeBLC(){
-        currentCamera.getUSB_PIMA_DCP_IQ_BLC().setValue(0);
-    }
 
 
     public void videoResize(){
