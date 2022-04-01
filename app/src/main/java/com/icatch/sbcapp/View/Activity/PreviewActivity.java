@@ -298,7 +298,6 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
         changeVideoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeCameraBtn.setImageResource(R.drawable.selector_radio_capture);
                 presenter.changePreviewMode(PreviewMode.APP_STATE_VIDEO_MODE);
             }
         });
@@ -306,7 +305,6 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
         changeCameraBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeCameraBtn.setImageResource(R.drawable.capture_toggle_btn_on);
                 presenter.changePreviewMode(PreviewMode.APP_STATE_STILL_MODE);
             }
         });

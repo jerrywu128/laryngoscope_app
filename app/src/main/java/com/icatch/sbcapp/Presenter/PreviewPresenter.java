@@ -321,10 +321,13 @@ public class PreviewPresenter extends BasePresenter {
             curMode = previewMode;
             previewView.setCaptureBtnBackgroundResource(R.drawable.still_capture_btn);
             previewView.setchangeVideoBtnBackgroundResource(R.drawable.selector_radio_video);
+            previewView.setchangeCameraBtnBackgroundResource(R.drawable.capture_toggle_btn_on);
         }else if(curMode == PreviewMode.APP_STATE_STILL_PREVIEW){
             curMode = previewMode;
             previewView.setCaptureBtnBackgroundResource(R.drawable.video_recording_btn_on);
             previewView.setchangeVideoBtnBackgroundResource(R.drawable.video_toggle_btn_on);
+            previewView.setchangeCameraBtnBackgroundResource(R.drawable.selector_radio_capture);
+
         }
     }
 
