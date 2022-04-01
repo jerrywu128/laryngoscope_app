@@ -23,7 +23,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -34,14 +33,12 @@ import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
 import androidx.core.app.ActivityCompat;
 
 import com.icatch.sbcapp.Adapter.SettingListAdapter;
 import com.icatch.sbcapp.AppDialog.AppDialog;
 import com.icatch.sbcapp.ExtendComponent.MPreview;
-import com.icatch.sbcapp.ExtendComponent.MyProgressDialog;
 import com.icatch.sbcapp.ExtendComponent.MyToast;
 import com.icatch.sbcapp.ExtendComponent.ZoomView;
 import com.icatch.sbcapp.Function.MediaCaptureService;
@@ -101,7 +98,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
     private RadioButton captureRadioBtn;
     private RadioButton videoRadioBtn;
     private RadioButton timepLapseRadioBtn;
-    private ImageView pvModeBtn;
+    private ImageView changeVideoBtn;
     private View contentView;
     //private Toolbar toolbar;
     private TextView decodeTimeTxv;
@@ -111,6 +108,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
     private Button youtubeLiveBtn;
     private Button googleAccountBtn;
     private Button cameraSwitchBtn;
+    private ImageView changeCameraBtn;
     private LinearLayout youTubeLiveLayout;
     private LinearLayout cameraSwitchLayout;
     private RelativeLayout pb_IQ;
@@ -118,7 +116,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
     private RelativeLayout quality_bar;
     private RelativeLayout WB_change_IQ;
 
-    private Button brightness_BT, HUE_BT,saturation_BT,white_balance_BT;
+    private Button brightness_BT, HUE_BT,saturation_BT,white_balance_BT,reset_IQ_BT;
     private Button WB_AUTO,WB_DAYLIGHT,WB_CLOUDY,WB_TUNGSTEN,WB_FLOURESCENT_H,CHANGE_IQ_PASSWORD;
     private TextView quality_name,seekbar_value;
     private TextView recording_text;
@@ -199,14 +197,14 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
         HUE_BT = (Button)findViewById(R.id.hue_bt);
         saturation_BT = (Button)findViewById(R.id.saturation_bt);
         white_balance_BT = (Button)findViewById(R.id.white_balance_bt);
-
+        reset_IQ_BT = (Button)findViewById(R.id.resetIQ_bt);
         CHANGE_IQ_PASSWORD = (Button)findViewById(R.id.change_iq_pwd_bt);
 
         brightness_BT.setOnClickListener(this);
         HUE_BT.setOnClickListener(this);
         saturation_BT.setOnClickListener(this);
         white_balance_BT.setOnClickListener(this);
-
+        reset_IQ_BT.setOnClickListener(this);
         CHANGE_IQ_PASSWORD.setOnClickListener(this);
 
         progress_save = new int[3];
@@ -250,7 +248,8 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
         setupMainMenu = (RelativeLayout) findViewById(R.id.setupMainMenu);
         mainMenuList = (ListView) findViewById(R.id.setup_menu_listView);
         noSupportPreviewTxv = (TextView) findViewById(R.id.not_support_preview_txv);
-        pvModeBtn = (ImageView) findViewById(R.id.pv_mode);
+        changeVideoBtn = (ImageView) findViewById(R.id.pv_mode);
+        changeCameraBtn = (ImageView) findViewById(R.id.cm_mode);
         recording_text = (TextView) findViewById(R.id.recording_text);
         contentView = LayoutInflater.from(PreviewActivity.this).inflate(R.layout.camer_mode_switch_layout, null);
         pvModePopupWindow = new PopupWindow(contentView,
@@ -296,10 +295,19 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
             }
         });
 
-        pvModeBtn.setOnClickListener(new View.OnClickListener() {
+        changeVideoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.showPvModePopupWindow();
+                changeCameraBtn.setImageResource(R.drawable.selector_radio_capture);
+                presenter.changePreviewMode(PreviewMode.APP_STATE_VIDEO_MODE);
+            }
+        });
+
+        changeCameraBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeCameraBtn.setImageResource(R.drawable.capture_toggle_btn_on);
+                presenter.changePreviewMode(PreviewMode.APP_STATE_STILL_MODE);
             }
         });
 
@@ -575,6 +583,12 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
             case R.id.white_balance_bt:
                 AppLog.i(TAG, "click the white_balance_bt");
                 presenter.openWB_IQ(pb_IQ,WB_change_IQ);
+                break;
+            case R.id.resetIQ_bt:
+                AppLog.i(TAG, "click the reset_IQ_bt");
+                CameraProperties.getInstance().setWhiteBalance(1);
+                presenter.resetIQ();
+                MyToast.show(this,R.string.reset_IQ_success);
                 break;
             /**WB_Change*/
             case R.id.WB_AUTO:
@@ -966,8 +980,13 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
     }
 
     @Override
-    public void setPvModeBtnBackgroundResource(int drawableId) {
-        pvModeBtn.setImageResource(drawableId);
+    public void setchangeVideoBtnBackgroundResource(int drawableId) {
+        changeVideoBtn.setImageResource(drawableId);
+    }
+
+    @Override
+    public void setchangeCameraBtnBackgroundResource(int drawableId) {
+        changeCameraBtn.setImageResource(drawableId);
     }
 
     @Override
@@ -1005,16 +1024,16 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
         if (pvModePopupWindow != null) {
             int height = SystemInfo.getMetrics().heightPixels;
             AppLog.d(TAG, "showPopupWindow height = " + height);
-            AppLog.d(TAG, "showPopupWindow pvModeBtn.getWidth() = " + pvModeBtn.getWidth());
-            AppLog.d(TAG, "showPopupWindow pvModeBtn.getHeight() = " + pvModeBtn.getHeight());
+            AppLog.d(TAG, "showPopupWindow pvModeBtn.getWidth() = " + changeVideoBtn.getWidth());
+            AppLog.d(TAG, "showPopupWindow pvModeBtn.getHeight() = " + changeVideoBtn.getHeight());
             AppLog.d(TAG, "showPopupWindow contentView.getHeight() = " + contentView.getHeight());
             //JIRA BUG IC-587 Start modify by b.jiang 20160719
             int contentViewH = contentView.getHeight();
             if (contentViewH == 0) {
-                contentViewH = pvModeBtn.getHeight() * 5;
+                contentViewH = changeVideoBtn.getHeight() * 5;
             }
 //            pvModePopupWindow.showAsDropDown(pvModeBtn, -pvModeBtn.getWidth(), -pvModeBtn.getHeight()-contentViewH);
-            pvModePopupWindow.showAsDropDown(pvModeBtn, 0, -pvModeBtn.getHeight() - contentViewH);
+            pvModePopupWindow.showAsDropDown(changeVideoBtn, 0, -changeVideoBtn.getHeight() - contentViewH);
             //JIRA BUG IC-587 End modify by b.jiang 20160719
         }
     }

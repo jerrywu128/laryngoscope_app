@@ -239,6 +239,8 @@
     <string name="color_correction">色彩补正</string>
     <string name="white_balance">白平衡</string>
     <string name="BLC">背光捕捉</string>
+    <string name="reset_IQ">重置设定</string>
+    <string name="reset_IQ_success">重置成功</string>
     <string name="gain">增益</string>
     <string name="dialog_mobiledata">请关闭移动数据，以确保连线稳定。</string>
     <string name="please_input_password">请输入密码</string>

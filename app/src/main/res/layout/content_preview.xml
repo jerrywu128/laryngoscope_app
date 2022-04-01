@@ -268,8 +268,17 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="85dp"
+            android:layout_marginLeft="70dp"
             android:src="@drawable/ic_baseline_folder_open_24" />
+
+        <ImageView
+            android:id="@+id/device_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="135dp"
+            android:src="@drawable/ic_baseline_menu_24" />
 
         <ImageView
             android:id="@+id/doCapture"
@@ -294,22 +303,22 @@
         />
 
         <ImageView
-            android:id="@+id/device_menu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
-            android:src="@drawable/ic_baseline_menu_24" />
-
-        <ImageView
             android:id="@+id/pv_mode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="80dp"
-            android:src="@drawable/ic_outline_videocam_24" />
+            android:src="@drawable/video_toggle_btn_on" />
+
+        <ImageView
+            android:id="@+id/cm_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/selector_radio_capture" />
     </RelativeLayout>
 
 

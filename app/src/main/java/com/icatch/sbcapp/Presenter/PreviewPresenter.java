@@ -304,14 +304,27 @@ public class PreviewPresenter extends BasePresenter {
         }).start();
     }
     public void changeCameraMode(final int previewMode) {
+        if (curMode == PreviewMode.APP_STATE_STILL_CAPTURE ||
+                curMode == PreviewMode.APP_STATE_TIMELAPSE_VIDEO_CAPTURE ||
+                curMode == PreviewMode.APP_STATE_TIMELAPSE_STILL_CAPTURE ||
+                curMode == PreviewMode.APP_STATE_VIDEO_CAPTURE) {
+            //IC-754 Begin modify 20161212 BY b.jiang
+            if (curMode == PreviewMode.APP_STATE_STILL_CAPTURE || curMode == PreviewMode.APP_STATE_TIMELAPSE_STILL_CAPTURE) {
+                MyToast.show(activity, R.string.stream_error_capturing);
+            } else if (curMode == PreviewMode.APP_STATE_VIDEO_CAPTURE || curMode == PreviewMode.APP_STATE_TIMELAPSE_VIDEO_CAPTURE) {
+                MyToast.show(activity, R.string.stream_error_recording);
+            }
+            //IC-754 End modify 20161212 BY b.jiang
+            return;
+        }
         if(curMode==PreviewMode.APP_STATE_VIDEO_CAPTURE || curMode==PreviewMode.APP_STATE_VIDEO_PREVIEW) {
             curMode = previewMode;
             previewView.setCaptureBtnBackgroundResource(R.drawable.still_capture_btn);
-            previewView.setPvModeBtnBackgroundResource(R.drawable.ic_outline_photo_camera_24);
+            previewView.setchangeVideoBtnBackgroundResource(R.drawable.selector_radio_video);
         }else if(curMode == PreviewMode.APP_STATE_STILL_PREVIEW){
             curMode = previewMode;
             previewView.setCaptureBtnBackgroundResource(R.drawable.video_recording_btn_on);
-            previewView.setPvModeBtnBackgroundResource(R.drawable.ic_outline_videocam_24);
+            previewView.setchangeVideoBtnBackgroundResource(R.drawable.video_toggle_btn_on);
         }
     }
 
@@ -519,21 +532,16 @@ public class PreviewPresenter extends BasePresenter {
         if (cameraProperties.cameraModeSupport(ICatchMode.ICH_MODE_VIDEO)) {
             if (previewMode == PreviewMode.APP_STATE_VIDEO_PREVIEW ||
                     previewMode == PreviewMode.APP_STATE_VIDEO_CAPTURE) {
-                previewView.setPvModeBtnBackgroundResource(R.drawable.ic_outline_videocam_24);
+                previewView.setchangeVideoBtnBackgroundResource(R.drawable.video_toggle_btn_on);
+                previewView.setchangeCameraBtnBackgroundResource(R.drawable.selector_radio_capture);
             }
         }
         if (previewMode == PreviewMode.APP_STATE_STILL_PREVIEW ||
                 previewMode == PreviewMode.APP_STATE_STILL_CAPTURE) {
-            previewView.setPvModeBtnBackgroundResource(R.drawable.ic_outline_photo_camera_24);
+            previewView.setchangeVideoBtnBackgroundResource(R.drawable.selector_radio_video);
+            previewView.setchangeCameraBtnBackgroundResource(R.drawable.capture_toggle_btn_on);
         }
-        if (cameraProperties.cameraModeSupport(ICatchMode.ICH_MODE_TIMELAPSE)) {
-            if (previewMode == PreviewMode.APP_STATE_TIMELAPSE_STILL_CAPTURE ||
-                    previewMode == PreviewMode.APP_STATE_TIMELAPSE_STILL_PREVIEW ||
-                    previewMode == PreviewMode.APP_STATE_TIMELAPSE_VIDEO_CAPTURE ||
-                    previewMode == APP_STATE_TIMELAPSE_VIDEO_PREVIEW) {
-                previewView.setPvModeBtnBackgroundResource(R.drawable.timelapse_toggle_btn_on);
-            }
-        }
+
 
         if (previewMode == PreviewMode.APP_STATE_STILL_CAPTURE ||
                 previewMode == PreviewMode.APP_STATE_TIMELAPSE_STILL_CAPTURE ||
@@ -1845,6 +1853,13 @@ public class PreviewPresenter extends BasePresenter {
             buttom_bar.setVisibility((View.GONE));
         }
     }
+
+    public void getIQstatus(){
+        previewView.setProgressSave(0,currentCamera.getUSB_PIMA_DCP_IQ_BRIGHTNESS().getCurrentValue());
+        previewView.setProgressSave(1,currentCamera.getUSB_PIMA_DCP_IQ_SATURATION().getCurrentValue());
+        previewView.setProgressSave(2,currentCamera.getUSB_PIMA_DCP_IQ_HUE().getCurrentValue());
+    }
+
     public void stopIQlayout(RelativeLayout pb_IQ,RelativeLayout buttom_bar,RelativeLayout quality_bar,RelativeLayout WB_change_IQ){
         pb_IQ.setVisibility(View.GONE);
         quality_bar.setVisibility(View.GONE);
@@ -1890,6 +1905,12 @@ public class PreviewPresenter extends BasePresenter {
         }
     }
 
+    public void resetIQ(){
+        currentCamera.getUSB_PIMA_DCP_IQ_BRIGHTNESS().setValue(128);
+        currentCamera.getUSB_PIMA_DCP_IQ_SATURATION().setValue(128);
+        currentCamera.getUSB_PIMA_DCP_IQ_HUE().setValue(0);
+        getIQstatus();
+    }
 
     public void openWB_IQ(RelativeLayout pb_IQ, RelativeLayout WB_IQ){
         pb_IQ.setVisibility(View.GONE);

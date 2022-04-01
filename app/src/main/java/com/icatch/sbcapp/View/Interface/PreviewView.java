@@ -87,7 +87,9 @@ public interface PreviewView {
 
     void setSupportPreviewTxvVisibility(int visibility);
 
-    void setPvModeBtnBackgroundResource(int drawableId);
+    void setchangeVideoBtnBackgroundResource(int drawableId);
+
+    void setchangeCameraBtnBackgroundResource(int drawableId);
 
     void showPopupWindow(int curMode);
 

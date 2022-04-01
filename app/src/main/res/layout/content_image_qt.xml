@@ -112,7 +112,16 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"/>
 
-
+            <Button
+                android:id="@+id/resetIQ_bt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reset_IQ"
+                android:background="@color/black"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:layout_weight="0.5"
+                />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

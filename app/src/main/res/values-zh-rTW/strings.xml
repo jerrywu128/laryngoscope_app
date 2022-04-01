@@ -57,7 +57,7 @@
     <string name="wb_auto">自動</string>
     <string name="wb_daylight">陽光</string>
     <string name="wb_cloudy">多雲</string>
-    <string name="wb_fluorescent">熒光燈</string>
+    <string name="wb_fluorescent">螢光燈</string>
     <string name="wb_incandescent">白熾燈</string>
     <string name="wb_underwater">水下</string>
     <string name="burst_off">關閉</string>
@@ -234,6 +234,8 @@
     <string name="color_correction">色彩補正</string>
     <string name="white_balance">白平衡</string>
     <string name="BLC">背光捕捉</string>
+    <string name="reset_IQ">重置設定</string>
+    <string name="reset_IQ_success">重置成功</string>
     <string name="gain">增益</string>
     <string name="dialog_mobiledata">請關閉行動數據，以確保連線穩定。</string>
     <string name="please_input_password">請輸入密碼</string>
