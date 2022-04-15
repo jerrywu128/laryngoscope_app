@@ -554,10 +554,10 @@ public class LaunchPresenter extends BasePresenter {
             editor.putString("IQ_password", "password");
             editor.commit();
         }
-        //下一次開啟則為否
-        SharedPreferences.Editor editor = pref.edit();
-        editor.putBoolean("isFirstIn", false);
-        editor.commit();
+        //下一次開啟則為否(因preview初次引導頁面移至後面判斷)
+        //SharedPreferences.Editor editor = pref.edit();
+        //editor.putBoolean("isFirstIn", false);
+        //editor.commit();
     }
 
 }

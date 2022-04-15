@@ -21,8 +21,8 @@ public class AppInfo {
     public static final String STREAM_OUTPUT_DIRECTORY_PATH = "/SportCamResoure/Raw/";
 
     public static final String PROPERTY_CFG_DIRECTORY_PATH = "/SportCamResoure/";
-    public static final String APP_VERSION = "V0.04.07";
-    public static final String APP_FIX_DATE="20220330";
+    public static final String APP_VERSION = "V0.04.8";
+    public static final String APP_FIX_DATE="20220415";
     public static final String DOWNLOAD_PATH = "/DCIM/"+GlobalInfo.getInstance().getAppContext().getResources().getString(R.string.app_name)+"/";
     public static final String AUTO_DOWNLOAD_PATH = "/DCIM/Camera/";
     public static final String UPDATEFW_FILENAME = "/SportCamResoure/sphost.BRN";

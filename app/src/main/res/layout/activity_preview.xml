@@ -21,7 +21,11 @@
             android:background="@color/black"
             app:popupTheme="@style/FullScreenTheme.PopupOverlay" />
 
+
+
     </com.google.android.material.appbar.AppBarLayout>
+
+
 
     <include
         layout="@layout/content_preview"
@@ -29,5 +33,11 @@
         android:layout_height="fill_parent"
         android:layout_below="@+id/AppBarLayout" />
 
+    <ImageView
+        android:id="@+id/bootPage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/leaderimg_android"
+        android:visibility="gone" />
 
 </RelativeLayout>

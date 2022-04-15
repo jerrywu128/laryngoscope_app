@@ -225,6 +225,12 @@
     <string name="capturing_cannot_live">不能继续拍照</string>
     <string name="recording_cannot_live">不能继续摄影</string>
 
+    <string name="title_privacy_policy">隱私政策和用戶協議</string>
+    <string name="content_privacy_policy_1">请你务必审慎阅读、充分理解各条款，包括但不限于：为了向你提供基本服务，我们需要收集你的设备信息、操作日志等个人信息。你可以阅读</string>
+    <string name="content_privacy_policy_2">《隱私政策和用戶協議》</string>
+    <string name="content_privacy_policy_3">了解详细信息。如你同意，请点击“同意”开始享受我们的服务。</string>
+
+
     <string name="scan_text">请扫描喉镜上的二维码</string>
     <string name="Image_processing">影像处理中请稍后</string>
     <string name="wifi_status">连线中</string>

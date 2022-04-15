@@ -91,6 +91,8 @@ public interface PreviewView {
 
     void setchangeCameraBtnBackgroundResource(int drawableId);
 
+    void setBootPage(int status);
+
     void showPopupWindow(int curMode);
 
     void showPopupMenu(View view);

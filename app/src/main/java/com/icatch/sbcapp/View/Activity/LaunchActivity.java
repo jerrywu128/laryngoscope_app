@@ -4,6 +4,8 @@ import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static android.os.Build.VERSION.SDK_INT;
 
+import static com.icatch.sbcapp.AppDialog.AppDialog.showLicenseAgreementDialog;
+
 import android.Manifest;
 
 import androidx.appcompat.graphics.drawable.DrawerArrowDrawable;
@@ -12,8 +14,12 @@ import androidx.core.content.ContextCompat;
 import androidx.multidex.MultiDex;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Instrumentation;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -31,6 +37,10 @@ import android.os.Environment;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.util.SparseArray;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -59,7 +69,9 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.zxing.Result;
 import com.icatch.sbcapp.Adapter.CameraSlotAdapter;
 import com.icatch.sbcapp.AppDialog.AppDialog;
+import com.icatch.sbcapp.AppInfo.AppInfo;
 import com.icatch.sbcapp.AppInfo.ConfigureInfo;
+import com.icatch.sbcapp.GlobalApp.ExitApp;
 import com.icatch.sbcapp.GlobalApp.GlobalInfo;
 import com.icatch.sbcapp.Listener.OnFragmentInteractionListener;
 import com.icatch.sbcapp.Log.AppLog;
@@ -203,6 +215,7 @@ public class LaunchActivity extends BaseActivity implements View.OnClickListener
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, 10 );
 
         }
+        checkLicenseAgreement(LaunchActivity.this);
 
     }
     public static void verifyStoragePermissions(Activity activity){
@@ -227,6 +240,8 @@ public class LaunchActivity extends BaseActivity implements View.OnClickListener
             return result == PackageManager.PERMISSION_GRANTED && result1 == PackageManager.PERMISSION_GRANTED;
         }
     }
+
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -575,6 +590,71 @@ public class LaunchActivity extends BaseActivity implements View.OnClickListener
         } else {
             //below android 11
             ActivityCompat.requestPermissions(LaunchActivity.this, new String[]{WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+        }
+    }
+
+    public void checkLicenseAgreement(Context context){
+        SharedPreferences preferences = context.getSharedPreferences("appData", MODE_PRIVATE);
+        boolean isAgreeLicenseAgreement = preferences.getBoolean("agreeLicenseAgreement", false);
+        AppLog.d(TAG, "showLicenseAgreementDialog isAgreeLicenseAgreement=" + isAgreeLicenseAgreement);
+        String AgreeLicenseAgreementVersion = preferences.getString("agreeLicenseAgreementVersion", "");
+        AppLog.d(TAG, "showLicenseAgreementDialog Version =" + AgreeLicenseAgreementVersion);
+
+        if ((!isAgreeLicenseAgreement) || (!AppInfo.EULA_VERSION.equalsIgnoreCase(AgreeLicenseAgreementVersion))) {
+            showLicenseAgreementDialog(context, AppInfo.EULA_VERSION);
+        }
+    }
+    AlertDialog agreementDialog;
+    public void showLicenseAgreementDialog(final Context context, final String eulaversion) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        View contentView = View.inflate(context, R.layout.dialog_privacy_policy, null);
+        TextView textView = contentView.findViewById(R.id.txv_privacy_policy);
+        SpannableString spanString = new SpannableString(context.getString(R.string.content_privacy_policy_2));
+        spanString.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(View view) {
+                //点击的响应事件
+                //AppLog.d(TAG,"spanString onclick");
+                //MyToast.show(context,"onclick");
+                Intent mainIntent = new Intent(LaunchActivity.this, LicenseAgreementActivity.class);
+                startActivity(mainIntent);
+            }
+        }, 0, spanString.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textView.setText(R.string.content_privacy_policy_1);
+        textView.append(spanString);
+        textView.append(context.getString(R.string.content_privacy_policy_3));
+        textView.setMovementMethod(LinkMovementMethod.getInstance());
+        builder.setTitle(R.string.title_privacy_policy);
+        builder.setView(contentView);
+
+        builder.setPositiveButton(R.string.text_agree, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                SharedPreferences.Editor editor = context.getSharedPreferences("appData", MODE_PRIVATE).edit();
+                editor.putBoolean("agreeLicenseAgreement", true);
+                editor.putString("agreeLicenseAgreementVersion", eulaversion);
+                editor.commit();
+                dialog.dismiss();
+            }
+        });
+        builder.setCancelable(false);
+        builder.setNegativeButton(R.string.text_disagree, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                ExitApp.getInstance().exit();
+            }
+        });
+        agreementDialog = builder.create();
+        agreementDialog.show();
+    }
+
+    public void closeLicenseAgreementDialog(){
+        if(agreementDialog != null){
+            agreementDialog.dismiss();
+            agreementDialog = null;
         }
     }
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">原妙醫學</string>
+    <string name="app_name">原妙医学</string>
     <string name="setting_on">打開</string>
     <string name="setting_off">關閉</string>
     <string name="stream_set_timer">設定倒數</string>
@@ -250,4 +250,8 @@
     <string name="pb_null">相簿內沒有檔案</string>
     <string name="recording">錄製中</string>
     <string name="check_video_password_sucess">驗證成功!</string>
+    <string name="title_privacy_policy">隱私政策和用戶協議</string>
+    <string name="content_privacy_policy_1">請你務必審慎閱讀、充分理解各條款，包括但不限於：為了向你提供基本服務，我們需要收集你的設備信息、操作日誌等個人信息。你可以閱讀</string>
+    <string name="content_privacy_policy_2">《隱私政策和用戶協議》</string>
+    <string name="content_privacy_policy_3">了解詳細信息。如你同意，請點擊“同意”開始享受我們的服務。</string>
 </resources>

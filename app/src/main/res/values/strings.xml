@@ -221,34 +221,40 @@
     <string name="setting_camera_back">Back Camera</string>
     <string name="loading" translatable="false">loading...</string>
 
+    <string name="title_privacy_policy">Privacy policy and user agreement</string>
+    <string name="content_privacy_policy_1">Please read carefully and fully understand the terms and conditions, including but not limited to: in order to provide you with basic services, we need to collect your device information, operation log and other personal information. You can read the </string>
+    <string name="content_privacy_policy_2">Privacy Policy and User Agreement</string>
+    <string name="content_privacy_policy_3"> for more information.If you agree, please click "Agree" to enjoy our services.</string>
+
+
     <string name="scan_text">Please Scan the Qrcode on the laryngoscope</string>
-    <string name="Image_processing">Image_processing</string>
+    <string name="Image_processing">Image processing</string>
     <string name="wifi_status">Connecting</string>
     <string name="wifiqrcode_connect">wifi qrcode connect</string>
     <string name="qrcode_tp_error">Qrcode format error</string>
     <string name="check_wifi_isenabled">Please check wifi isenabled</string>
-    <string name="brightness">亮度</string>
-    <string name="compared">对比</string>
-    <string name="hue">色调</string>
-    <string name="saturation">饱和度</string>
-    <string name="clarity">清晰度</string>
-    <string name="color_correction">色彩补正</string>
-    <string name="white_balance">白平衡</string>
+    <string name="brightness">Brightness</string>
+    <string name="compared">Compared</string>
+    <string name="hue">Hue</string>
+    <string name="saturation">Saturation</string>
+    <string name="clarity">Clarity</string>
+    <string name="color_correction">Color correction</string>
+    <string name="white_balance">WB</string>
     <string name="BLC">背光捕捉</string>
-    <string name="reset_IQ">reset IQ</string>
-    <string name="reset_IQ_success">reset IQ success</string>
-    <string name="gain">增益</string>
-    <string name="dialog_mobiledata">请关闭行动数据，以确保连线稳定。</string>
-    <string name="please_input_password">请输入密码</string>
-    <string name="sure">确定</string>
-    <string name="iq_password_error">请确认密码是否输入错误</string>
-    <string name="cancel">取消</string>
-    <string name="change_password">变更密码</string>
-    <string name="input_old_password">请输入旧密码</string>
-    <string name="input_new_password">请输入新密码</string>
-    <string name="change_password_sucess">变更密码成功</string>
-    <string name="new_password_null">新密码不可为空</string>
-    <string name="pb_null">相簿内没有档案</string>
-    <string name="recording">录制中</string>
-    <string name="check_video_password_sucess">验证成功!</string>
+    <string name="reset_IQ">Reset IQ</string>
+    <string name="reset_IQ_success">Reset IQ success</string>
+    <string name="gain">Gain</string>
+    <string name="dialog_mobiledata">Please turn off mobile data to ensure a stable connection.</string>
+    <string name="please_input_password">Please input password</string>
+    <string name="sure">Enter</string>
+    <string name="iq_password_error">IQ password error</string>
+    <string name="cancel">Cancel</string>
+    <string name="change_password">Change password</string>
+    <string name="input_old_password">Input old password</string>
+    <string name="input_new_password">Input new password</string>
+    <string name="change_password_sucess">Change password sucess</string>
+    <string name="new_password_null">New password empty</string>
+    <string name="pb_null">Photoblum is empty</string>
+    <string name="recording">REC</string>
+    <string name="check_video_password_sucess">Check sucess!</string>
 </resources>

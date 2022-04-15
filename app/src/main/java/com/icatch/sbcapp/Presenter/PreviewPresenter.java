@@ -198,6 +198,20 @@ public class PreviewPresenter extends BasePresenter {
 
     }
 
+    public void checkFirstInapp(){
+        //判斷是否第一次開啟app，並打開初次導覽頁面
+        Boolean isFirstIn = false;
+        SharedPreferences pref = activity.getSharedPreferences("myActivityName", 0);
+        isFirstIn = pref.getBoolean("isFirstIn", true);
+        if(isFirstIn){
+            previewView.setBootPage(View.VISIBLE);
+        }
+        //下一次開啟則為否
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putBoolean("isFirstIn", false);
+        editor.commit();
+    }
+
     public void initStatus() {
         int resid = ThumbnailOperation.getBatteryLevelIcon();
         if (resid > 0) {

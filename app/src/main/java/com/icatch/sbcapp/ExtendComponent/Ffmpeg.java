@@ -22,8 +22,8 @@ public class Ffmpeg {
         FFmpegSession session = FFmpegKit.execute("-i "+ GlobalInfo.getInstance().getVideoName() + " -strict -2 -vf crop="+GlobalInfo.getInstance().getVideowidth()+":"
                 + GlobalInfo.getInstance().getVideoheight()*0.75+":0:0 -preset veryslow "+ newVideoName );
         if (ReturnCode.isSuccess(session.getReturnCode())) {
-            //File file = new File(GlobalInfo.getInstance().getVideoName());
-            //file.delete();//刪除未裁切之視頻
+            File file = new File(GlobalInfo.getInstance().getVideoName());
+            file.delete();//刪除未裁切之視頻
             GlobalInfo.getInstance().setVideoName(newVideoName);//設定新名
 
             // SUCCESS

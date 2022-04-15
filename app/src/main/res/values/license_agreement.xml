@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE resources [
-        <!ENTITY license_app_name "SBCAPP">
-        <!ENTITY license_full_name "ICATCH TECHNOLOGY, INC.">
-        <!ENTITY license_privacy_url "http://www.icatchtek.com/iCatchPrivacy.htm">
-        <!ENTITY license_address "19-1, Innovation 1st Road, Hsinchu Science Park, Taiwan 300">
-        <!ENTITY license_contact_email "service@icatchtek.com">
+        <!ENTITY license_app_name "Honestmedical">
+        <!ENTITY license_full_name "Honestmedical TECHNOLOGY, INC.">
+        <!ENTITY license_privacy_url "none">
+        <!ENTITY license_address "none">
+        <!ENTITY license_contact_email "none@honestmc.com">
         ]>
 
 <resources>

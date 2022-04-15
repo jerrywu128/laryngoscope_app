@@ -80,6 +80,7 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
     private ImageView close_IQ;
     private ImageView close_seek_bar;
     private ImageView close_WB_IQ;
+    private ImageView bootPage;
 
     private ImageView device_menu;
     private TextView recordingTime;
@@ -161,7 +162,8 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
                     Context.MEDIA_PROJECTION_SERVICE);
         }
 
-
+        bootPage =  (ImageView) findViewById(R.id.bootPage);
+        bootPage.setOnClickListener(this);
         cameraSwitchLayout = (LinearLayout) findViewById(R.id.camera_switch_layout);
         cameraSwitchBtn = (Button) findViewById(R.id.camera_switch_btn);
         decodeTimeTxv = (TextView) findViewById(R.id.decodeTimeTxv);
@@ -286,7 +288,12 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
 
 
 
-
+        bootPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bootPage.setVisibility(View.GONE);
+            }
+        });
 
         cameraSwitchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -366,6 +373,8 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
 
         FileOper.createDirectory(path);
         FileOper.createDirectory(path+"/ENVIDEO");
+
+        presenter.checkFirstInapp();
     }
 
 
@@ -949,6 +958,12 @@ public class PreviewActivity extends BaseActivity implements View.OnClickListene
     public void setActionBarTitle(int resId) {
        // actionBar.setTitle(resId);
     }
+
+    @Override
+    public void setBootPage(int status){
+        bootPage.setVisibility(status);
+    }
+
 
     @Override
     public void setSettingBtnVisible(boolean isVisible) {
