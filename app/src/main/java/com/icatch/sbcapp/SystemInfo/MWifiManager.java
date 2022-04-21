@@ -50,7 +50,7 @@ public class MWifiManager {
     public WifiBroadcastReceiver wifiBroadcastReceiver = new WifiBroadcastReceiver();
     private Activity activity;
     private WifiManager wifiManager;
-
+    ConnectivityManager.NetworkCallback mNetwork;
 
     public MWifiManager(Activity activity) {
 
@@ -154,7 +154,7 @@ public class MWifiManager {
 
         try {
 
-            ConnectivityManager.NetworkCallback mNetwork;
+
             WifiNetworkSpecifier specifier = null;
 
                 specifier = new WifiNetworkSpecifier.Builder()
@@ -192,13 +192,9 @@ public class MWifiManager {
 
                     connectivityManager.bindProcessToNetwork(network);
 
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                connectCm.launchCamera();
-                            }
-                            /**android10以上連接至相機*/
-                        }, 7000);
+
+                    connectCm.launchCamera();
+
 
                 }
 

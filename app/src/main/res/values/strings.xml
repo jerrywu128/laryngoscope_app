@@ -227,11 +227,11 @@
     <string name="content_privacy_policy_3"> for more information.If you agree, please click "Agree" to enjoy our services.</string>
 
 
-    <string name="scan_text">Please Scan the Qrcode on the laryngoscope</string>
+    <string name="scan_text">Please Scan the QR Code on the laryngoscope</string>
     <string name="Image_processing">Image processing</string>
     <string name="wifi_status">Connecting</string>
     <string name="wifiqrcode_connect">wifi qrcode connect</string>
-    <string name="qrcode_tp_error">Qrcode format error</string>
+    <string name="qrcode_tp_error">QR Code format error</string>
     <string name="check_wifi_isenabled">Please check wifi isenabled</string>
     <string name="brightness">Brightness</string>
     <string name="compared">Compared</string>

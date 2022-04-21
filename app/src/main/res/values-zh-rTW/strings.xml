@@ -220,11 +220,11 @@
     <string name="setting_camera_back">後鏡頭</string>
     <string name="recording_cannot_live">不能繼續錄影</string>
     <string name="capturing_cannot_live">不能繼續拍照</string>
-    <string name="scan_text">請掃描喉鏡上面的QrCode</string>
+    <string name="scan_text">請掃描喉鏡上面的QR Code</string>
     <string name="Image_processing">影像處理中請稍後</string>
     <string name="wifi_status">連線中</string>
     <string name="wifiqrcode_connect">wifi qrcode connect</string>
-    <string name="qrcode_tp_error">Qrcode格式錯誤</string>
+    <string name="qrcode_tp_error">QR Code格式錯誤</string>
     <string name="check_wifi_isenabled">請確認是否開啟wifi</string>
     <string name="brightness">亮度</string>
     <string name="compared">對比</string>

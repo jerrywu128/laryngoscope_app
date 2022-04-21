@@ -88,7 +88,6 @@ public class ConnectCMActivity extends BaseActivity {
                 @Override
                 public void run() {
                     presenter.launchCamera();
-
                 }
             }, 6500 + delay);
 

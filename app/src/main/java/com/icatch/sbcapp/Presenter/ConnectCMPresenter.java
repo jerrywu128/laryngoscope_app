@@ -41,7 +41,9 @@ public class ConnectCMPresenter extends BasePresenter {
     private Activity activity;
     private MyCamera currentCamera;
     private final LaunchHandler launchHandler = new LaunchHandler();
-
+    WifiManager wifiManager;
+    MWifiManager mWifi;
+    IntentFilter filter;
     public ConnectCMPresenter(Activity activity){
         super(activity);
         this.activity = activity;
@@ -130,13 +132,13 @@ public class ConnectCMPresenter extends BasePresenter {
 
 
     public void connectWifiQ(Context context, String ssid, String password){
-        WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(activity.WIFI_SERVICE);
-        MWifiManager mWifi = new MWifiManager(activity,wifiManager);
+        wifiManager = (WifiManager) context.getApplicationContext().getSystemService(activity.WIFI_SERVICE);
+        mWifi = new MWifiManager(activity,wifiManager);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             mWifi.connectWifiQ(context,ssid,password,this);
         } else {
-            IntentFilter filter = new IntentFilter();
+            filter = new IntentFilter();
             filter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
             filter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
             filter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
@@ -149,7 +151,7 @@ public class ConnectCMPresenter extends BasePresenter {
     }
 
     public String getssid(){
-        WifiManager wifiManager = (WifiManager) activity.getApplicationContext().getSystemService(activity.WIFI_SERVICE);
+        wifiManager = (WifiManager) activity.getApplicationContext().getSystemService(activity.WIFI_SERVICE);
         WifiInfo info = wifiManager.getConnectionInfo ();
         String ssid  = info.getSSID();
         return ssid;
@@ -157,7 +159,7 @@ public class ConnectCMPresenter extends BasePresenter {
     }
 
     public boolean isWifienabled(){
-        WifiManager wifiManager = (WifiManager) activity.getApplicationContext().getSystemService(activity.WIFI_SERVICE);
+        wifiManager = (WifiManager) activity.getApplicationContext().getSystemService(activity.WIFI_SERVICE);
         if(!wifiManager.isWifiEnabled()){
             return false;
         }
