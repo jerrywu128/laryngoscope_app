@@ -193,6 +193,7 @@ public class H264DecoderThread {
                     continue;
                 }
                 try {
+
                     inIndex = decoder.dequeueInputBuffer(10000);
 //                inIndex = decoder.dequeueInputBuffer(timeout);
                     curVideoPts = frameBuffer.getPresentationTime();
