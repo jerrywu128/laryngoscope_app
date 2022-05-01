@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.scribejava:scribejava-apis:2.8.1">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../../../../../產測App/porductDetectApp/caches/modules-2/files-2.1/com.github.scribejava/scribejava-apis/2.8.1/c6fbd3dc5da30c991710dd178dc79f0631fc4a5/scribejava-apis-2.8.1.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.scribejava/scribejava-apis/2.8.1/c6fbd3dc5da30c991710dd178dc79f0631fc4a5/scribejava-apis-2.8.1.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$PROJECT_DIR$/../../../../../../產測App/porductDetectApp/caches/modules-2/files-2.1/com.github.scribejava/scribejava-apis/2.8.1/2068fd15d01df0f9e31013727f4640ae9aeea5fc/scribejava-apis-2.8.1-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.scribejava/scribejava-apis/2.8.1/2068fd15d01df0f9e31013727f4640ae9aeea5fc/scribejava-apis-2.8.1-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$PROJECT_DIR$/../../../../../../產測App/porductDetectApp/caches/modules-2/files-2.1/com.github.scribejava/scribejava-apis/2.8.1/77b18c0d191ba398ee9f1ad37f5eb58b8fcf6db4/scribejava-apis-2.8.1-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.scribejava/scribejava-apis/2.8.1/77b18c0d191ba398ee9f1ad37f5eb58b8fcf6db4/scribejava-apis-2.8.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Gradle: com.arthenica:smart-exception-common:0.1.0">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../../../../../產測App/porductDetectApp/caches/modules-2/files-2.1/com.arthenica/smart-exception-common/0.1.0/5070943a93ef8d188bd78ac25eac1664f7cc8604/smart-exception-common-0.1.0.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.arthenica/smart-exception-common/0.1.0/5070943a93ef8d188bd78ac25eac1664f7cc8604/smart-exception-common-0.1.0.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$PROJECT_DIR$/../../../../../../產測App/porductDetectApp/caches/modules-2/files-2.1/com.arthenica/smart-exception-common/0.1.0/ffd42e644e720cd82482a01955e800a703fa4fd7/smart-exception-common-0.1.0-javadoc.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.arthenica/smart-exception-common/0.1.0/ffd42e644e720cd82482a01955e800a703fa4fd7/smart-exception-common-0.1.0-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$PROJECT_DIR$/../../../../../../產測App/porductDetectApp/caches/modules-2/files-2.1/com.arthenica/smart-exception-common/0.1.0/da7d3bf841f00bec2a4d0aec8bb07cb8d30a7b18/smart-exception-common-0.1.0-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.arthenica/smart-exception-common/0.1.0/da7d3bf841f00bec2a4d0aec8bb07cb8d30a7b18/smart-exception-common-0.1.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
