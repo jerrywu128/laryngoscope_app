@@ -3,7 +3,7 @@
     <dbname value="sbc_app" />
     <version value="1" />
     <list>
-        <mapping class="com.icatch.sbcapp.Beans.CameraTable" />
+        <mapping class="com.honestmc.laryngoscopeapp.Beans.CameraTable" />
     </list>
     <storage value="external" />
 </litepal>

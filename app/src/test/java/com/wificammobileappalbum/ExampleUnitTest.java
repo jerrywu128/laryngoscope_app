@@ -1,6 +1,4 @@
-package com.icatch.sbcapp;
-
-import android.util.Log;
+package com.honestmc.laryngoscopeapp;
 
 import org.junit.Test;
 

@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:fitsSystemWindows="true"
-    tools:context="com.icatch.sbcapp.View.Activity.VideoPbActivity">
+    tools:context="com.honestmc.laryngoscopeapp.View.Activity.VideoPbActivity">
     <include layout="@layout/content_video_pb" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

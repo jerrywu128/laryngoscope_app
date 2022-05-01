@@ -3,10 +3,10 @@ android {
     compileSdkVersion 30
     buildToolsVersion '30.0.3'
     defaultConfig {
-        applicationId "com.icatch.sbcapp"
+        applicationId "com.honestmc.laryngoscopeapp"
         minSdkVersion 24
         targetSdkVersion 30
-        versionCode 22
+        versionCode 1
         versionName 'V0.04.09'
         multiDexEnabled true
         ndk {

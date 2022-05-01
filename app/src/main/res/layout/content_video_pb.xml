@@ -13,7 +13,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
 
-            <com.icatch.sbcapp.ExtendComponent.MPreview
+            <com.honestmc.laryngoscopeapp.ExtendComponent.MPreview
                 android:id="@+id/video_pb_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -197,7 +197,7 @@
             <!--android:layout_gravity="center"-->
             <!--android:src="@drawable/videooverlay" />-->
 
-        <com.icatch.sbcapp.ExtendComponent.ProgressWheel
+        <com.honestmc.laryngoscopeapp.ExtendComponent.ProgressWheel
             android:id="@+id/video_pb_spinner"
             android:layout_width="80dp"
             android:layout_height="80dp"

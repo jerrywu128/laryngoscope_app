@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="com.icatch.sbcapp.View.Activity.LogoActivity">
+    tools:context="com.honestmc.laryngoscopeapp.View.Activity.LogoActivity">
     <ImageView
         android:id="@+id/logo"
         android:layout_width="wrap_content"

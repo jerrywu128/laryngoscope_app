@@ -29,7 +29,7 @@
             android:layout_marginLeft="10dp"
             android:textSize="@dimen/second_title_size"
             android:textColor="@color/secondary_text"/>
-        <com.icatch.sbcapp.ExtendComponent.NumberProgressBar
+        <com.honestmc.laryngoscopeapp.ExtendComponent.NumberProgressBar
             android:id="@+id/numberbar"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"

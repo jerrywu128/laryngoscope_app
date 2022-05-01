@@ -7,7 +7,7 @@
                 android:layout_height="match_parent"
                 android:background="@color/black"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                tools:context="com.icatch.sbcapp.View.Activity.LocalVideoPbActivity"
+                tools:context="com.honestmc.laryngoscopeapp.View.Activity.LocalVideoPbActivity"
                 tools:showIn="@layout/activity_pb_local_video">
 
 

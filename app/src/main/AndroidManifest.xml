@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.icatch.sbcapp">
+    package="com.honestmc.laryngoscopeapp">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -49,7 +49,7 @@
     <!-- <uses-permission android:name="android.permission.RECORD_AUDIO" /> -->
     <!-- <uses-permission android:name="android.permission.READ_PHONE_STATE" /> -->
     <application
-        android:name=".Application.MyApplication"
+        android:name="com.honestmc.laryngoscopeapp.Application.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/honestmedical"
         android:label="@string/app_name"
@@ -59,7 +59,7 @@
         android:usesCleartextTraffic="true"
         >
         <activity
-            android:name=".View.Activity.LogoActivity"
+            android:name="com.honestmc.laryngoscopeapp.View.Activity.LogoActivity"
             android:launchMode="singleTask"
             android:screenOrientation="sensorPortrait">
 
@@ -70,77 +70,77 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".View.Activity.LaunchActivity"
+            android:name="com.honestmc.laryngoscopeapp.View.Activity.LaunchActivity"
             android:launchMode="singleTask"
             android:screenOrientation="sensorPortrait"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
-            android:name=".View.Activity.PreviewActivity"
+            android:name="com.honestmc.laryngoscopeapp.View.Activity.PreviewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_preview"
             android:launchMode="singleTask"
             android:theme="@style/FullScreenTheme.NoActionBar"/>
         <activity
-            android:name=".View.Activity.LocalVideoWallActivity"
+            android:name="com.honestmc.laryngoscopeapp.View.Activity.LocalVideoWallActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_local_video_wall"
             android:theme="@style/FullScreenTheme.NoActionBar"/>
         <activity
-            android:name=".View.Activity.LocalPhotoWallActivity"
+            android:name="com.honestmc.laryngoscopeapp.View.Activity.LocalPhotoWallActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_local_photo_wall"
             android:theme="@style/FullScreenTheme.NoActionBar"/>
         <activity
-            android:name=".View.Activity.LocalVideoPbActivity"
+            android:name="com.honestmc.laryngoscopeapp.View.Activity.LocalVideoPbActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_pb_local_video"
             android:theme="@style/FullScreenTheme.NoActionBar"/>
         <activity
-            android:name=".View.Activity.MultiPbActivity"
+            android:name="com.honestmc.laryngoscopeapp.View.Activity.MultiPbActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label=""
             android:theme="@style/FullScreenTheme.NoActionBar"/>
         <activity
-            android:name=".View.Activity.VideoPbActivity"
+            android:name="com.honestmc.laryngoscopeapp.View.Activity.VideoPbActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_video_pb"
             android:theme="@style/FullScreenTheme.NoActionBar"/>
         <activity
-            android:name=".View.Activity.PhotoPbActivity"
+            android:name="com.honestmc.laryngoscopeapp.View.Activity.PhotoPbActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_photo_pb"
             android:theme="@style/FullScreenTheme.NoActionBar"/>
         <activity
-            android:name=".View.Activity.LocalPhotoPbActivity"
+            android:name="com.honestmc.laryngoscopeapp.View.Activity.LocalPhotoPbActivity"
             android:label="@string/title_activity_pb_local_photo"
             android:theme="@style/FullScreenTheme.NoActionBar"/>
-        <activity android:name=".View.Activity.WifiApActivity"/>
-        <activity android:name=".View.Activity.LoginGoogleActivity">
+        <activity android:name="com.honestmc.laryngoscopeapp.View.Activity.WifiApActivity"/>
+        <activity android:name="com.honestmc.laryngoscopeapp.View.Activity.LoginGoogleActivity">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN"/> -->
             <!-- <category android:name="android.intent.category.LAUNCHER"/> -->
             <!-- </intent-filter> -->
         </activity>
-        <activity android:name=".View.Activity.BaseActivity">
+        <activity android:name="com.honestmc.laryngoscopeapp.View.Activity.BaseActivity">
         </activity>
         <activity
-            android:name=".View.Activity.LicenseAgreementActivity"
+            android:name="com.honestmc.laryngoscopeapp.View.Activity.LicenseAgreementActivity"
             android:launchMode="singleTask"
             android:screenOrientation="sensorPortrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:label="@string/text_license">
         </activity>
         <activity
-            android:name=".View.Activity.LaunchHelpActivity"
+            android:name="com.honestmc.laryngoscopeapp.View.Activity.LaunchHelpActivity"
             android:launchMode="singleTask"
             android:screenOrientation="sensorPortrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:label="@string/help">
         </activity>
         <activity
-            android:name=".View.Activity.ConnectCMActivity"
+            android:name="com.honestmc.laryngoscopeapp.View.Activity.ConnectCMActivity"
             android:launchMode="singleTask"
             android:screenOrientation="sensorPortrait"
             android:theme="@style/AppTheme.NoActionBar"
@@ -148,17 +148,17 @@
         </activity>
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.icatch.sbcapp.provider"
+            android:authorities="com.honestmc.laryngoscopeapp.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_provider_path" />
         </provider>
-        <service android:name=".Function.MediaCaptureService"
+        <service android:name="com.honestmc.laryngoscopeapp.Function.MediaCaptureService"
             android:foregroundServiceType="mediaProjection">
         </service>
-        <service android:name=".Function.MediaRecordService"
+        <service android:name="com.honestmc.laryngoscopeapp.Function.MediaRecordService"
             android:foregroundServiceType="mediaProjection">
         </service>
     </application>

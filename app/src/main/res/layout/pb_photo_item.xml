@@ -27,7 +27,7 @@
         <!--android:layout_centerHorizontal="true"-->
         <!--android:layout_centerVertical="true"-->
         <!--/>-->
-    <com.icatch.sbcapp.ExtendComponent.ProgressWheel
+    <com.honestmc.laryngoscopeapp.ExtendComponent.ProgressWheel
         android:id="@+id/progress_wheel"
         android:layout_width="80dp"
         android:layout_height="80dp"

@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Gradle: ./app/libs/google-api-services-tasks-v1-1.2.2-beta.jar">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/app/libs/google-api-services-tasks-v1-1.2.2-beta.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

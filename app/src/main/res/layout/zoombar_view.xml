@@ -39,7 +39,7 @@
         android:textSize="@dimen/text_size_20"
         android:layout_alignTop="@+id/zoomBar"
         />
-    <com.icatch.sbcapp.ExtendComponent.ZoomBar
+    <com.honestmc.laryngoscopeapp.ExtendComponent.ZoomBar
         android:id="@+id/zoomBar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

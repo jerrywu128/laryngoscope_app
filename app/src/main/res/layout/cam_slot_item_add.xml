@@ -48,7 +48,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1">
-				<com.icatch.sbcapp.ExtendComponent.RoundAngleImageView
+				<com.honestmc.laryngoscopeapp.ExtendComponent.RoundAngleImageView
                         android:layout_width="fill_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="5dp"

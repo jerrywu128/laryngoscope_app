@@ -6,7 +6,7 @@
     android:layout_height="fill_parent"
     android:background="@color/white"
     android:fitsSystemWindows="true"
-    tools:context="com.icatch.sbcapp.View.Activity.LocalVideoWallActivity">
+    tools:context="com.honestmc.laryngoscopeapp.View.Activity.LocalVideoWallActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

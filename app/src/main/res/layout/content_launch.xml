@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:background="@color/black"
-    tools:context="com.icatch.sbcapp.View.Activity.LaunchActivity">
+    tools:context="com.honestmc.laryngoscopeapp.View.Activity.LaunchActivity">
 
     <LinearLayout
         android:id="@+id/launch_view"

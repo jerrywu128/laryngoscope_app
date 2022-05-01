@@ -6,14 +6,14 @@
     android:layout_height="match_parent"
     android:background="@color/black"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.icatch.sbcapp.View.Activity.PreviewActivity"
+    tools:context="com.honestmc.laryngoscopeapp.View.Activity.PreviewActivity"
     tools:showIn="@layout/activity_preview">
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
-        <com.icatch.sbcapp.ExtendComponent.MPreview
+        <com.honestmc.laryngoscopeapp.ExtendComponent.MPreview
             android:id="@+id/m_preview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

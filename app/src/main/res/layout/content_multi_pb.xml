@@ -7,7 +7,7 @@
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_multi_pb"
-    tools:context="com.icatch.sbcapp.View.Activity.MultiPbActivity">
+    tools:context="com.honestmc.laryngoscopeapp.View.Activity.MultiPbActivity">
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vPager"
         android:layout_width="wrap_content"

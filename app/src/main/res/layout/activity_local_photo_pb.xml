@@ -6,19 +6,19 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_photo_pb"
-    tools:context="com.icatch.sbcapp.View.Activity.PhotoPbActivity"
+    tools:context="com.honestmc.laryngoscopeapp.View.Activity.PhotoPbActivity"
     android:background="@color/black">
 
     <FrameLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
-        <com.icatch.sbcapp.ExtendComponent.HackyViewPager
+        <com.honestmc.laryngoscopeapp.ExtendComponent.HackyViewPager
             android:id="@+id/viewpager"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             >
-        </com.icatch.sbcapp.ExtendComponent.HackyViewPager>
+        </com.honestmc.laryngoscopeapp.ExtendComponent.HackyViewPager>
 
         <LinearLayout
             android:id="@+id/pb_bottom_layout"
