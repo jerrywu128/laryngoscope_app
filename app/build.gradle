@@ -6,8 +6,8 @@ android {
         applicationId "com.honestmc.laryngoscopeapp"
         minSdkVersion 24
         targetSdkVersion 30
-        versionCode 1
-        versionName 'V0.04.09'
+        versionCode 2
+        versionName 'V1.00.00'
         multiDexEnabled true
         ndk {
             abiFilters 'armeabi', 'arm64-v8a' , 'x86', 'x86_64' //may be added
@@ -33,6 +33,11 @@ android {
             exclude defaultConfig.ndk.abiFilters.collect { '**/' + it }
         }
     }
+
+
+
+
+
     ndkVersion '22.1.7171670'
     tasks.findByPath(':clean').dependsOn ndkClean
 
@@ -41,7 +46,7 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation files('libs/wificammobilesdk.jar')
     implementation files('libs/stickyheadergridviewlib.jar')
     implementation files('libs/photoView.jar')
