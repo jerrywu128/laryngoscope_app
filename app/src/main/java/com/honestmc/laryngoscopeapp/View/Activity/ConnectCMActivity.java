@@ -72,7 +72,7 @@ public class ConnectCMActivity extends BaseActivity {
                 public void run() {
                     presenter.launchCamera();
                 }
-            }, 6500 + delay);
+            }, 8500 + delay);
 
         }
     }

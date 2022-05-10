@@ -124,6 +124,7 @@ public class LaunchActivity extends BaseActivity implements View.OnClickListener
         presenter.checkFirstInapp();
         if(presenter.checkMobiledata()){
             AppDialog.showDialogWarn(this, R.string.dialog_mobiledata);
+
         }
 
 

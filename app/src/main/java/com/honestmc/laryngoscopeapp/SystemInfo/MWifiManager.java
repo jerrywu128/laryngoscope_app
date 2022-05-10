@@ -245,8 +245,6 @@ public class MWifiManager {
     public void connectWifi(String tagSsid, String tagPassword) {
 
         openWifi();
-
-
         String ssid = tagSsid;
         String password = tagPassword;
         WifiConfiguration conf = new WifiConfiguration();
@@ -302,8 +300,10 @@ public class MWifiManager {
         Integer foundNetworkID = findNetworkInExistingConfig(wifiManager, conf.SSID);
         if (foundNetworkID != null) {
             Log.i(TAG, "Removing old configuration for network " + conf.SSID);
+
             wifiManager.removeNetwork(foundNetworkID);
             wifiManager.saveConfiguration();
+            wifiManager.disconnect();
         }
 
 

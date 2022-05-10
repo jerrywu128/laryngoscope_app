@@ -210,7 +210,6 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/capture_delay_btn"
             android:visibility="visible" />
 
         <TextView

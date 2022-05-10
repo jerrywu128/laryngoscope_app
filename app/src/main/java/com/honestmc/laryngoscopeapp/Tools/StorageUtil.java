@@ -25,23 +25,23 @@ public class StorageUtil {
         SharedPreferences preferences = context.getSharedPreferences("appData", MODE_PRIVATE);
         String storageLocation = preferences.getString("storageLocation", "InternalStorage");
         if (storageLocation.equals("InternalStorage")) {
-            return Environment.getExternalStorageDirectory().toString() + AppInfo.DOWNLOAD_PATH;
+            return AppInfo.DOWNLOAD_PATH;
         }
         if (android.os.Build.VERSION.SDK_INT >= 19) {
             File[] fs = context.getExternalFilesDirs(null);
             // at index 0 you have the internal storage and at index 1 the real external...
             if (fs != null && fs.length >= 2) {
                 if (fs[1] == null || fs[1].getAbsolutePath() == null || fs[1].getAbsolutePath().isEmpty()) {
-                    path = Environment.getExternalStorageDirectory().toString() + AppInfo.DOWNLOAD_PATH;
+                    path =  AppInfo.DOWNLOAD_PATH;
                 } else {
                     path = fs[1].getAbsolutePath() + AppInfo.DOWNLOAD_PATH;
                 }
 //                path = fs[1].getAbsolutePath() + AppInfo.SDK_LOG_DIRECTORY_PATH;
             } else {
-                path = Environment.getExternalStorageDirectory().toString() + AppInfo.DOWNLOAD_PATH;
+                path = AppInfo.DOWNLOAD_PATH;
             }
         } else {
-            path = Environment.getExternalStorageDirectory().toString() + AppInfo.DOWNLOAD_PATH;
+            path =  AppInfo.DOWNLOAD_PATH;
         }
         AppLog.i(TAG, "End getDownloadVideoPath path=" + path);
         return path;

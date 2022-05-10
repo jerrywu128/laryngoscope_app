@@ -14,7 +14,7 @@ public class Ffmpeg {
 
     public static void videoResize(){
         String [] tempStr = GlobalInfo.getInstance().getVideoName().split("\\.");//在檔名標示修改過
-        String newVideoName = tempStr[0]+"R."+tempStr[1];
+        String newVideoName = tempStr[0]+"."+tempStr[1]+"."+tempStr[2]+"R."+tempStr[3];// android/data/com.honestmc.app/files/Album/ENVIDEO/xxx.mp4
         FFmpegSession session = FFmpegKit.execute("-i "+ GlobalInfo.getInstance().getVideoName() + " -strict -2 -vf crop="+GlobalInfo.getInstance().getVideowidth()+":"
                 + GlobalInfo.getInstance().getVideoheight()*0.75+":0:0 -preset veryslow "+ newVideoName );
         if (ReturnCode.isSuccess(session.getReturnCode())) {
