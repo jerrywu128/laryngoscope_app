@@ -247,13 +247,13 @@ public class LaunchActivity extends BaseActivity implements View.OnClickListener
         }
 
         if (requestCode == 2296) {
-            if (SDK_INT >= Build.VERSION_CODES.R) {
+            /*if (SDK_INT >= Build.VERSION_CODES.R) {
                 if (Environment.isExternalStorageManager()) {
                     // perform action when allow permission success
                 } else {
                     Toast.makeText(this, "Allow permission for storage access!", Toast.LENGTH_SHORT).show();
                 }
-            }
+            }*/
         }
     }
 
@@ -561,16 +561,18 @@ public class LaunchActivity extends BaseActivity implements View.OnClickListener
 
     private void requestPermission() {
         if (SDK_INT >= Build.VERSION_CODES.R) {
+            /*
             try {
-                Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
-                intent.addCategory("android.intent.category.DEFAULT");
-                intent.setData(Uri.parse(String.format("package:%s",getApplicationContext().getPackageName())));
-                startActivityForResult(intent, 2296);
+                //Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                //intent.addCategory("android.intent.category.DEFAULT");
+                //intent.setData(Uri.parse(String.format("package:%s",getApplicationContext().getPackageName())));
+                //startActivityForResult(intent, 2296);
             } catch (Exception e) {
-                Intent intent = new Intent();
-                intent.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
-                startActivityForResult(intent, 2296);
+                //Intent intent = new Intent();
+                //intent.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                //startActivityForResult(intent, 2296);
             }
+            */
         } else {
             //below android 11
             ActivityCompat.requestPermissions(LaunchActivity.this, new String[]{WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
